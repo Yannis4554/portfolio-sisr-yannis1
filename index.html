@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Yannis Bofunga — Portfolio BTS SIO SISR</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Small custom animations and layout tweaks */
+    .fade-up { animation: fadeUp .8s ease both; }
+    @keyframes fadeUp { from { opacity:0; transform: translateY(12px); } to { opacity:1; transform: translateY(0); } }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+  <header class="bg-gradient-to-r from-sky-700 to-indigo-700 text-white shadow">
+    <div class="max-w-6xl mx-auto flex items-center justify-between p-6">
+      <h1 class="text-2xl font-extrabold">Yannis Bofunga</h1>
+      <nav class="space-x-6 text-sm">
+        <a href="index.html" class="hover:underline">Accueil</a>
+        <a href="projets.html" class="hover:underline">Projets</a>
+        <a href="stage.html" class="hover:underline">Stage</a>
+        <a href="competences.html" class="hover:underline">Compétences</a>
+        <a href="contact.html" class="hover:underline">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto p-6">
+    <section class="bg-white rounded-2xl shadow p-8 mt-8 fade-up">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <h2 class="text-3xl font-bold">Étudiant BTS SIO — Option SISR</h2>
+          <p class="mt-2 text-slate-600">Je m'appelle <strong>Yannis Bofunga</strong>. Spécialisé en administration systèmes et réseaux. Ce portfolio présente mes projets, mon stage chez <strong>IA Advise</strong> et mes compétences techniques.</p>
+          <div class="mt-6 flex gap-3">
+            <a href="CV_Yannis_Bofunga.pdf" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded shadow hover:opacity-90">Télécharger mon CV</a>
+            <a href="projets.html" class="inline-block border border-indigo-600 text-indigo-600 px-4 py-2 rounded">Voir mes projets</a>
+          </div>
+        </div>
+        <div class="p-6 bg-slate-50 rounded-lg shadow-inner text-sm text-slate-500">
+          <p><strong>Stage :</strong> IA Advise</p>
+          <p class="mt-2"><strong>Mission principale :</strong> Configuration d'un serveur DHCP pour fournir des adresses IP dynamiques aux postes et automatiser la gestion des baux.</p>
+          <p class="mt-2"><strong>Compétences clés :</strong> DHCP, administration réseau, sécurité de base, documentation technique.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-8 grid md:grid-cols-3 gap-6">
+      <article class="bg-white p-6 rounded-lg shadow fade-up">
+        <h3 class="font-bold text-lg">Réseau Cisco (Packet Tracer)</h3>
+        <p class="mt-2 text-sm text-slate-600">Maquette réseau avec VLAN (Production / Ventes / Serveurs), routage inter-VLAN (router-on-a-stick), tests et documentation de configuration.</p>
+      </article>
+      <article class="bg-white p-6 rounded-lg shadow fade-up">
+        <h3 class="font-bold text-lg">Serveur Linux</h3>
+        <p class="mt-2 text-sm text-slate-600">Installation et sécurisation d'un serveur Debian : Apache, SSH durci, pare-feu (iptables/nftables), scripts de sauvegarde.</p>
+      </article>
+      <article class="bg-white p-6 rounded-lg shadow fade-up">
+        <h3 class="font-bold text-lg">Wireshark — Analyse de trames</h3>
+        <p class="mt-2 text-sm text-slate-600">Capture et diagnostic des échanges ARP/ICMP, création de filtres, diagnostic d'incidents réseau dans un environnement virtuel.</p>
+      </article>
+    </section>
+
+    <footer class="mt-12 text-center text-sm text-slate-500">
+      © 2025 — Yannis Bofunga — BTS SIO SISR
+    </footer>
+  </main>
+</body>
+</html>
