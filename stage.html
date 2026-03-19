@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projets | Yannis Bofuna</title>
+  <title>Stages | Yannis Bofunga</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <aside class="sidebar">
     <div class="profile">
-      <div class="profile-name">Yannis Bofuna</div>
+      <div class="profile-name">Yannis Bofunga</div>
       <div class="profile-role">Admin Réseau & Sécurité</div>
     </div>
     <ul class="nav-menu">
       <li><a href="index.html">/ Accueil</a></li>
-      <li><a href="projets.html" class="active">/ Projets</a></li>
-      <li><a href="stage.html">/ Expériences</a></li>
+      <li><a href="projets.html">/ Projets</a></li>
+      <li><a href="stage.html" class="active">/ Stage</a></li>
       <li><a href="competences.html">/ Compétences</a></li>
       <li><a href="contact.html">/ Contact</a></li>
     </ul>
@@ -24,44 +24,58 @@
 
   <main class="main-content">
     <div class="page-header">
-      <h1 class="page-title">Projets <span>Techniques</span></h1>
+      <h1 class="page-title">Parcours <span>Opérationnel</span></h1>
     </div>
 
     <div class="grid" style="grid-template-columns: 1fr;">
       
-      <div class="card">
-        <span class="tag">Réseaux & AD</span>
-        <h3>Mise en place de services réseau (DHCP, DNS, AD)</h3>
-        <p>Déploiement et configuration de services réseau essentiels pour une infrastructure d’entreprise : serveur DHCP pour l’attribution d’adresses IP, serveur DNS pour la résolution de noms, et annuaire Active Directory (Windows Server 2019) pour la gestion des utilisateurs et des postes. Mise en place du routage et du NAT/PAT pour l’accès Internet, ainsi que des filtrages ACL sur les commutateurs Cisco.</p>
+      <div class="card" style="border-left: 4px solid var(--accent);">
+        <div style="display: flex; justify-content: space-between;">
+          <span class="tag">STAGE 2ÈME ANNÉE</span>
+          <span style="color: var(--text-muted); font-family: monospace;">2026</span>
+        </div>
+        <h3 style="font-size: 1.8rem; margin-top: 10px;">Sécurisation Périmétrique & Infrastructure</h3>
+        <p style="color: var(--accent); margin-bottom: 20px; font-weight: 600;">Lieu d'affectation : Ministère des Armées</p>
+        
+        <p><strong>Contexte :</strong> Dans un environnement soumis à des contraintes de sécurité maximales, j'ai été chargé de renforcer le périmètre réseau en isolant les services critiques.</p>
+        
+        <h4 style="color: #fff; margin: 20px 0 10px 0;">Missions réalisées :</h4>
+        <ul style="padding-left: 20px; color: var(--text-muted); line-height: 1.8; margin-bottom: 25px;">
+          <li><strong>Architecture Réseau :</strong> Conception et configuration d'une zone démilitarisée (<strong>DMZ</strong>) pour séparer strictement le réseau local (LAN) d'Internet.</li>
+          <li><strong>Filtrage Web :</strong> Déploiement et paramétrage d'un serveur <strong>Proxy</strong> au sein de la DMZ afin de contrôler, filtrer et journaliser les flux web entrants et sortants.</li>
+          <li><strong>Règles de Pare-feu :</strong> Application de règles de filtrage strictes pour bloquer tout trafic non autorisé entre les différentes zones du réseau.</li>
+        </ul>
+
         <ul class="skills-list">
-          <li>DHCP / DNS</li><li>Active Directory</li><li>Routage / NAT/PAT</li><li>ACL Cisco</li>
+          <li>DMZ</li>
+          <li>Serveur Proxy</li>
+          <li>Firewall Rules</li>
+          <li>Sécurité Réseau</li>
         </ul>
       </div>
 
       <div class="card">
-        <span class="tag">Sécurité & Transfert</span>
-        <h3>Hébergement Wampserver et configuration FileZilla</h3>
-        <p>Installation de Wampserver sur un serveur Windows afin d’héberger des applications web. La seconde partie consistait à mettre en place un serveur FTP avec FileZilla Server : création d’un utilisateur, définition des droits (lecture, écriture) et choix d’un répertoire partagé. Un port range personnalisé a été défini et ouvert dans le pare‑feu Windows pour les connexions sécurisées.</p>
-        <ul class="skills-list">
-          <li>Wampserver</li><li>FileZilla Server</li><li>Pare-feu Windows</li>
+        <div style="display: flex; justify-content: space-between;">
+          <span class="tag">STAGE 1ÈRE ANNÉE</span>
+          <span style="color: var(--text-muted); font-family: monospace;">2025</span>
+        </div>
+        <h3 style="font-size: 1.5rem; margin-top: 10px;">Support & Maintenance du Parc</h3>
+        
+        <p><strong>Contexte :</strong> Maintien en condition opérationnelle du parc informatique et assistance aux utilisateurs.</p>
+        
+        <h4 style="color: #fff; margin: 20px 0 10px 0;">Missions réalisées :</h4>
+        <ul style="padding-left: 20px; color: var(--text-muted); line-height: 1.8; margin-bottom: 25px;">
+          <li><strong>Support GLPI :</strong> Traitement des tickets d'incidents et gestion de parc.</li>
+          <li><strong>Déploiement OPSI :</strong> Administration du serveur de déploiement pour l'installation automatisée des postes clients.</li>
+          <li><strong>Active Directory :</strong> Gestion fine des habilitations, des groupes et des comptes utilisateurs.</li>
+          <li><strong>Sauvegarde :</strong> Mise en œuvre de scripts d'automatisation (cron) pour la sauvegarde de données.</li>
         </ul>
-      </div>
 
-      <div class="card">
-        <span class="tag">Systèmes</span>
-        <h3>Administration de postes Windows & Linux</h3>
-        <p>Gestion et maintenance de parcs informatiques sous Windows 10/11 et distributions Linux. Création de comptes utilisateurs, définition des droits d’accès (NTFS, FAT), configuration des stratégies de groupe (GPO) et déploiement d’outils de supervision. Automatisation via scripts.</p>
         <ul class="skills-list">
-          <li>Windows / Linux</li><li>GPO</li><li>Scripts Bash / PowerShell</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <span class="tag">Infrastructure</span>
-        <h3>Virtualisation et conteneurisation</h3>
-        <p>Utilisation d’outils de virtualisation (Hyper‑V, Proxmox) et de conteneurisation (Docker) pour créer des environnements isolés. Mise en place d’un cluster de machines virtuelles pour simuler une infrastructure complète et déploiement d’une application avec Docker Compose.</p>
-        <ul class="skills-list">
-          <li>Proxmox</li><li>Hyper-V</li><li>Docker</li>
+          <li>GLPI</li>
+          <li>OPSI</li>
+          <li>Active Directory</li>
+          <li>Bash / Cron</li>
         </ul>
       </div>
 
