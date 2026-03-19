@@ -1,31 +1,48 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Contact — Yannis Bofunga</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Yannis Bofuna</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-slate-50 text-slate-800">
-  <header class="bg-gradient-to-r from-sky-700 to-indigo-700 text-white">
-    <div class="max-w-6xl mx-auto p-6 flex justify-between items-center">
-      <h1 class="font-extrabold">Contact</h1>
-      <nav class="space-x-4 text-sm">
-        <a href="index.html" class="hover:underline">Accueil</a>
-        <a href="projets.html" class="hover:underline">Projets</a>
-        <a href="stage.html" class="hover:underline">Stage</a>
-        <a href="competences.html" class="hover:underline">Compétences</a>
-      </nav>
-    </div>
-  </header>
+<body>
 
-  <main class="max-w-4xl mx-auto p-6">
-    <section class="bg-white p-6 rounded-lg shadow text-center">
-      <h2 class="text-2xl font-bold">Me contacter</h2>
-      <p class="mt-3 text-slate-600">Email : <a href="mailto:yannisbofunga@gmail.com" class="underline">yannisbofunga@gmail.com</a></p>
-      <p class="mt-2 text-slate-600">LinkedIn : <a href="https://linkedin.com/in/tonprofil" target="_blank" class="underline">Mon profil</a></p>
-      <p class="mt-4 text-sm text-slate-500">Astuce : remplace le lien LinkedIn et le CV par tes informations réelles avant de rendre.</p>
-    </section>
+  <aside class="sidebar">
+    <div class="profile">
+      <div class="profile-name">Yannis Bofuna</div>
+      <div class="profile-role">Admin Réseau & Sécurité</div>
+    </div>
+    <ul class="nav-menu">
+      <li><a href="index.html">/ Accueil</a></li>
+      <li><a href="projets.html">/ Projets</a></li>
+      <li><a href="stage.html">/ Expériences</a></li>
+      <li><a href="competences.html">/ Compétences</a></li>
+      <li><a href="contact.html" class="active">/ Contact</a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <div class="page-header">
+      <h1 class="page-title">Me <span>Contacter</span></h1>
+    </div>
+
+    <div class="card" style="max-width: 600px;">
+      <span class="tag">Disponibilité</span>
+      <h3>Échangeons sur vos projets</h3>
+      <p>Pour toute question concernant mon parcours, mes projets ou pour une éventuelle collaboration, n'hésitez pas à me contacter.</p>
+      
+      <ul style="list-style: none; color: var(--text-main); margin-top: 30px; margin-bottom: 30px; line-height: 2;">
+        <li><strong>Nom :</strong> Yannis Bofuna</li>
+        <li><strong>Spécialité :</strong> Réseaux, Sécurité & DMZ</li>
+      </ul>
+
+      <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+        <a href="mailto:yannis.bofuna@example.com" class="btn">Envoyer un mail</a>
+        <a href="CV%20Yannis%20Bofuna.pdf" class="btn btn-outline" target="_blank">Mon CV</a>
+      </div>
+    </div>
   </main>
+
 </body>
 </html>
