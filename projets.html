@@ -3,144 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio BTS SIO SISR – Yannis Bofunga</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
-    body { background: #0f172a; color: #e5e7eb; line-height: 1.6; }
-    header { background: #020617; padding: 50px 20px; text-align: center; }
-    header h1 { font-size: 2.5rem; color: #38bdf8; }
-    header p { margin-top: 10px; font-size: 1.2rem; }
-    nav { background: #020617; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 15px; position: sticky; top: 0; z-index: 100; }
-    nav a { color: #e5e7eb; text-decoration: none; font-weight: bold; }
-    nav a:hover { color: #38bdf8; }
-    section { max-width: 1100px; margin: 70px auto; padding: 0 20px; }
-    h2 { color: #38bdf8; margin-bottom: 20px; }
-    h3 { color: #7dd3fc; margin-bottom: 10px; }
-    .card { background: #020617; padding: 25px; border-radius: 14px; margin-bottom: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-    ul { margin-left: 20px; }
-    li { margin-bottom: 8px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-    footer { text-align: center; padding: 30px; background: #020617; margin-top: 60px; }
-    .btn { display: inline-block; margin-top: 15px; padding: 12px 22px; background: #38bdf8; color: #020617; text-decoration: none; border-radius: 10px; font-weight: bold; }
-    .btn:hover { background: #0ea5e9; }
-  </style>
+  <title>Projets | Yannis Bofuna</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <h1>Yannis Bofunga</h1>
-  <p>BTS SIO – Option SISR | Portfolio professionnel</p>
-</header>
-
-<nav>
-  <a href="#accueil">Accueil</a>
-  <a href="#epreuve">Épreuve E4</a>
-  <a href="#presentation">Présentation</a>
-  <a href="#cv">CV</a>
-  <a href="#projets">Projets BTS</a>
-</nav>
-
-<section id="accueil">
-  <h2>Accueil</h2>
-  <div class="card">
-    <p>
-      Bienvenue sur mon portfolio réalisé dans le cadre du <strong>BTS SIO option SISR</strong>.
-      Ce site a pour objectif de présenter mon parcours, mes compétences techniques
-      et les projets réalisés durant ma formation.
-    </p>
-  </div>
-</section>
-
-<section id="epreuve">
-  <h2>Présentation de l’épreuve E4</h2>
-  <div class="card">
-    <p>
-      L’épreuve <strong>E4 – Support et mise à disposition de services informatiques</strong>
-      évalue les compétences acquises durant le BTS SIO.
-    </p>
-    <ul>
-      <li>Analyse des besoins d’un service informatique</li>
-      <li>Mise en place de solutions systèmes et réseaux</li>
-      <li>Administration, supervision et sécurisation des services</li>
-      <li>Documentation et présentation des réalisations</li>
+  <aside class="sidebar">
+    <div class="profile">
+      <div class="profile-name">Yannis Bofuna</div>
+      <div class="profile-role">Admin Réseau & Sécurité</div>
+    </div>
+    <ul class="nav-menu">
+      <li><a href="index.html">/ Accueil</a></li>
+      <li><a href="projets.html" class="active">/ Projets</a></li>
+      <li><a href="stage.html">/ Expériences</a></li>
+      <li><a href="competences.html">/ Compétences</a></li>
+      <li><a href="contact.html">/ Contact</a></li>
     </ul>
-    <p>
-      Les projets présentés dans ce portfolio s’inscrivent pleinement dans cette épreuve.
-    </p>
-  </div>
-</section>
+  </aside>
 
-<section id="presentation">
-  <h2>Présentation personnelle</h2>
-  <div class="card">
-    <p>
-      Je suis étudiant en <strong>BTS SIO option SISR</strong> au lycée Benjamin Franklin à Orléans.
-      Passionné par les systèmes, les réseaux et la cybersécurité, je souhaite
-      évoluer vers un poste d’<strong>administrateur systèmes et réseaux</strong>.
-    </p>
-    <p>
-      J’ai acquis des compétences solides en administration Windows et Linux,
-      virtualisation, réseaux, sécurité et services cloud.
-    </p>
-  </div>
-</section>
+  <main class="main-content">
+    <div class="page-header">
+      <h1 class="page-title">Projets <span>Techniques</span></h1>
+    </div>
 
-<section id="cv">
-  <h2>Curriculum Vitae</h2>
-  <div class="card">
-    <p>
-      Vous pouvez consulter mon CV détaillant mon parcours scolaire, mes expériences
-      professionnelles et mes compétences techniques.
-    </p>
-    <a href="CV_Yannis_Bofunga.pdf" class="btn" target="_blank">Télécharger mon CV</a>
-  </div>
-</section>
+    <div class="grid" style="grid-template-columns: 1fr;">
+      
+      <div class="card">
+        <span class="tag">Réseaux & AD</span>
+        <h3>Mise en place de services réseau (DHCP, DNS, AD)</h3>
+        <p>Déploiement et configuration de services réseau essentiels pour une infrastructure d’entreprise : serveur DHCP pour l’attribution d’adresses IP, serveur DNS pour la résolution de noms, et annuaire Active Directory (Windows Server 2019) pour la gestion des utilisateurs et des postes. Mise en place du routage et du NAT/PAT pour l’accès Internet, ainsi que des filtrages ACL sur les commutateurs Cisco.</p>
+        <ul class="skills-list">
+          <li>DHCP / DNS</li><li>Active Directory</li><li>Routage / NAT/PAT</li><li>ACL Cisco</li>
+        </ul>
+      </div>
 
-<section id="projets">
-  <h2>Projets réalisés en BTS SIO (SISR)</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Infrastructure Windows Server</h3>
-      <ul>
-        <li>Installation de Windows Server</li>
-        <li>Active Directory, utilisateurs et groupes</li>
-        <li>DNS, DHCP et partages de fichiers</li>
-        <li>Sécurisation des accès</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>Réseaux et sécurité</h3>
-      <ul>
-        <li>Adressage IP, VLAN et routage</li>
-        <li>Configuration d’équipements Cisco</li>
-        <li>Pare-feu Stormshield</li>
-        <li>Mise en place de VPN</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>Linux & services web</h3>
-      <ul>
-        <li>Administration de serveurs Linux</li>
-        <li>Serveur Apache</li>
-        <li>Scripts et automatisation</li>
-        <li>Gestion des droits et permissions</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>Virtualisation</h3>
-      <ul>
-        <li>VirtualBox / VMware</li>
-        <li>Création de machines virtuelles</li>
-        <li>Déploiement de postes clients</li>
-        <li>Snapshots et sauvegardes</li>
-      </ul>
-    </div>
-  </div>
-</section>
+      <div class="card">
+        <span class="tag">Sécurité & Transfert</span>
+        <h3>Hébergement Wampserver et configuration FileZilla</h3>
+        <p>Installation de Wampserver sur un serveur Windows afin d’héberger des applications web. La seconde partie consistait à mettre en place un serveur FTP avec FileZilla Server : création d’un utilisateur, définition des droits (lecture, écriture) et choix d’un répertoire partagé. Un port range personnalisé a été défini et ouvert dans le pare‑feu Windows pour les connexions sécurisées.</p>
+        <ul class="skills-list">
+          <li>Wampserver</li><li>FileZilla Server</li><li>Pare-feu Windows</li>
+        </ul>
+      </div>
 
-<footer>
-  <p>© 2025 – Yannis Bofunga | BTS SIO option SISR</p>
-</footer>
+      <div class="card">
+        <span class="tag">Systèmes</span>
+        <h3>Administration de postes Windows & Linux</h3>
+        <p>Gestion et maintenance de parcs informatiques sous Windows 10/11 et distributions Linux. Création de comptes utilisateurs, définition des droits d’accès (NTFS, FAT), configuration des stratégies de groupe (GPO) et déploiement d’outils de supervision. Automatisation via scripts.</p>
+        <ul class="skills-list">
+          <li>Windows / Linux</li><li>GPO</li><li>Scripts Bash / PowerShell</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="tag">Infrastructure</span>
+        <h3>Virtualisation et conteneurisation</h3>
+        <p>Utilisation d’outils de virtualisation (Hyper‑V, Proxmox) et de conteneurisation (Docker) pour créer des environnements isolés. Mise en place d’un cluster de machines virtuelles pour simuler une infrastructure complète et déploiement d’une application avec Docker Compose.</p>
+        <ul class="skills-list">
+          <li>Proxmox</li><li>Hyper-V</li><li>Docker</li>
+        </ul>
+      </div>
+
+    </div>
+  </main>
 
 </body>
 </html>
