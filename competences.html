@@ -1,39 +1,75 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Compétences — Yannis Bofunga</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compétences | Yannis Bofunga</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-slate-50 text-slate-800">
-  <header class="bg-gradient-to-r from-sky-700 to-indigo-700 text-white">
-    <div class="max-w-6xl mx-auto p-6 flex justify-between items-center">
-      <h1 class="font-extrabold">Compétences</h1>
-      <nav class="space-x-4 text-sm">
-        <a href="index.html" class="hover:underline">Accueil</a>
-        <a href="projets.html" class="hover:underline">Projets</a>
-        <a href="stage.html" class="hover:underline">Stage</a>
-        <a href="contact.html" class="hover:underline">Contact</a>
-      </nav>
-    </div>
-  </header>
+<body>
 
-  <main class="max-w-6xl mx-auto p-6">
-    <section class="grid md:grid-cols-3 gap-6">
-      <div class="bg-white p-6 rounded-lg shadow">
-        <h3 class="font-bold">Systèmes</h3>
-        <p class="text-slate-600 mt-2">Linux (Debian), Windows Server, Virtualisation (VirtualBox / VMware)</p>
+  <aside class="sidebar">
+    <div class="profile">
+      <div class="profile-name">Yannis Bofunga</div>
+      <div class="profile-role">Admin Réseau & Sécurité</div>
+    </div>
+    <ul class="nav-menu">
+      <li><a href="index.html">/ Accueil</a></li>
+      <li><a href="projets.html">/ Projets</a></li>
+      <li><a href="stage.html">/ Stage</a></li>
+      <li><a href="competences.html" class="active">/ Compétences</a></li>
+      <li><a href="contact.html">/ Contact</a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <div class="page-header">
+      <h1 class="page-title">Mes <span>Compétences</span></h1>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <span class="tag">SYSTÈMES</span>
+        <h3>Administration & Virtualisation</h3>
+        <ul style="padding-left: 20px; color: var(--text-muted); line-height: 1.8;">
+          <li>Active Directory (Windows Server 2019) : UO, GPO.</li>
+          <li>Administration postes clients Windows 10/11 et Linux.</li>
+          <li>Virtualisation : Hyper‑V, Proxmox (VM, snapshots).</li>
+          <li>Serveurs locaux : Wampserver, LAMP.</li>
+        </ul>
       </div>
-      <div class="bg-white p-6 rounded-lg shadow">
-        <h3 class="font-bold">Réseaux</h3>
-        <p class="text-slate-600 mt-2">DHCP, VLAN, TCP/IP, Routage inter-VLAN, Cisco basics, Wireshark</p>
+
+      <div class="card">
+        <span class="tag">RÉSEAUX</span>
+        <h3>Architecture & Services</h3>
+        <ul style="padding-left: 20px; color: var(--text-muted); line-height: 1.8;">
+          <li>Mise en place de services : DHCP, DNS, NAT/PAT.</li>
+          <li>Routage IPv4/IPv6, création de VLAN, inter‑VLAN routing, filtrage ACL Cisco.</li>
+          <li>Conception et déploiement de réseaux DMZ isolés.</li>
+        </ul>
       </div>
-      <div class="bg-white p-6 rounded-lg shadow">
-        <h3 class="font-bold">Scripting & Dev</h3>
-        <p class="text-slate-600 mt-2">Bash, Python, HTML/CSS, automatisation de tâches</p>
+
+      <div class="card">
+        <span class="tag">SÉCURITÉ</span>
+        <h3>Protection & Filtrage</h3>
+        <ul style="padding-left: 20px; color: var(--text-muted); line-height: 1.8;">
+          <li>Configuration de serveurs Proxy.</li>
+          <li>Pare‑feu (UFW, iptables, pare‑feu Windows).</li>
+          <li>Utilisation de Fail2ban et surveillance des journaux d'événements.</li>
+        </ul>
       </div>
-    </section>
+
+      <div class="card">
+        <span class="tag">SCRIPTING</span>
+        <h3>Automatisation</h3>
+        <ul style="padding-left: 20px; color: var(--text-muted); line-height: 1.8;">
+          <li>Bash et PowerShell pour l’automatisation.</li>
+          <li>Python pour scripts d'administration.</li>
+          <li>HTML, CSS pour intégration web.</li>
+        </ul>
+      </div>
+    </div>
   </main>
+
 </body>
 </html>
