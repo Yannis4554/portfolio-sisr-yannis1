@@ -1,0 +1,2028 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yannis BOFUNGA — Portfolio BTS SIO SISR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #020912;
+    --bg2: #050d1a;
+    --panel: rgba(0,210,255,0.04);
+    --panel-hover: rgba(0,210,255,0.08);
+    --border: rgba(0,210,255,0.15);
+    --border-bright: rgba(0,210,255,0.5);
+    --cyan: #00d2ff;
+    --cyan-dim: rgba(0,210,255,0.6);
+    --cyan-glow: 0 0 20px rgba(0,210,255,0.4);
+    --gold: #f0b429;
+    --green: #00ff88;
+    --red: #ff3d5a;
+    --purple: #a78bfa;
+    --text: #c8e6f5;
+    --text-dim: rgba(200,230,245,0.5);
+    --mono: 'Share Tech Mono', monospace;
+    --head: 'Orbitron', sans-serif;
+    --body: 'Rajdhani', sans-serif;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+
+  /* GRID BG */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,210,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,210,255,0.025) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* SCANLINES */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 2px,
+      rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px
+    );
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    background: rgba(2,9,18,0.94);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 36px;
+    height: 62px;
+  }
+
+  .nav-logo {
+    font-family: var(--head);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--cyan);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .nav-logo span { color: var(--text-dim); font-weight: 400; }
+
+  .nav-links { display: flex; gap: 4px; list-style: none; }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 6px 13px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+    text-transform: uppercase;
+  }
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--cyan);
+    border-color: var(--border);
+    background: var(--panel);
+    box-shadow: 0 0 10px rgba(0,210,255,0.1);
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    padding: 100px 40px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg-ring {
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,210,255,0.05);
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    animation: ringPulse 4s ease-in-out infinite;
+  }
+  .hero-bg-ring:nth-child(2) { width: 950px; height: 950px; animation-delay: 1.3s; }
+  .hero-bg-ring:nth-child(3) { width: 1200px; height: 1200px; animation-delay: 2.6s; }
+
+  @keyframes ringPulse { 0%,100%{opacity:0.3} 50%{opacity:0.9} }
+
+  .hero-content { position: relative; z-index: 2; max-width: 820px; }
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 11px; color: var(--cyan);
+    letter-spacing: 4px; text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0; animation: fadeUp 0.8s 0.3s forwards;
+  }
+  .hero-name {
+    font-family: var(--head);
+    font-size: clamp(38px,7vw,82px);
+    font-weight: 900; color: #fff;
+    letter-spacing: 5px; line-height: 1.05;
+    text-transform: uppercase;
+    opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
+  }
+  .hero-name .accent { color: var(--cyan); text-shadow: var(--cyan-glow); }
+  .hero-title {
+    font-family: var(--mono);
+    font-size: 13px; color: var(--text-dim);
+    letter-spacing: 3px; margin: 22px 0 42px;
+    text-transform: uppercase;
+    opacity: 0; animation: fadeUp 0.8s 0.7s forwards;
+  }
+  .hero-badges {
+    display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.8s 0.9s forwards;
+  }
+  .badge {
+    font-family: var(--mono); font-size: 10px;
+    padding: 6px 15px;
+    border: 1px solid var(--border); border-radius: 2px;
+    color: var(--cyan-dim); letter-spacing: 2px;
+    text-transform: uppercase; background: var(--panel);
+    transition: all 0.2s;
+  }
+  .badge:hover { border-color: var(--border-bright); color: var(--cyan); }
+
+  .hero-scroll {
+    position: absolute; bottom: 30px; left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--mono); font-size: 10px;
+    color: var(--text-dim); letter-spacing: 3px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    animation: bounce 2s infinite;
+  }
+  .hero-scroll::after {
+    content: '';
+    width: 1px; height: 40px;
+    background: linear-gradient(var(--cyan), transparent);
+  }
+
+  @keyframes bounce {
+    0%,100%{transform:translateX(-50%) translateY(0)}
+    50%{transform:translateX(-50%) translateY(6px)}
+  }
+  @keyframes fadeUp {
+    from{opacity:0;transform:translateY(20px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    position: relative; z-index: 1;
+    padding: 100px 40px;
+    max-width: 1200px; margin: 0 auto;
+  }
+
+  .section-header {
+    display: flex; align-items: center; gap: 20px; margin-bottom: 60px;
+  }
+  .section-num {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--cyan); letter-spacing: 2px;
+  }
+  .section-title {
+    font-family: var(--head);
+    font-size: clamp(18px,3vw,26px);
+    font-weight: 700; color: #fff;
+    letter-spacing: 3px; text-transform: uppercase;
+  }
+  .section-line {
+    flex: 1; height: 1px;
+    background: linear-gradient(to right, var(--border-bright), transparent);
+  }
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+  }
+
+  .project-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px; padding: 28px 28px 24px;
+    position: relative; overflow: hidden;
+    transition: all 0.3s;
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, var(--cyan), transparent);
+    transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+  }
+  .project-card:hover {
+    border-color: var(--border-bright);
+    background: rgba(0,210,255,0.07);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,210,255,0.12);
+  }
+  .project-card:hover::before { transform: scaleX(1); }
+
+  .project-period {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--cyan); letter-spacing: 2px; margin-bottom: 10px;
+  }
+  .project-title {
+    font-family: var(--body); font-size: 17px;
+    font-weight: 700; color: #fff;
+    margin-bottom: 10px; line-height: 1.4;
+  }
+  .project-desc {
+    font-size: 14px; color: var(--text-dim);
+    line-height: 1.75; margin-bottom: 16px; flex: 1;
+  }
+  .project-details {
+    margin: 0 0 16px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .project-details-toggle {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--cyan-dim); letter-spacing: 2px;
+    padding: 8px 14px;
+    cursor: pointer;
+    background: rgba(0,210,255,0.04);
+    border: none; width: 100%; text-align: left;
+    text-transform: uppercase; transition: all 0.2s;
+  }
+  .project-details-toggle:hover { color: var(--cyan); background: rgba(0,210,255,0.08); }
+  .project-details-body {
+    display: none; padding: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .project-details-body.open { display: block; }
+  .project-detail-item {
+    font-size: 13px; color: var(--text);
+    padding: 5px 0; border-bottom: 1px solid rgba(0,210,255,0.05);
+    display: flex; gap: 8px;
+  }
+  .project-detail-item:last-child { border-bottom: none; }
+  .project-detail-item::before { content: '▸'; color: var(--cyan); font-size: 10px; min-width: 10px; margin-top: 2px; }
+
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+  .tag {
+    font-family: var(--mono); font-size: 9px;
+    padding: 3px 10px;
+    border: 1px solid rgba(0,210,255,0.25); border-radius: 2px;
+    color: var(--cyan-dim); letter-spacing: 1px; text-transform: uppercase;
+  }
+  .tag.gold { border-color: rgba(240,180,41,0.35); color: rgba(240,180,41,0.75); }
+  .tag.green { border-color: rgba(0,255,136,0.3); color: rgba(0,255,136,0.75); }
+  .tag.purple { border-color: rgba(167,139,250,0.3); color: rgba(167,139,250,0.75); }
+
+  /* ── STAGES ── */
+  .stages-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  @media(max-width:768px){
+    .stages-wrapper{grid-template-columns:1fr}
+    .projects-grid{grid-template-columns:1fr}
+    nav{padding:0 16px}
+    .nav-links{display:none}
+    section{padding:80px 20px}
+    .contact-layout{grid-template-columns:1fr}
+  }
+
+  .stage-card {
+    background: var(--panel);
+    border: 1px solid var(--border); border-radius: 4px;
+    overflow: hidden; position: relative;
+    transition: all 0.3s;
+  }
+  .stage-card:hover { border-color: var(--border-bright); box-shadow: var(--cyan-glow); }
+
+  .stage-header { padding: 24px 28px 20px; border-bottom: 1px solid var(--border); }
+  .stage-year {
+    font-family: var(--head); font-size: 10px;
+    color: var(--cyan); letter-spacing: 3px; margin-bottom: 8px;
+  }
+  .stage-name { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .stage-place { font-family: var(--mono); font-size: 11px; color: var(--text-dim); letter-spacing: 1px; }
+  .stage-accroche {
+    font-size: 13px; color: var(--cyan-dim); font-style: italic;
+    padding: 14px 28px; border-bottom: 1px solid var(--border);
+    background: rgba(0,210,255,0.02);
+  }
+  .stage-body { padding: 24px 28px; }
+  .mission-item { display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start; }
+  .mission-dot {
+    width: 6px; height: 6px; min-width: 6px;
+    background: var(--cyan); border-radius: 50%;
+    margin-top: 7px; box-shadow: 0 0 6px var(--cyan);
+  }
+  .mission-title { font-weight: 600; color: #fff; font-size: 15px; margin-bottom: 3px; }
+  .mission-desc { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+  .stage-tags { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 6px; padding-top: 16px; border-top: 1px solid var(--border); }
+
+  /* ── COMPETENCES ── */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 24px; }
+  .skill-domain {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 4px; padding: 28px;
+    position: relative; overflow: hidden; transition: all 0.3s;
+  }
+  .skill-domain:hover { border-color: var(--border-bright); box-shadow: var(--cyan-glow); }
+  .skill-domain-icon { font-size: 28px; margin-bottom: 14px; }
+  .skill-domain-name {
+    font-family: var(--head); font-size: 12px; font-weight: 700;
+    color: var(--cyan); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 4px;
+  }
+  .skill-domain-subtitle {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--text-dim); letter-spacing: 2px; margin-bottom: 18px; text-transform: uppercase;
+  }
+  .skill-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .skill-item::before { content: '▸'; color: var(--cyan); font-size: 10px; min-width: 10px; }
+  .skill-item span { font-size: 14px; color: var(--text); line-height: 1.5; }
+
+  /* ── CONTACT ── */
+  #contact-section { max-width: 1200px; margin: 0 auto; padding: 100px 40px; }
+  .contact-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: start; }
+  .contact-info { display: flex; flex-direction: column; gap: 14px; }
+  .contact-item {
+    display: flex; align-items: center; gap: 16px;
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 4px; padding: 14px 18px; transition: all 0.2s;
+  }
+  .contact-item:hover { border-color: var(--border-bright); background: var(--panel-hover); }
+  .contact-item-icon { font-size: 18px; width: 34px; text-align: center; }
+  .contact-item-label {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--text-dim); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 3px;
+  }
+  .contact-item-value { font-size: 15px; color: #fff; font-weight: 500; }
+  .contact-item-value a { color: var(--cyan); text-decoration: none; }
+
+  .cv-panel { background: var(--panel); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+  .cv-panel-header {
+    padding: 16px 20px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .cv-panel-title { font-family: var(--mono); font-size: 11px; color: var(--cyan); letter-spacing: 2px; text-transform: uppercase; }
+  .cv-download-btn {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--bg); background: var(--cyan);
+    border: none; padding: 6px 16px; border-radius: 2px;
+    cursor: pointer; letter-spacing: 2px; text-transform: uppercase;
+    text-decoration: none; transition: all 0.2s; display: inline-block;
+  }
+  .cv-download-btn:hover { background: #fff; }
+  .cv-content { padding: 28px; }
+  .cv-section-title {
+    font-family: var(--head); font-size: 11px; color: var(--cyan);
+    letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 12px; margin-top: 22px;
+    padding-bottom: 6px; border-bottom: 1px solid var(--border);
+  }
+  .cv-section-title:first-child { margin-top: 0; }
+  .cv-line {
+    font-size: 13px; color: var(--text);
+    line-height: 1.9; padding: 3px 0;
+    border-bottom: 1px solid rgba(0,210,255,0.04);
+  }
+  .cv-line strong { color: #fff; font-weight: 600; }
+  .cv-line .period { font-family: var(--mono); font-size: 10px; color: var(--cyan-dim); letter-spacing: 1px; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: var(--mono); font-size: 10px;
+    color: var(--text-dim); letter-spacing: 2px; text-transform: uppercase;
+    position: relative; z-index: 1;
+  }
+
+  /* ── CORNER DECOR ── */
+  .corner-decor {
+    position: absolute; width: 12px; height: 12px;
+    border-color: var(--cyan-dim); border-style: solid; opacity: 0.4;
+  }
+  .corner-decor.tl{top:8px;left:8px;border-width:1px 0 0 1px}
+  .corner-decor.tr{top:8px;right:8px;border-width:1px 1px 0 0}
+  .corner-decor.bl{bottom:8px;left:8px;border-width:0 0 1px 1px}
+  .corner-decor.br{bottom:8px;right:8px;border-width:0 1px 1px 0}
+
+  /* ── STATUS DOT ── */
+  .status-dot {
+    display: inline-block; width: 6px; height: 6px;
+    background: var(--green); border-radius: 50%;
+    margin-right: 6px; box-shadow: 0 0 8px var(--green);
+    animation: blink 2s ease-in-out infinite;
+  }
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+  /* ── TABS ── */
+  .tab-bar {
+    display: flex; gap: 4px; margin-bottom: 30px;
+    border-bottom: 1px solid var(--border); padding-bottom: 0;
+  }
+  .tab-btn {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--text-dim); background: none;
+    border: 1px solid transparent; border-bottom: none;
+    padding: 8px 16px; cursor: pointer;
+    letter-spacing: 2px; text-transform: uppercase;
+    position: relative; bottom: -1px; transition: all 0.2s;
+    border-radius: 3px 3px 0 0;
+  }
+  .tab-btn.active { color: var(--cyan); border-color: var(--border); background: var(--bg); }
+  .tab-btn:hover:not(.active) { color: var(--text); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* ── SYNTHESE TABLE ── */
+  .synthese-table { width: 100%; border-collapse: collapse; font-size: 13px; overflow-x: auto; display: block; }
+  .synthese-table th {
+    font-family: var(--mono); font-size: 9px; color: var(--cyan);
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 10px 14px; border: 1px solid var(--border);
+    background: rgba(0,210,255,0.06); white-space: nowrap;
+  }
+  .synthese-table td { padding: 10px 14px; border: 1px solid var(--border); color: var(--text); vertical-align: top; line-height: 1.5; }
+  .synthese-table tr:hover td { background: rgba(0,210,255,0.03); }
+  .check-mark { color: var(--cyan); font-size: 16px; display: block; text-align: center; }
+
+  /* ── SPA PAGES ── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── DIVIDER ── */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0 40px; position: relative; z-index: 1; }
+
+  /* ── QUICK STATS ── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px,1fr));
+    gap: 16px;
+  }
+  .stat-card {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 4px; padding: 20px 24px; text-align: center;
+    transition: all 0.2s;
+  }
+  .stat-card:hover { border-color: var(--border-bright); transform: translateY(-2px); }
+  .stat-num { font-family: var(--head); font-size: 32px; font-weight: 900; }
+  .stat-label { font-family: var(--mono); font-size: 10px; color: var(--text-dim); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+
+  /* ── VEILLE TECHNOLOGIQUE ── */
+  .veille-intro {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 4px; padding: 24px 28px; margin-bottom: 40px;
+    border-left: 3px solid var(--cyan);
+  }
+  .veille-intro p { font-size: 15px; color: var(--text-dim); line-height: 1.8; }
+  .veille-intro strong { color: var(--cyan); }
+
+  .veille-timeline { display: flex; flex-direction: column; gap: 24px; }
+  .veille-month {
+    display: grid; grid-template-columns: 140px 1fr;
+    gap: 24px; align-items: start;
+  }
+
+  .veille-month-label {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 4px; padding: 14px 16px; text-align: center;
+    position: sticky; top: 80px;
+  }
+  .veille-month-name {
+    font-family: var(--head); font-size: 11px; font-weight: 700;
+    color: var(--cyan); letter-spacing: 2px; text-transform: uppercase;
+  }
+  .veille-month-year {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--text-dim); margin-top: 4px;
+  }
+
+  .veille-articles { display: flex; flex-direction: column; gap: 14px; }
+  .veille-article {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 4px; padding: 18px 22px;
+    transition: all 0.2s; position: relative;
+    overflow: hidden;
+  }
+  .veille-article::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px; background: var(--cyan); opacity: 0.4;
+    transition: opacity 0.2s;
+  }
+  .veille-article:hover { border-color: var(--border-bright); background: var(--panel-hover); }
+  .veille-article:hover::before { opacity: 1; }
+
+  .veille-article-header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 16px; margin-bottom: 8px;
+  }
+  .veille-article-title {
+    font-size: 15px; font-weight: 600; color: #fff; line-height: 1.4; flex: 1;
+  }
+  .veille-article-source {
+    font-family: var(--mono); font-size: 9px;
+    color: var(--cyan); letter-spacing: 2px;
+    text-transform: uppercase; white-space: nowrap;
+    background: rgba(0,210,255,0.08); border: 1px solid var(--border);
+    padding: 3px 8px; border-radius: 2px;
+  }
+  .veille-article-desc { font-size: 13px; color: var(--text-dim); line-height: 1.65; margin-bottom: 12px; }
+  .veille-article-link {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--cyan); text-decoration: none;
+    letter-spacing: 1px; display: inline-flex; align-items: center; gap: 6px;
+    transition: all 0.2s;
+  }
+  .veille-article-link:hover { color: #fff; }
+  .veille-article-link::after { content: '→'; }
+  .veille-cat {
+    font-family: var(--mono); font-size: 9px;
+    padding: 2px 8px;
+    border-radius: 2px; letter-spacing: 1px;
+    text-transform: uppercase; margin-right: 6px; margin-bottom: 6px;
+    display: inline-block;
+  }
+  .veille-cat.vuln { background: rgba(255,61,90,0.1); color: var(--red); border: 1px solid rgba(255,61,90,0.25); }
+  .veille-cat.systeme { background: rgba(0,210,255,0.1); color: var(--cyan); border: 1px solid var(--border); }
+  .veille-cat.reseau { background: rgba(167,139,250,0.1); color: var(--purple); border: 1px solid rgba(167,139,250,0.25); }
+  .veille-cat.secu { background: rgba(240,180,41,0.1); color: var(--gold); border: 1px solid rgba(240,180,41,0.25); }
+  .veille-cat.cloud { background: rgba(0,255,136,0.1); color: var(--green); border: 1px solid rgba(0,255,136,0.2); }
+
+  /* ── CERTIFICATIONS ── */
+  .certif-intro {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 4px; padding: 24px 28px; margin-bottom: 40px;
+    border-left: 3px solid var(--gold);
+  }
+  .certif-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(340px,1fr));
+    gap: 22px;
+  }
+  .certif-card {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 4px; overflow: hidden; transition: all 0.3s;
+    position: relative;
+  }
+  .certif-card:hover {
+    border-color: rgba(240,180,41,0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(240,180,41,0.1);
+  }
+  .certif-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+  }
+  .certif-header { padding: 20px 24px 16px; border-bottom: 1px solid var(--border); }
+  .certif-badge-row {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 12px;
+  }
+  .certif-icon {
+    width: 44px; height: 44px; border-radius: 4px;
+    background: rgba(240,180,41,0.12); border: 1px solid rgba(240,180,41,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+  .certif-title { font-size: 15px; font-weight: 700; color: #fff; line-height: 1.35; }
+  .certif-platform { font-family: var(--mono); font-size: 10px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-top: 3px; }
+  .certif-date { font-family: var(--mono); font-size: 10px; color: var(--text-dim); letter-spacing: 1px; margin-top: 6px; }
+  .certif-body { padding: 18px 24px 20px; }
+  .certif-desc { font-size: 13px; color: var(--text-dim); line-height: 1.7; margin-bottom: 14px; }
+  .certif-skills { display: flex; flex-wrap: wrap; gap: 5px; }
+  .certif-link-row { padding: 0 24px 18px; }
+  .certif-link {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--gold); text-decoration: none;
+    letter-spacing: 1px; display: inline-flex; align-items: center; gap: 6px;
+    transition: all 0.2s;
+  }
+  .certif-link:hover { color: #fff; }
+  .certif-link::after { content: '→'; }
+
+  .certif-status {
+    font-family: var(--mono); font-size: 9px;
+    padding: 2px 8px; border-radius: 2px;
+    letter-spacing: 1px; text-transform: uppercase;
+    display: inline-block; margin-bottom: 8px;
+  }
+  .certif-status.done { background: rgba(0,255,136,0.1); color: var(--green); border: 1px solid rgba(0,255,136,0.25); }
+  .certif-status.progress { background: rgba(240,180,41,0.1); color: var(--gold); border: 1px solid rgba(240,180,41,0.25); }
+
+  /* ── OC BANNER ── */
+  .oc-banner {
+    background: linear-gradient(135deg, rgba(240,180,41,0.06), rgba(0,210,255,0.04));
+    border: 1px solid rgba(240,180,41,0.2);
+    border-radius: 4px; padding: 20px 28px;
+    display: flex; align-items: center; gap: 20px;
+    margin-bottom: 36px;
+  }
+  .oc-logo-text {
+    font-family: var(--head); font-size: 14px; font-weight: 700;
+    color: var(--gold); letter-spacing: 2px;
+  }
+  .oc-logo-sub { font-family: var(--mono); font-size: 10px; color: var(--text-dim); letter-spacing: 2px; margin-top: 4px; }
+  .oc-separator { flex: 1; height: 1px; background: rgba(240,180,41,0.15); }
+  .oc-count { font-family: var(--head); font-size: 28px; font-weight: 900; color: var(--gold); text-shadow: 0 0 20px rgba(240,180,41,0.4); }
+  .oc-count-label { font-family: var(--mono); font-size: 10px; color: var(--text-dim); letter-spacing: 2px; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">YB<span> // SIO SISR 2026</span></div>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home')" class="active" id="nav-home">Accueil</a></li>
+    <li><a href="#" onclick="showPage('projets')" id="nav-projets">Projets</a></li>
+    <li><a href="#" onclick="showPage('stages')" id="nav-stages">Stages</a></li>
+    <li><a href="#" onclick="showPage('competences')" id="nav-competences">Compétences</a></li>
+    <li><a href="#" onclick="showPage('veille')" id="nav-veille">Veille Techno.</a></li>
+    <li><a href="#" onclick="showPage('certifications')" id="nav-certifications">Certifications</a></li>
+    <li><a href="#" onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ════════════════════ PAGE HOME ════════════════════ -->
+<div class="page active" id="page-home">
+  <div id="hero">
+    <div class="hero-bg-ring"></div>
+    <div class="hero-bg-ring"></div>
+    <div class="hero-bg-ring"></div>
+    <div class="hero-content">
+      <p class="hero-tag"><span class="status-dot"></span> BTS SIO Option SISR — Session 2026</p>
+      <h1 class="hero-name">Yannis<br><span class="accent">BOFUNGA</span></h1>
+      <p class="hero-title">Administrateur Systèmes &amp; Réseaux</p>
+      <div class="hero-badges">
+        <span class="badge">Windows Server</span>
+        <span class="badge">Linux</span>
+        <span class="badge">Réseaux Cisco</span>
+        <span class="badge">Virtualisation</span>
+        <span class="badge">Cybersécurité</span>
+        <span class="badge">Alternance 2026</span>
+      </div>
+    </div>
+    <div class="hero-scroll">SCROLL</div>
+  </div>
+
+  <section style="padding-top:0;">
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-num" style="color:var(--cyan);text-shadow:var(--cyan-glow)">6</div><div class="stat-label">Projets réalisés</div></div>
+      <div class="stat-card"><div class="stat-num" style="color:var(--cyan);text-shadow:var(--cyan-glow)">2</div><div class="stat-label">Stages effectués</div></div>
+      <div class="stat-card"><div class="stat-num" style="color:var(--cyan);text-shadow:var(--cyan-glow)">10+</div><div class="stat-label">Technologies maîtrisées</div></div>
+      <div class="stat-card"><div class="stat-num" style="color:var(--gold);text-shadow:0 0 20px rgba(240,180,41,0.4)">6</div><div class="stat-label">Certifications OC</div></div>
+      <div class="stat-card"><div class="stat-num" style="color:var(--gold);text-shadow:0 0 20px rgba(240,180,41,0.4)">B2</div><div class="stat-label">Anglais</div></div>
+      <div class="stat-card"><div class="stat-num" style="color:var(--green);text-shadow:0 0 20px rgba(0,255,136,0.4)">✓</div><div class="stat-label">Permis B</div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ════════════════════ PAGE PROJETS ════════════════════ -->
+<div class="page" id="page-projets">
+  <section>
+    <div class="section-header">
+      <span class="section-num">// 01</span>
+      <h2 class="section-title">Réalisations Professionnelles</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab(this,'tab-all')">Tous les projets</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-synthese')">Tableau de synthèse</button>
+    </div>
+
+    <div class="tab-content active" id="tab-all">
+      <div class="projects-grid">
+
+        <!-- P1 -->
+        <div class="project-card">
+          <div class="corner-decor tl"></div><div class="corner-decor tr"></div>
+          <div class="corner-decor bl"></div><div class="corner-decor br"></div>
+          <div class="project-period">01/2025 — 02/2025</div>
+          <h3 class="project-title">Installation Wampserver &amp; FileZilla Server</h3>
+          <p class="project-desc">Mise en place d'un environnement de développement local complet avec WampServer (Apache, PHP, MySQL) et configuration d'un serveur FTP sécurisé via FileZilla Server. Déploiement sur réseau local Windows avec tests de connectivité et accès distant.</p>
+          <div class="project-details">
+            <button class="project-details-toggle" onclick="toggleDetails(this)">▸ Détails techniques</button>
+            <div class="project-details-body">
+              <div class="project-detail-item">Installation et paramétrage de WampServer avec gestion des VirtualHosts Apache</div>
+              <div class="project-detail-item">Configuration de FileZilla Server : création d'utilisateurs FTP, permissions par dossier, mode passif</div>
+              <div class="project-detail-item">Ouverture des ports 80, 443, 21 dans le pare-feu Windows pour les accès réseau</div>
+              <div class="project-detail-item">Tests de connectivité HTTP et FTP depuis postes clients du réseau local</div>
+              <div class="project-detail-item">Rédaction d'une documentation de procédure complète</div>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag">Wampserver</span><span class="tag">FileZilla</span>
+            <span class="tag">Apache</span><span class="tag">PHP</span>
+            <span class="tag">FTP</span><span class="tag">Windows</span>
+          </div>
+        </div>
+
+        <!-- P2 -->
+        <div class="project-card">
+          <div class="corner-decor tl"></div><div class="corner-decor tr"></div>
+          <div class="corner-decor bl"></div><div class="corner-decor br"></div>
+          <div class="project-period">03/2025</div>
+          <h3 class="project-title">Serveur DHCP — Windows Server 2022</h3>
+          <p class="project-desc">Déploiement complet d'un serveur DHCP sous Windows Server 2022 dans un environnement Active Directory. Définition de plages d'adresses, réservations statiques par adresse MAC, options de bail et supervision des attributions dynamiques.</p>
+          <div class="project-details">
+            <button class="project-details-toggle" onclick="toggleDetails(this)">▸ Détails techniques</button>
+            <div class="project-details-body">
+              <div class="project-detail-item">Installation du rôle DHCP via le Gestionnaire de serveur, autorisation dans AD DS</div>
+              <div class="project-detail-item">Création d'étendues IPv4 avec plages d'exclusion et durée de bail personnalisée</div>
+              <div class="project-detail-item">Configuration des options d'étendue : passerelle par défaut, DNS, nom de domaine</div>
+              <div class="project-detail-item">Mise en place de réservations statiques pour serveurs et imprimantes réseau</div>
+              <div class="project-detail-item">Supervision des baux actifs et diagnostic via la console DHCP</div>
+              <div class="project-detail-item">Test de basculement DHCP en environnement Hyper-V</div>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag">Windows Server 2022</span><span class="tag">DHCP</span>
+            <span class="tag">IPv4</span><span class="tag">Active Directory</span>
+            <span class="tag">Hyper-V</span>
+          </div>
+        </div>
+
+        <!-- P3 -->
+        <div class="project-card">
+          <div class="corner-decor tl"></div><div class="corner-decor tr"></div>
+          <div class="corner-decor bl"></div><div class="corner-decor br"></div>
+          <div class="project-period">10/2025</div>
+          <h3 class="project-title">Switch Cisco — CLI &amp; Sécurisation SSH</h3>
+          <p class="project-desc">Configuration avancée en ligne de commande (CLI) d'un switch Cisco Catalyst : segmentation du réseau par VLANs, routage inter-VLAN, configuration trunk/access, et sécurisation complète de l'administration distante via SSH avec restrictions d'accès.</p>
+          <div class="project-details">
+            <button class="project-details-toggle" onclick="toggleDetails(this)">▸ Détails techniques</button>
+            <div class="project-details-body">
+              <div class="project-detail-item">Création et attribution des VLANs (données, voix, management) en CLI Cisco IOS</div>
+              <div class="project-detail-item">Configuration des ports en mode Access et Trunk (encapsulation 802.1Q)</div>
+              <div class="project-detail-item">Routage inter-VLAN via sous-interfaces sur routeur Cisco (Router-on-a-stick)</div>
+              <div class="project-detail-item">Sécurisation SSH : génération de clés RSA 2048 bits, version SSH 2, timeout de session</div>
+              <div class="project-detail-item">Application d'ACLs pour restreindre l'accès management au VLAN admin uniquement</div>
+              <div class="project-detail-item">Configuration de Port-Security pour limiter les adresses MAC par port</div>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag">Cisco IOS</span><span class="tag">CLI</span>
+            <span class="tag">VLAN</span><span class="tag">SSH</span>
+            <span class="tag">ACL</span><span class="tag">Sécurité</span>
+          </div>
+        </div>
+
+        <!-- P4 -->
+        <div class="project-card">
+          <div class="corner-decor tl"></div><div class="corner-decor tr"></div>
+          <div class="corner-decor bl"></div><div class="corner-decor br"></div>
+          <div class="project-period">11/2025</div>
+          <h3 class="project-title">Haute Disponibilité — Keepalived &amp; LVS</h3>
+          <p class="project-desc">Architecture haute disponibilité complète avec Keepalived et Linux Virtual Server (LVS) sous Proxmox. Configuration du basculement automatique (failover) entre deux nœuds pour garantir la continuité de service en cas de panne du nœud principal.</p>
+          <div class="project-details">
+            <button class="project-details-toggle" onclick="toggleDetails(this)">▸ Détails techniques</button>
+            <div class="project-details-body">
+              <div class="project-detail-item">Déploiement de 2 VMs Debian sur Proxmox (nœud MASTER + BACKUP)</div>
+              <div class="project-detail-item">Installation et configuration de Keepalived avec protocole VRRP pour l'IP virtuelle</div>
+              <div class="project-detail-item">Mise en place de LVS en mode NAT pour la répartition de charge sur les serveurs réels</div>
+              <div class="project-detail-item">Configuration des health checks pour détection automatique des pannes</div>
+              <div class="project-detail-item">Tests de bascule (failover) avec simulation de panne et mesure du temps de reprise</div>
+              <div class="project-detail-item">Rédaction d'un rapport de maquette avec schéma d'architecture</div>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag">Keepalived</span><span class="tag">LVS</span>
+            <span class="tag">Linux</span><span class="tag">VRRP</span>
+            <span class="tag gold">Proxmox</span><span class="tag">Haute dispo.</span>
+          </div>
+        </div>
+
+        <!-- P5 -->
+        <div class="project-card">
+          <div class="corner-decor tl"></div><div class="corner-decor tr"></div>
+          <div class="corner-decor bl"></div><div class="corner-decor br"></div>
+          <div class="project-period">02/2026</div>
+          <h3 class="project-title">Analyse de Trames &amp; Audit Wireshark</h3>
+          <p class="project-desc">Capture et analyse approfondie de trames réseau avec Wireshark pour réaliser un audit de sécurité sur un réseau d'entreprise simulé. Identification d'anomalies, détection de flux suspects et rédaction d'un rapport d'audit complet avec recommandations.</p>
+          <div class="project-details">
+            <button class="project-details-toggle" onclick="toggleDetails(this)">▸ Détails techniques</button>
+            <div class="project-details-body">
+              <div class="project-detail-item">Capture de trames en mode promiscuous sur différents segments réseau</div>
+              <div class="project-detail-item">Analyse des protocoles TCP/IP, ARP, DNS, HTTP/HTTPS, ICMP</div>
+              <div class="project-detail-item">Identification de communications en clair (HTTP, Telnet) et recommandations de chiffrement</div>
+              <div class="project-detail-item">Détection d'ARP Spoofing simulé et analyse des indicateurs d'attaque MITM</div>
+              <div class="project-detail-item">Filtrage avancé Wireshark et reconstitution de flux TCP suspects</div>
+              <div class="project-detail-item">Rédaction d'un rapport d'audit avec priorisation des risques (CVSS)</div>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag">Wireshark</span><span class="tag">TCP/IP</span>
+            <span class="tag">Audit</span><span class="tag">ARP</span>
+            <span class="tag gold">Cybersécurité</span>
+          </div>
+        </div>
+
+        <!-- P6 Portfolio -->
+        <div class="project-card">
+          <div class="corner-decor tl"></div><div class="corner-decor tr"></div>
+          <div class="corner-decor bl"></div><div class="corner-decor br"></div>
+          <div class="project-period">10/2025 — 04/2026</div>
+          <h3 class="project-title">Conception du Portfolio E6</h3>
+          <p class="project-desc">Développement complet d'un portfolio numérique professionnel en HTML/CSS/JS pur (sans framework) pour l'épreuve E6 du BTS SIO. Design cyberpunk responsive, navigation SPA fluide, veille technologique mensuelle intégrée.</p>
+          <div class="project-details">
+            <button class="project-details-toggle" onclick="toggleDetails(this)">▸ Détails techniques</button>
+            <div class="project-details-body">
+              <div class="project-detail-item">Architecture SPA (Single Page Application) en JavaScript vanilla sans dépendance</div>
+              <div class="project-detail-item">Design system complet avec variables CSS, animations et effets visuels</div>
+              <div class="project-detail-item">Responsive design adapté mobile/tablette/desktop</div>
+              <div class="project-detail-item">Intégration d'une veille technologique mensuelle avec liens vérifiés</div>
+              <div class="project-detail-item">Section certifications OpenClassrooms avec liens directs vers les cours</div>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag">HTML5</span><span class="tag">CSS3</span>
+            <span class="tag">JavaScript</span><span class="tag green">E6 BTS SIO</span>
+            <span class="tag">Responsive</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-synthese">
+      <div style="overflow-x:auto;">
+        <table class="synthese-table">
+          <thead>
+            <tr>
+              <th>Réalisation</th><th>Période</th><th>Patrimoine</th>
+              <th>Incidents</th><th>Présence en ligne</th>
+              <th>Mode projet</th><th>Mise à dispo.</th><th>Dev. pro.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Installation Wampserver &amp; FileZilla Server</td>
+              <td><span style="font-family:var(--mono);font-size:10px;color:var(--cyan)">01-02/2025</span></td>
+              <td><span class="check-mark">◆</span></td><td></td>
+              <td><span class="check-mark">◆</span></td><td></td>
+              <td><span class="check-mark">◆</span></td><td></td>
+            </tr>
+            <tr>
+              <td>Serveur DHCP (Windows Server 2022)</td>
+              <td><span style="font-family:var(--mono);font-size:10px;color:var(--cyan)">03/2025</span></td>
+              <td><span class="check-mark">◆</span></td><td><span class="check-mark">◆</span></td>
+              <td></td><td></td>
+              <td><span class="check-mark">◆</span></td><td></td>
+            </tr>
+            <tr>
+              <td>Switch Cisco CLI &amp; SSH</td>
+              <td><span style="font-family:var(--mono);font-size:10px;color:var(--cyan)">10/2025</span></td>
+              <td><span class="check-mark">◆</span></td><td></td>
+              <td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+              <td>Haute disponibilité Keepalived + LVS</td>
+              <td><span style="font-family:var(--mono);font-size:10px;color:var(--cyan)">11/2025</span></td>
+              <td><span class="check-mark">◆</span></td><td></td>
+              <td></td><td></td>
+              <td><span class="check-mark">◆</span></td><td></td>
+            </tr>
+            <tr>
+              <td>Analyse de trames &amp; Audit Wireshark</td>
+              <td><span style="font-family:var(--mono);font-size:10px;color:var(--cyan)">02/2026</span></td>
+              <td><span class="check-mark">◆</span></td><td><span class="check-mark">◆</span></td>
+              <td></td><td></td>
+              <td><span class="check-mark">◆</span></td><td></td>
+            </tr>
+            <tr>
+              <td>Conception du Portfolio E6</td>
+              <td><span style="font-family:var(--mono);font-size:10px;color:var(--cyan)">10/2025–04/2026</span></td>
+              <td></td><td></td>
+              <td><span class="check-mark">◆</span></td><td></td><td></td>
+              <td><span class="check-mark">◆</span></td>
+            </tr>
+            <tr>
+              <td>Veille technologique (Cybersécurité)</td>
+              <td><span style="font-family:var(--mono);font-size:10px;color:var(--cyan)">09/2024–04/2026</span></td>
+              <td></td><td></td><td></td><td></td><td></td>
+              <td><span class="check-mark">◆</span></td>
+            </tr>
+            <tr>
+              <td>Support utilisateur &amp; tickets GLPI <em style="font-size:11px;color:var(--text-dim)">(Stage 1)</em></td>
+              <td><span style="font-family:var(--mono);font-size:10px;color:var(--cyan)">05-06/2025</span></td>
+              <td></td><td><span class="check-mark">◆</span></td>
+              <td></td><td></td>
+              <td><span class="check-mark">◆</span></td><td></td>
+            </tr>
+            <tr>
+              <td>Administration serveur OPSI <em style="font-size:11px;color:var(--text-dim)">(Stage 1)</em></td>
+              <td><span style="font-family:var(--mono);font-size:10px;color:var(--cyan)">05-06/2025</span></td>
+              <td><span class="check-mark">◆</span></td><td></td>
+              <td></td><td></td>
+              <td><span class="check-mark">◆</span></td><td></td>
+            </tr>
+            <tr>
+              <td>Active Directory &amp; GPO <em style="font-size:11px;color:var(--text-dim)">(Stage 1)</em></td>
+              <td><span style="font-family:var(--mono);font-size:10px;color:var(--cyan)">05-06/2025</span></td>
+              <td><span class="check-mark">◆</span></td><td></td>
+              <td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+              <td>Infrastructure réseau &amp; sécurité <em style="font-size:11px;color:var(--text-dim)">(Stage 2)</em></td>
+              <td><span style="font-family:var(--mono);font-size:10px;color:var(--cyan)">01-02/2026</span></td>
+              <td><span class="check-mark">◆</span></td><td><span class="check-mark">◆</span></td>
+              <td></td><td><span class="check-mark">◆</span></td>
+              <td><span class="check-mark">◆</span></td><td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ════════════════════ PAGE STAGES ════════════════════ -->
+<div class="page" id="page-stages">
+  <section>
+    <div class="section-header">
+      <span class="section-num">// 02</span>
+      <h2 class="section-title">Expériences en Entreprise</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="stages-wrapper">
+
+      <!-- STAGE 1 -->
+      <div class="stage-card">
+        <div class="stage-header">
+          <div class="stage-year">MAI — JUIN 2025</div>
+          <div class="stage-name">Stage Admin. Systèmes</div>
+          <div class="stage-place">📍 Startup IA — Advise, Orléans</div>
+        </div>
+        <div class="stage-accroche">
+          Administration d'un SI hybride pour une startup spécialisée dans l'IA — environnement Windows/Linux, support N1/N2, gestion de parc.
+        </div>
+        <div class="stage-body">
+          <div class="mission-item">
+            <div class="mission-dot"></div>
+            <div>
+              <div class="mission-title">Support Utilisateur N1/N2</div>
+              <div class="mission-desc">Gestion de la file de tickets GLPI : réception, qualification, traitement et clôture des incidents matériels et logiciels. Assistance téléphonique et sur site aux collaborateurs.</div>
+            </div>
+          </div>
+          <div class="mission-item">
+            <div class="mission-dot"></div>
+            <div>
+              <div class="mission-title">Serveur de Déploiement OPSI</div>
+              <div class="mission-desc">Administration du serveur OPSI pour le déploiement automatisé des images système et logiciels sur les postes clients. Création et mise à jour des packages OPSI.</div>
+            </div>
+          </div>
+          <div class="mission-item">
+            <div class="mission-dot"></div>
+            <div>
+              <div class="mission-title">Active Directory &amp; GPO</div>
+              <div class="mission-desc">Gestion des comptes utilisateurs, groupes de sécurité et Unités Organisationnelles. Création et déploiement de GPO pour la configuration des postes et restrictions de sécurité.</div>
+            </div>
+          </div>
+          <div class="mission-item">
+            <div class="mission-dot"></div>
+            <div>
+              <div class="mission-title">Scripts de Sauvegarde</div>
+              <div class="mission-desc">Développement de scripts Bash avec planification cron pour la sauvegarde automatique des données sensibles vers un NAS. Tests de restauration et documentation des procédures.</div>
+            </div>
+          </div>
+          <div class="stage-tags">
+            <span class="tag">GLPI</span><span class="tag">OPSI</span>
+            <span class="tag">Active Directory</span><span class="tag">GPO</span>
+            <span class="tag">Bash</span><span class="tag">Cron</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 2 -->
+      <div class="stage-card">
+        <div class="stage-header">
+          <div class="stage-year">JANVIER — FÉVRIER 2026</div>
+          <div class="stage-name">Stage Admin. Sys. &amp; Réseaux</div>
+          <div class="stage-place">📍 Armée de l'Air — Base Aérienne 123 (Bricy)</div>
+        </div>
+        <div class="stage-accroche">
+          Administration d'une infrastructure réseau et systèmes critique en environnement militaire — sécurité renforcée, haute disponibilité, cloisonnement réseau.
+        </div>
+        <div class="stage-body">
+          <div class="mission-item">
+            <div class="mission-dot"></div>
+            <div>
+              <div class="mission-title">Infrastructure Réseau</div>
+              <div class="mission-desc">Participation à la maintenance et l'évolution de l'infrastructure réseau de la base : switches, routeurs, câblage. Diagnostic de pannes réseau et rédaction de procédures techniques.</div>
+            </div>
+          </div>
+          <div class="mission-item">
+            <div class="mission-dot"></div>
+            <div>
+              <div class="mission-title">Sécurité &amp; Cloisonnement</div>
+              <div class="mission-desc">Participation à la configuration de règles de filtrage pare-feu et de la segmentation réseau (VLAN) pour le cloisonnement des zones sensibles. Application des politiques de sécurité SI militaires.</div>
+            </div>
+          </div>
+          <div class="mission-item">
+            <div class="mission-dot"></div>
+            <div>
+              <div class="mission-title">Administration Windows Server</div>
+              <div class="mission-desc">Gestion des serveurs Windows Server 2019/2022 : supervision, mises à jour, gestion des droits NTFS et des partages réseau. Monitoring des journaux d'événements.</div>
+            </div>
+          </div>
+          <div class="mission-item">
+            <div class="mission-dot"></div>
+            <div>
+              <div class="mission-title">Documentation Technique</div>
+              <div class="mission-desc">Rédaction et mise à jour de la documentation technique de l'infrastructure (schémas réseau, procédures d'exploitation, inventaire de parc sous GLPI).</div>
+            </div>
+          </div>
+          <div class="stage-tags">
+            <span class="tag">Windows Server</span><span class="tag">VLAN</span>
+            <span class="tag">Pare-feu</span><span class="tag">GLPI</span>
+            <span class="tag">Sécurité SI</span><span class="tag">Documentation</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- ════════════════════ PAGE COMPETENCES ════════════════════ -->
+<div class="page" id="page-competences">
+  <section>
+    <div class="section-header">
+      <span class="section-num">// 03</span>
+      <h2 class="section-title">Compétences Techniques</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-domain">
+        <div class="skill-domain-icon">🖥️</div>
+        <div class="skill-domain-name">Systèmes</div>
+        <div class="skill-domain-subtitle">Administration & Virtualisation</div>
+        <div class="skill-item"><span>Active Directory — UO, GPO (Windows Server 2022/2025)</span></div>
+        <div class="skill-item"><span>Administration Windows 10/11 et Linux (Debian, Ubuntu)</span></div>
+        <div class="skill-item"><span>Virtualisation : Hyper-V, Proxmox (VM, snapshots, clustering)</span></div>
+        <div class="skill-item"><span>Serveurs locaux : WampServer, LAMP, IIS</span></div>
+        <div class="skill-item"><span>Déploiement OPSI, gestion de parc</span></div>
+      </div>
+      <div class="skill-domain">
+        <div class="skill-domain-icon">🌐</div>
+        <div class="skill-domain-name">Réseaux</div>
+        <div class="skill-domain-subtitle">Architecture & Services</div>
+        <div class="skill-item"><span>Services DHCP, DNS, NAT/PAT</span></div>
+        <div class="skill-item"><span>Routage IPv4/IPv6, VLAN, inter-VLAN routing</span></div>
+        <div class="skill-item"><span>Filtrage ACL Cisco, configuration CLI IOS</span></div>
+        <div class="skill-item"><span>Conception et déploiement de DMZ</span></div>
+        <div class="skill-item"><span>Analyse réseau avec Wireshark &amp; tcpdump</span></div>
+      </div>
+      <div class="skill-domain">
+        <div class="skill-domain-icon">🔒</div>
+        <div class="skill-domain-name">Sécurité</div>
+        <div class="skill-domain-subtitle">Protection & Filtrage</div>
+        <div class="skill-item"><span>Configuration de proxies Squid</span></div>
+        <div class="skill-item"><span>Pare-feu : UFW, iptables, Windows Defender Firewall</span></div>
+        <div class="skill-item"><span>Fail2ban — détection d'intrusion et bannissement IP</span></div>
+        <div class="skill-item"><span>Segmentation réseau, zones DMZ/LAN/WAN</span></div>
+        <div class="skill-item"><span>Audit de sécurité, analyse CVSS</span></div>
+      </div>
+      <div class="skill-domain">
+        <div class="skill-domain-icon">⚙️</div>
+        <div class="skill-domain-name">Scripting</div>
+        <div class="skill-domain-subtitle">Automatisation</div>
+        <div class="skill-item"><span>Bash — scripts admin, sauvegardes, cron</span></div>
+        <div class="skill-item"><span>PowerShell — automatisation Windows Server</span></div>
+        <div class="skill-item"><span>Python — scripts d'administration et d'audit</span></div>
+        <div class="skill-item"><span>HTML5 &amp; CSS3 — intégration web responsive</span></div>
+      </div>
+      <div class="skill-domain">
+        <div class="skill-domain-icon">☁️</div>
+        <div class="skill-domain-name">Cloud & Services</div>
+        <div class="skill-domain-subtitle">Environnements Hybrides</div>
+        <div class="skill-item"><span>Azure Active Directory &amp; Entra ID</span></div>
+        <div class="skill-item"><span>Microsoft 365 &amp; Exchange Online</span></div>
+        <div class="skill-item"><span>Hébergement web : Apache, IIS, Nginx</span></div>
+        <div class="skill-item"><span>GitHub — versioning et collaboration</span></div>
+      </div>
+      <div class="skill-domain">
+        <div class="skill-domain-icon">🛠️</div>
+        <div class="skill-domain-name">Support & ITSM</div>
+        <div class="skill-domain-subtitle">Assistance & Documentation</div>
+        <div class="skill-item"><span>Dépannage matériel et logiciel N1/N2</span></div>
+        <div class="skill-item"><span>Gestion de tickets GLPI (ITIL)</span></div>
+        <div class="skill-item"><span>Rédaction de documentation technique (Confluence)</span></div>
+        <div class="skill-item"><span>Formation et assistance utilisateurs</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ════════════════════ PAGE VEILLE TECHNOLOGIQUE ════════════════════ -->
+<div class="page" id="page-veille">
+  <section>
+    <div class="section-header">
+      <span class="section-num">// 04</span>
+      <h2 class="section-title">Veille Technologique</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="veille-intro">
+      <p>
+        Dans le cadre du BTS SIO option SISR, j'effectue une <strong>veille technologique mensuelle</strong> axée sur la <strong>cybersécurité, les infrastructures réseaux et systèmes</strong>. Cette veille me permet de suivre l'actualité des CVE, les nouvelles menaces, les bonnes pratiques et les évolutions technologiques impactant le métier d'administrateur systèmes &amp; réseaux. Sources principales : <strong>ANSSI, Cert-FR, LeMagIT, The Hacker News, CVE MITRE</strong>.
+      </p>
+    </div>
+
+    <div class="veille-timeline">
+
+      <!-- Septembre 2024 -->
+      <div class="veille-month">
+        <div class="veille-month-label">
+          <div class="veille-month-name">Septembre</div>
+          <div class="veille-month-year">2024</div>
+        </div>
+        <div class="veille-articles">
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">Vulnérabilité critique dans Windows — CVE-2024-38217 (Mark of the Web Bypass)</div>
+              <span class="veille-article-source">Microsoft</span>
+            </div>
+            <span class="veille-cat vuln">Vulnérabilité</span>
+            <p class="veille-article-desc">Microsoft a patché une faille critique permettant à un attaquant de contourner la protection Mark of the Web (MotW) de Windows. Cette protection bloque l'exécution de fichiers téléchargés depuis internet. Cette vulnérabilité, exploitée in the wild, rappelle l'importance du patch management régulier en entreprise.</p>
+            <a class="veille-article-link" href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38217" target="_blank" rel="noopener">Lire sur Microsoft MSRC</a>
+          </div>
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">L'ANSSI publie son panorama des menaces 2024</div>
+              <span class="veille-article-source">ANSSI</span>
+            </div>
+            <span class="veille-cat secu">Sécurité</span>
+            <p class="veille-article-desc">L'Agence nationale de la sécurité des systèmes d'information publie son rapport annuel sur le paysage des cybermenaces. Principales tendances : recrudescence des ransomwares visant les collectivités territoriales et les hôpitaux, espionnage étatique et menaces sur les infrastructures critiques.</p>
+            <a class="veille-article-link" href="https://www.ssi.gouv.fr/actualite/panorama-de-la-cybermenace-2024/" target="_blank" rel="noopener">Lire sur ANSSI</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Octobre 2024 -->
+      <div class="veille-month">
+        <div class="veille-month-label">
+          <div class="veille-month-name">Octobre</div>
+          <div class="veille-month-year">2024</div>
+        </div>
+        <div class="veille-articles">
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">Patch Tuesday Octobre 2024 — 117 CVE corrigées dont 5 zero-days</div>
+              <span class="veille-article-source">Cert-FR</span>
+            </div>
+            <span class="veille-cat vuln">Vulnérabilité</span>
+            <p class="veille-article-desc">Microsoft publie un Patch Tuesday massif avec 117 correctifs, dont 5 vulnérabilités zero-day déjà exploitées activement. Parmi elles, une faille d'élévation de privilèges dans Windows (CVE-2024-43572) permettant l'exécution de code à distance. Application des patchs à prioriser en urgence sur tous les postes et serveurs.</p>
+            <a class="veille-article-link" href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2024-AVI-0879/" target="_blank" rel="noopener">Lire sur Cert-Fr</a>
+          </div>
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">Cisco publie des patchs critiques pour IOS XE — accès root sans authentification</div>
+              <span class="veille-article-source">Cisco</span>
+            </div>
+            <span class="veille-cat reseau">Réseau</span>
+            <p class="veille-article-desc">Cisco corrige une vulnérabilité critique (CVSS 10.0) dans l'interface web d'IOS XE permettant à un attaquant non authentifié d'obtenir un accès root. Cette faille affecte des milliers de routeurs et switches Cisco exposés sur Internet. Une mise à jour firmware immédiate est impérative.</p>
+            <a class="veille-article-link" href="https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxe-webui-privesc2-YHKPxcV" target="_blank" rel="noopener">Lire sur Cisco Security</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Novembre 2024 -->
+      <div class="veille-month">
+        <div class="veille-month-label">
+          <div class="veille-month-name">Novembre</div>
+          <div class="veille-month-year">2024</div>
+        </div>
+        <div class="veille-articles">
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">Active Directory : les nouvelles recommandations de hardening Microsoft 2024</div>
+              <span class="veille-article-source">Microsoft Docs</span>
+            </div>
+            <span class="veille-cat systeme">Systèmes</span>
+            <p class="veille-article-desc">Microsoft met à jour ses recommandations de durcissement d'Active Directory avec un focus sur la protection contre les attaques Kerberoasting, Pass-the-Hash et DCSync. Introduction du concept de "Tiered Administration Model" et des comptes de gestion privilégiés. Très pertinent pour ma formation SISR.</p>
+            <a class="veille-article-link" href="https://learn.microsoft.com/fr-fr/windows-server/identity/ad-ds/plan/security-best-practices/best-practices-for-securing-active-directory" target="_blank" rel="noopener">Lire sur Microsoft Learn</a>
+          </div>
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">VMware Proxmox : migration massive post-rachat Broadcom — guide de migration</div>
+              <span class="veille-article-source">LeMagIT</span>
+            </div>
+            <span class="veille-cat systeme">Virtualisation</span>
+            <p class="veille-article-desc">Suite aux changements de licences imposés par Broadcom après le rachat de VMware, de nombreuses entreprises migrent vers Proxmox VE. LeMagIT publie un comparatif détaillé et un guide de migration. Pertinent car j'utilise Proxmox dans mes projets de haute disponibilité.</p>
+            <a class="veille-article-link" href="https://www.lemagit.fr/conseil/Migration-de-VMware-vers-Proxmox-guide-pratique" target="_blank" rel="noopener">Lire sur LeMagIT</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Décembre 2024 -->
+      <div class="veille-month">
+        <div class="veille-month-label">
+          <div class="veille-month-name">Décembre</div>
+          <div class="veille-month-year">2024</div>
+        </div>
+        <div class="veille-articles">
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">Ransomware : bilan 2024 — le rapport de l'ANSSI sur les incidents majeurs en France</div>
+              <span class="veille-article-source">ANSSI</span>
+            </div>
+            <span class="veille-cat secu">Cybersécurité</span>
+            <p class="veille-article-desc">L'ANSSI publie son bilan des incidents majeurs en 2024 en France. Hausse significative des attaques par ransomware visant le secteur de la santé et les collectivités locales. Les groupes LockBit3, ALPHV/BlackCat et Cl0p sont les plus actifs. Le rapport détaille les vecteurs d'attaque et les mesures de prévention recommandées.</p>
+            <a class="veille-article-link" href="https://www.ssi.gouv.fr/actualite/anssi-bilan-ransomware-2024/" target="_blank" rel="noopener">Lire sur ANSSI</a>
+          </div>
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">SSH : vulnérabilité regreSSHion (CVE-2024-6387) dans OpenSSH — des millions de serveurs exposés</div>
+              <span class="veille-article-source">The Hacker News</span>
+            </div>
+            <span class="veille-cat vuln">Vulnérabilité</span>
+            <p class="veille-article-desc">Qualys Research révèle regreSSHion, une vulnérabilité critique dans OpenSSH permettant une exécution de code distant non authentifiée sur des serveurs Linux. Affecte OpenSSH &lt; 4.4p1 et &gt;= 8.5p1 avant 9.8p1. Une mise à jour urgente d'OpenSSH est requise sur tous les serveurs Linux.</p>
+            <a class="veille-article-link" href="https://thehackernews.com/2024/07/critical-openssh-regresshion-flaw.html" target="_blank" rel="noopener">Lire sur The Hacker News</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Janvier 2025 -->
+      <div class="veille-month">
+        <div class="veille-month-label">
+          <div class="veille-month-name">Janvier</div>
+          <div class="veille-month-year">2025</div>
+        </div>
+        <div class="veille-articles">
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">ZTNA : Zero Trust Network Access — guide de mise en œuvre pour les PME (ANSSI)</div>
+              <span class="veille-article-source">ANSSI</span>
+            </div>
+            <span class="veille-cat reseau">Réseau</span>
+            <p class="veille-article-desc">L'ANSSI publie un guide pratique sur l'adoption du modèle Zero Trust Network Access pour les entreprises. Le Zero Trust repose sur le principe "ne jamais faire confiance, toujours vérifier" — très différent des architectures réseau périmétrique traditionnelles. Ce modèle est en forte adoption dans les infrastructures modernes.</p>
+            <a class="veille-article-link" href="https://www.ssi.gouv.fr/guide/recommandations-pour-un-acces-securise-aux-systemes-dinformation-depuis-internet/" target="_blank" rel="noopener">Lire sur ANSSI</a>
+          </div>
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">Windows Server 2025 — nouvelles fonctionnalités réseau et sécurité AD</div>
+              <span class="veille-article-source">Microsoft</span>
+            </div>
+            <span class="veille-cat systeme">Systèmes</span>
+            <p class="veille-article-desc">Microsoft détaille les apports de Windows Server 2025 pour les administrateurs réseaux : amélioration de la délégation contrainte Kerberos, support étendu de TLS 1.3 pour AD, nouvelles GPO de sécurité. Directement pertinent car j'ai utilisé Windows Server 2025 en cours et en TP.</p>
+            <a class="veille-article-link" href="https://learn.microsoft.com/fr-fr/windows-server/get-started/whats-new-in-windows-server-2025" target="_blank" rel="noopener">Lire sur Microsoft Learn</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Février 2025 -->
+      <div class="veille-month">
+        <div class="veille-month-label">
+          <div class="veille-month-name">Février</div>
+          <div class="veille-month-year">2025</div>
+        </div>
+        <div class="veille-articles">
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">Ivanti Connect Secure — exploitation massive de vulnérabilités critiques (CVE-2025-0282)</div>
+              <span class="veille-article-source">Cert-FR</span>
+            </div>
+            <span class="veille-cat vuln">Vulnérabilité</span>
+            <p class="veille-article-desc">Le Cert-FR alerte sur l'exploitation massive de deux vulnérabilités critiques dans Ivanti Connect Secure (CVE-2025-0282 et CVE-2025-0283). Ces failles permettent une exécution de code distant avant authentification. Des groupes APT les exploitent pour déployer des webshells et persister dans les réseaux d'entreprise.</p>
+            <a class="veille-article-link" href="https://www.cert.ssi.gouv.fr/alerte/CERTFR-2025-ALE-001/" target="_blank" rel="noopener">Lire sur Cert-Fr</a>
+          </div>
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">Linux : guide de hardening des serveurs Debian/Ubuntu en production</div>
+              <span class="veille-article-source">Grafikart.fr</span>
+            </div>
+            <span class="veille-cat systeme">Systèmes</span>
+            <p class="veille-article-desc">Grafikart publie un guide complet de durcissement de serveurs Linux Debian en production : désactivation des services inutiles, configuration SSH sécurisée, mise en place de Fail2ban, de logrotate et d'auditd. Ces pratiques correspondent exactement aux missions SISR et aux exigences de mon BTS.</p>
+            <a class="veille-article-link" href="https://grafikart.fr/tutoriels/serveur-linux-securiser" target="_blank" rel="noopener">Lire sur Grafikart</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mars 2025 -->
+      <div class="veille-month">
+        <div class="veille-month-label">
+          <div class="veille-month-name">Mars</div>
+          <div class="veille-month-year">2025</div>
+        </div>
+        <div class="veille-articles">
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">NIS2 : obligations nouvelles pour les entreprises françaises — entrée en vigueur</div>
+              <span class="veille-article-source">ANSSI</span>
+            </div>
+            <span class="veille-cat secu">Réglementation</span>
+            <p class="veille-article-desc">La directive européenne NIS2 étend considérablement le périmètre des entités soumises à des obligations de cybersécurité. Des milliers de nouvelles entreprises françaises sont désormais concernées. L'ANSSI détaille les obligations : gouvernance de la sécurité, gestion des incidents, continuité d'activité et sécurité de la chaîne d'approvisionnement.</p>
+            <a class="veille-article-link" href="https://www.ssi.gouv.fr/entreprise/reglementation/la-directive-nis-2/" target="_blank" rel="noopener">Lire sur ANSSI</a>
+          </div>
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">Proxmox VE 8.3 — nouvelles fonctionnalités cluster et stockage Ceph</div>
+              <span class="veille-article-source">Proxmox</span>
+            </div>
+            <span class="veille-cat cloud">Virtualisation</span>
+            <p class="veille-article-desc">Proxmox VE 8.3 apporte des améliorations significatives pour la gestion de clusters et l'intégration Ceph : interface d'administration repensée, meilleure gestion des snapshots et amélioration des performances réseau. Version que j'utilise dans mes projets de haute disponibilité avec Keepalived.</p>
+            <a class="veille-article-link" href="https://www.proxmox.com/en/news/press-releases/proxmox-ve-8-3" target="_blank" rel="noopener">Lire sur Proxmox.com</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Avril 2025 -->
+      <div class="veille-month">
+        <div class="veille-month-label">
+          <div class="veille-month-name">Avril</div>
+          <div class="veille-month-year">2025</div>
+        </div>
+        <div class="veille-articles">
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">FortiGate — exploitation active de CVE-2024-55591 par des acteurs malveillants</div>
+              <span class="veille-article-source">Cert-FR</span>
+            </div>
+            <span class="veille-cat vuln">Vulnérabilité</span>
+            <p class="veille-article-desc">Le Cert-FR alerte sur l'exploitation active d'une faille critique dans FortiOS (CVSS 9.6) permettant à un attaquant distant de prendre le contrôle d'un pare-feu FortiGate. Des campagnes d'exploitation automatisée ciblent les équipements non patchés exposés sur internet. Rappel fort de l'importance de la mise à jour des équipements de sécurité périmétrique.</p>
+            <a class="veille-article-link" href="https://www.cert.ssi.gouv.fr/alerte/CERTFR-2025-ALE-003/" target="_blank" rel="noopener">Lire sur Cert-Fr</a>
+          </div>
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">DNS over HTTPS (DoH) — déploiement en entreprise : avantages et risques de sécurité</div>
+              <span class="veille-article-source">LeMagIT</span>
+            </div>
+            <span class="veille-cat reseau">Réseau</span>
+            <p class="veille-article-desc">LeMagIT analyse le déploiement du DNS over HTTPS en entreprise : si DoH améliore la confidentialité des requêtes DNS, il complique aussi la supervision réseau et peut contourner les proxys de filtrage. Des stratégies de déploiement maîtrisé sont recommandées pour les DSI, avec DNS-over-HTTPS split-horizon interne.</p>
+            <a class="veille-article-link" href="https://www.lemagit.fr/conseil/DNS-over-HTTPS-en-entreprise-avantages-et-risques" target="_blank" rel="noopener">Lire sur LeMagIT</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mai 2025 -->
+      <div class="veille-month">
+        <div class="veille-month-label">
+          <div class="veille-month-name">Mai</div>
+          <div class="veille-month-year">2025</div>
+        </div>
+        <div class="veille-articles">
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">Microsoft Entra ID (Azure AD) — nouvelles politiques d'accès conditionnel et MFA obligatoire</div>
+              <span class="veille-article-source">Microsoft</span>
+            </div>
+            <span class="veille-cat cloud">Cloud</span>
+            <p class="veille-article-desc">Microsoft renforce la sécurité de Entra ID avec le déploiement progressif du MFA obligatoire pour tous les comptes administrateurs Azure. Les nouvelles politiques d'accès conditionnel permettent une granularité fine selon le risque utilisateur, la localisation et l'appareil. Une évolution directement liée à mes apprentissages sur Azure AD en BTS SIO.</p>
+            <a class="veille-article-link" href="https://learn.microsoft.com/fr-fr/entra/identity/conditional-access/overview" target="_blank" rel="noopener">Lire sur Microsoft Learn</a>
+          </div>
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">Guide ANSSI : sécurisation des systèmes Linux — recommandations v2</div>
+              <span class="veille-article-source">ANSSI</span>
+            </div>
+            <span class="veille-cat systeme">Systèmes</span>
+            <p class="veille-article-desc">L'ANSSI met à jour son guide de recommandations de sécurité pour les systèmes Linux. Nouvelle version couvrant les distributions modernes (Debian 12, Ubuntu 24.04), les mécanismes de sécurité du noyau (SELinux, AppArmor), la gestion des droits sudo et la sécurisation de systemd. Document de référence pour tout administrateur SISR.</p>
+            <a class="veille-article-link" href="https://www.ssi.gouv.fr/guide/recommandations-de-securite-relatives-a-un-systeme-gnulinux/" target="_blank" rel="noopener">Lire sur ANSSI</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Juin 2025 -->
+      <div class="veille-month">
+        <div class="veille-month-label">
+          <div class="veille-month-name">Juin</div>
+          <div class="veille-month-year">2025</div>
+        </div>
+        <div class="veille-articles">
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">Attaque supply chain via des packages npm malveillants — 100 000 développeurs exposés</div>
+              <span class="veille-article-source">The Hacker News</span>
+            </div>
+            <span class="veille-cat secu">Cybersécurité</span>
+            <p class="veille-article-desc">Une campagne d'attaque par la chaîne d'approvisionnement utilisant des packages npm malveillants a exposé des centaines de milliers de développeurs. Les attaquants ont publié des packages imitant des bibliothèques populaires avec typosquatting. Les bonnes pratiques incluent l'audit régulier des dépendances et l'utilisation de registres privés sécurisés.</p>
+            <a class="veille-article-link" href="https://thehackernews.com/2025/06/malicious-npm-packages.html" target="_blank" rel="noopener">Lire sur The Hacker News</a>
+          </div>
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">IPv6 en entreprise : guide de déploiement et sécurisation — transition IPv4/IPv6</div>
+              <span class="veille-article-source">ANSSI</span>
+            </div>
+            <span class="veille-cat reseau">Réseau</span>
+            <p class="veille-article-desc">L'ANSSI publie un guide complet sur la migration IPv4 vers IPv6 en entreprise, incluant les mécanismes de transition (dual-stack, tunneling 6in4) et les nouvelles règles de filtrage à mettre en place. La sécurisation IPv6 introduit de nouveaux défis : NDP spoofing, Router Advertisement hijacking, et SLAAC poisoning.</p>
+            <a class="veille-article-link" href="https://www.ssi.gouv.fr/guide/securite-des-reseaux-ipv6/" target="_blank" rel="noopener">Lire sur ANSSI</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Juillet 2025 -->
+      <div class="veille-month">
+        <div class="veille-month-label">
+          <div class="veille-month-name">Juillet</div>
+          <div class="veille-month-year">2025</div>
+        </div>
+        <div class="veille-articles">
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">CrowdStrike incident post-mortem : leçons à retenir pour la gestion des EDR en entreprise</div>
+              <span class="veille-article-source">LeMagIT</span>
+            </div>
+            <span class="veille-cat secu">Gestion de crise</span>
+            <p class="veille-article-desc">Un an après l'incident CrowdStrike qui a paralysé des millions de machines Windows dans le monde, LeMagIT dresse un bilan des bonnes pratiques adoptées : déploiement progressif des mises à jour de sécurité, plans de reprise d'activité, redondance des systèmes. Un cas d'école pour tout administrateur systèmes.</p>
+            <a class="veille-article-link" href="https://www.lemagit.fr/actualites/crowdstrike-bilan-un-an-apres" target="_blank" rel="noopener">Lire sur LeMagIT</a>
+          </div>
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">Kubernetes sécurité : RBAC, NetworkPolicy et Pod Security Admission — bonnes pratiques</div>
+              <span class="veille-article-source">CNCF</span>
+            </div>
+            <span class="veille-cat cloud">Cloud & Conteneurs</span>
+            <p class="veille-article-desc">La CNCF publie ses recommandations de sécurité pour Kubernetes en production : configuration des rôles RBAC pour le principe du moindre privilège, mise en place de NetworkPolicies pour isoler les pods, et activation de Pod Security Admission pour bloquer les conteneurs privilégiés. Ces concepts de micro-segmentation rejoignent les principes réseaux SISR.</p>
+            <a class="veille-article-link" href="https://kubernetes.io/docs/concepts/security/security-checklist/" target="_blank" rel="noopener">Lire sur Kubernetes.io</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Août 2025 -->
+      <div class="veille-month">
+        <div class="veille-month-label">
+          <div class="veille-month-name">Août</div>
+          <div class="veille-month-year">2025</div>
+        </div>
+        <div class="veille-articles">
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">BlackHat USA 2025 — top des vulnérabilités présentées : Windows, réseaux OT et IA</div>
+              <span class="veille-article-source">Bleeping Computer</span>
+            </div>
+            <span class="veille-cat secu">Conférence</span>
+            <p class="veille-article-desc">La conférence BlackHat USA 2025 présente des recherches majeures en cybersécurité : nouvelles techniques d'attaque sur Active Directory (Golden SAML 2.0), exploitation des réseaux industriels OT/ICS, et vulnérabilités dans les modèles de langage IA utilisés en entreprise. Un panorama essentiel des menaces émergentes.</p>
+            <a class="veille-article-link" href="https://www.bleepingcomputer.com/news/security/blackhat-usa-2025-highlights/" target="_blank" rel="noopener">Lire sur Bleeping Computer</a>
+          </div>
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">DORA (Digital Operational Resilience Act) — mise en conformité pour le secteur financier</div>
+              <span class="veille-article-source">ANSSI</span>
+            </div>
+            <span class="veille-cat secu">Réglementation</span>
+            <p class="veille-article-desc">L'ANSSI accompagne les entreprises du secteur financier dans leur mise en conformité avec DORA, entré en vigueur en janvier 2025. Ce règlement européen impose des exigences strictes de résilience opérationnelle numérique : tests de pénétration basés sur les menaces (TLPT), gestion des prestataires ICT tiers et reporting des incidents majeurs.</p>
+            <a class="veille-article-link" href="https://www.ssi.gouv.fr/actualite/dora-la-resilience-operationnelle-numerique-du-secteur-financier/" target="_blank" rel="noopener">Lire sur ANSSI</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Septembre 2025 -->
+      <div class="veille-month">
+        <div class="veille-month-label">
+          <div class="veille-month-name">Septembre</div>
+          <div class="veille-month-year">2025</div>
+        </div>
+        <div class="veille-articles">
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">Windows Server 2025 GA — déploiement en production : retours d'expérience</div>
+              <span class="veille-article-source">Microsoft</span>
+            </div>
+            <span class="veille-cat systeme">Systèmes</span>
+            <p class="veille-article-desc">Six mois après la disponibilité générale de Windows Server 2025, Microsoft et la communauté publient des retours d'expérience de déploiement en production. Améliorations notables : Secured-core Server par défaut, Hotpatching sans redémarrage, SMB over QUIC pour les accès distants sans VPN, et améliorations AD DS. Technologie que j'utilise directement en cours.</p>
+            <a class="veille-article-link" href="https://learn.microsoft.com/fr-fr/windows-server/get-started/whats-new-in-windows-server-2025" target="_blank" rel="noopener">Lire sur Microsoft Learn</a>
+          </div>
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">MITRE ATT&amp;CK v16 — mise à jour majeure des techniques d'attaque documentées</div>
+              <span class="veille-article-source">MITRE</span>
+            </div>
+            <span class="veille-cat secu">Cybersécurité</span>
+            <p class="veille-article-desc">MITRE publie la version 16 du framework ATT&amp;CK, qui documente les tactiques, techniques et procédures (TTP) utilisées par les acteurs malveillants. Nouvelles techniques ajoutées : abus de connecteurs cloud, détournement de pipelines CI/CD et persistence via les pilotes Windows. Ce framework est une référence pour la cyberdéfense et l'analyse de menaces.</p>
+            <a class="veille-article-link" href="https://attack.mitre.org/resources/updates/updates-october-2025/" target="_blank" rel="noopener">Lire sur MITRE ATT&amp;CK</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Octobre 2025 -->
+      <div class="veille-month">
+        <div class="veille-month-label">
+          <div class="veille-month-name">Octobre</div>
+          <div class="veille-month-year">2025</div>
+        </div>
+        <div class="veille-articles">
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">European Cybersecurity Month 2025 — focus sur le phishing et l'ingénierie sociale</div>
+              <span class="veille-article-source">ENISA</span>
+            </div>
+            <span class="veille-cat secu">Sensibilisation</span>
+            <p class="veille-article-desc">L'ENISA (Agence européenne de cybersécurité) lance le Mois européen de la cybersécurité 2025 avec un focus sur les attaques par ingénierie sociale et le phishing. Publication de guides pratiques pour former les utilisateurs à détecter les tentatives de phishing, le vishing et le smishing. La sensibilisation des utilisateurs reste la première ligne de défense.</p>
+            <a class="veille-article-link" href="https://www.enisa.europa.eu/topics/cybersecurity-education/european-cybersecurity-month" target="_blank" rel="noopener">Lire sur ENISA</a>
+          </div>
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">Patch Tuesday Octobre 2025 — failles critiques RDP et NTLM à corriger en priorité</div>
+              <span class="veille-article-source">Cert-FR</span>
+            </div>
+            <span class="veille-cat vuln">Vulnérabilité</span>
+            <p class="veille-article-desc">Le Cert-FR publie son analyse du Patch Tuesday d'octobre 2025 avec 94 CVE corrigées, dont des failles critiques dans le protocole RDP (exécution de code distant) et NTLM (relai d'authentification). Des correctifs prioritaires à déployer rapidement sur tous les serveurs Windows accessibles en RDP depuis internet.</p>
+            <a class="veille-article-link" href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2025-AVI-0879/" target="_blank" rel="noopener">Lire sur Cert-Fr</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Novembre 2025 -->
+      <div class="veille-month">
+        <div class="veille-month-label">
+          <div class="veille-month-name">Novembre</div>
+          <div class="veille-month-year">2025</div>
+        </div>
+        <div class="veille-articles">
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">SD-WAN en entreprise : sécurité et performances — guide de déploiement Cisco Viptela</div>
+              <span class="veille-article-source">Cisco Blogs</span>
+            </div>
+            <span class="veille-cat reseau">Réseau</span>
+            <p class="veille-article-desc">Cisco publie un guide complet sur le déploiement sécurisé de SD-WAN avec Viptela. Le SD-WAN permet de centraliser la gestion des connexions WAN distribuées tout en appliquant des politiques de sécurité unifiées. Architecture particulièrement pertinente pour les entreprises multi-sites — fait écho à mes études sur le routage et la segmentation réseau en SISR.</p>
+            <a class="veille-article-link" href="https://blogs.cisco.com/networking/sd-wan-security-best-practices" target="_blank" rel="noopener">Lire sur Cisco Blogs</a>
+          </div>
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">AI-assisted cyberattacks : comment les attaquants utilisent l'IA pour automatiser les intrusions</div>
+              <span class="veille-article-source">The Hacker News</span>
+            </div>
+            <span class="veille-cat secu">Cybersécurité</span>
+            <p class="veille-article-desc">Une étude de chercheurs en sécurité démontre comment des acteurs malveillants utilisent des LLMs pour automatiser la rédaction de phishing ciblé, l'analyse de code pour découvrir des vulnérabilités et l'escalade de privilèges dans des systèmes compromis. L'IA est désormais un outil offensif à prendre en compte dans la stratégie défensive des organisations.</p>
+            <a class="veille-article-link" href="https://thehackernews.com/2025/11/ai-assisted-cyberattacks-2025.html" target="_blank" rel="noopener">Lire sur The Hacker News</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Décembre 2025 -->
+      <div class="veille-month">
+        <div class="veille-month-label">
+          <div class="veille-month-name">Décembre</div>
+          <div class="veille-month-year">2025</div>
+        </div>
+        <div class="veille-articles">
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">Bilan cybersécurité 2025 — ANSSI : une année marquée par les attaques étatiques et les JO</div>
+              <span class="veille-article-source">ANSSI</span>
+            </div>
+            <span class="veille-cat secu">Cybersécurité</span>
+            <p class="veille-article-desc">L'ANSSI dresse son bilan 2025 : les Jeux Olympiques de Paris 2024 ont été une cible privilégiée sans incident majeur grâce à la préparation rigoureuse. Montée en puissance des attaques étatiques contre les ministères et infrastructures critiques. Recommandations renforcées sur la gestion des identités et la protection des données sensibles.</p>
+            <a class="veille-article-link" href="https://www.ssi.gouv.fr/actualite/bilan-cyber-2025/" target="_blank" rel="noopener">Lire sur ANSSI</a>
+          </div>
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">NFTables vs iptables : migration recommandée sur Debian 12 — guide pratique</div>
+              <span class="veille-article-source">Debian Wiki</span>
+            </div>
+            <span class="veille-cat systeme">Systèmes</span>
+            <p class="veille-article-desc">Depuis Debian 10, nftables remplace progressivement iptables comme framework de filtrage réseau par défaut. Ce guide pratique détaille la migration des règles iptables vers nftables, avec une syntaxe plus lisible et de meilleures performances. Directement applicable dans mes projets de configuration de pare-feu Linux sous Debian.</p>
+            <a class="veille-article-link" href="https://wiki.debian.org/nftables" target="_blank" rel="noopener">Lire sur Debian Wiki</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Janvier 2026 -->
+      <div class="veille-month">
+        <div class="veille-month-label">
+          <div class="veille-month-name">Janvier</div>
+          <div class="veille-month-year">2026</div>
+        </div>
+        <div class="veille-articles">
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">Post-quantum cryptography : migration vers les algorithmes NIST recommandée dès 2026</div>
+              <span class="veille-article-source">ANSSI</span>
+            </div>
+            <span class="veille-cat secu">Cryptographie</span>
+            <p class="veille-article-desc">Suite à la standardisation des algorithmes post-quantiques par le NIST (ML-KEM, ML-DSA), l'ANSSI recommande aux organisations d'entamer leur inventaire cryptographique et leur roadmap de migration. Si les ordinateurs quantiques cryptographiquement pertinents ne sont pas encore une réalité, la stratégie "Harvest now, decrypt later" impose d'agir dès maintenant sur les données à longue durée de confidentialité.</p>
+            <a class="veille-article-link" href="https://www.ssi.gouv.fr/actualite/cryptographie-post-quantique-recommandations/" target="_blank" rel="noopener">Lire sur ANSSI</a>
+          </div>
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">Ivanti EPM — vulnérabilité critique CVE-2025-0067 exploitée dans la nature</div>
+              <span class="veille-article-source">Cert-FR</span>
+            </div>
+            <span class="veille-cat vuln">Vulnérabilité</span>
+            <p class="veille-article-desc">Le Cert-FR alerte sur une faille critique dans Ivanti Endpoint Manager permettant à un attaquant authentifié d'exécuter du code avec les droits SYSTEM. Des preuves d'exploitation dans la nature ont été détectées. Ivanti publie un patch d'urgence. Cette vulnérabilité cible directement les outils de gestion de parc utilisés dans les infrastructures SISR.</p>
+            <a class="veille-article-link" href="https://www.cert.ssi.gouv.fr/alerte/CERTFR-2026-ALE-001/" target="_blank" rel="noopener">Lire sur Cert-Fr</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Février 2026 -->
+      <div class="veille-month">
+        <div class="veille-month-label">
+          <div class="veille-month-name">Février</div>
+          <div class="veille-month-year">2026</div>
+        </div>
+        <div class="veille-articles">
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">GLPI 11.0 — nouvelles fonctionnalités ITSM et améliorations de la gestion de parc</div>
+              <span class="veille-article-source">Teclib</span>
+            </div>
+            <span class="veille-cat systeme">ITSM</span>
+            <p class="veille-article-desc">GLPI 11.0 apporte des améliorations majeures pour les équipes de support informatique : nouveau moteur de formulaire dynamique, amélioration du portail utilisateur, intégration native avec des outils de supervision, et meilleure gestion des actifs OT. Outil que j'ai utilisé intensivement durant mon stage chez Advise et à la BA123 pour la gestion des tickets et du parc.</p>
+            <a class="veille-article-link" href="https://glpi-project.org/fr/glpi-11-0-est-disponible/" target="_blank" rel="noopener">Lire sur GLPI Project</a>
+          </div>
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">Active Directory Certificate Services — attaques ESC8, ESC11 et mitigation</div>
+              <span class="veille-article-source">SpecterOps</span>
+            </div>
+            <span class="veille-cat secu">Cybersécurité</span>
+            <p class="veille-article-desc">SpecterOps publie une mise à jour de son research sur les abus d'Active Directory Certificate Services (ADCS). Les techniques ESC8 et ESC11 permettent d'élever ses privilèges jusqu'au domaine Admin via l'abus des templates de certificats mal configurés. Les recommandations de mitigation incluent l'audit des templates ADCS et l'activation de protections Extended Protection for Authentication.</p>
+            <a class="veille-article-link" href="https://posts.specterops.io/certified-pre-owned-d95910965cd2" target="_blank" rel="noopener">Lire sur SpecterOps</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mars 2026 -->
+      <div class="veille-month">
+        <div class="veille-month-label">
+          <div class="veille-month-name">Mars</div>
+          <div class="veille-month-year">2026</div>
+        </div>
+        <div class="veille-articles">
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">Wi-Fi WPA3 : déploiement en entreprise et vulnérabilités Dragonblood 2.0</div>
+              <span class="veille-article-source">LeMagIT</span>
+            </div>
+            <span class="veille-cat reseau">Réseau</span>
+            <p class="veille-article-desc">LeMagIT analyse le déploiement de WPA3-Enterprise dans les environnements d'entreprise et documente les nouvelles vulnérabilités découvertes dans l'implémentation SAE de WPA3. Bien que WPA3 représente une amélioration significative par rapport à WPA2, certaines implémentations restent vulnérables. Les recommandations incluent la mise à jour des firmwares des points d'accès et l'utilisation de WPA3-Enterprise-192 pour les environnements sensibles.</p>
+            <a class="veille-article-link" href="https://www.lemagit.fr/conseil/securiser-wifi-wpa3-entreprise" target="_blank" rel="noopener">Lire sur LeMagIT</a>
+          </div>
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">Cyber Resilience Act (CRA) de l'UE — obligations pour les fabricants de produits connectés</div>
+              <span class="veille-article-source">ANSSI</span>
+            </div>
+            <span class="veille-cat secu">Réglementation</span>
+            <p class="veille-article-desc">Le Cyber Resilience Act européen entre progressivement en vigueur en 2026. Il impose aux fabricants de produits connectés (IoT, logiciels, équipements réseau) des obligations de sécurité dès la conception ("security by design"), de mise à jour pendant toute la durée de vie du produit, et de déclaration des incidents. Un règlement qui va impacter directement les équipements réseau utilisés en entreprise.</p>
+            <a class="veille-article-link" href="https://www.ssi.gouv.fr/actualite/cyber-resilience-act-obligations-fabricants/" target="_blank" rel="noopener">Lire sur ANSSI</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Avril 2026 -->
+      <div class="veille-month">
+        <div class="veille-month-label">
+          <div class="veille-month-name">Avril</div>
+          <div class="veille-month-year">2026</div>
+        </div>
+        <div class="veille-articles">
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">Patch Tuesday Avril 2026 — RCE dans Windows LDAP et élévation de privilèges WSL2</div>
+              <span class="veille-article-source">Cert-FR</span>
+            </div>
+            <span class="veille-cat vuln">Vulnérabilité</span>
+            <p class="veille-article-desc">Le Cert-FR publie son analyse du Patch Tuesday d'avril 2026 avec des failles critiques dans l'implémentation LDAP de Windows Active Directory (exécution de code distant non authentifié) et une élévation de privilèges dans Windows Subsystem for Linux 2. Correctifs à déployer en priorité sur tous les contrôleurs de domaine et postes utilisant WSL2.</p>
+            <a class="veille-article-link" href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0350/" target="_blank" rel="noopener">Lire sur Cert-Fr</a>
+          </div>
+          <div class="veille-article">
+            <div class="veille-article-header">
+              <div class="veille-article-title">SASE (Secure Access Service Edge) : convergence réseau et sécurité cloud — état de l'art 2026</div>
+              <span class="veille-article-source">Gartner / LeMagIT</span>
+            </div>
+            <span class="veille-cat cloud">Cloud</span>
+            <p class="veille-article-desc">LeMagIT synthétise le rapport Gartner sur l'adoption du SASE en 2026 : cette architecture converge SD-WAN, CASB, SWG, ZTNA et FWaaS en un seul service cloud. La majorité des entreprises de plus de 1000 salariés sont désormais en phase de déploiement SASE. Ce paradigme transforme profondément le rôle de l'administrateur réseaux &amp; systèmes.</p>
+            <a class="veille-article-link" href="https://www.lemagit.fr/conseil/SASE-etat-de-l-art-2026-convergence-reseau-securite" target="_blank" rel="noopener">Lire sur LeMagIT</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- ════════════════════ PAGE CERTIFICATIONS ════════════════════ -->
+<div class="page" id="page-certifications">
+  <section>
+    <div class="section-header">
+      <span class="section-num">// 05</span>
+      <h2 class="section-title">Certifications</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="oc-banner">
+      <div>
+        <div class="oc-logo-text">OpenClassrooms</div>
+        <div class="oc-logo-sub">Certifications &amp; Formations suivies en BTS SIO SISR</div>
+      </div>
+      <div class="oc-separator"></div>
+      <div style="text-align:right">
+        <div class="oc-count">6</div>
+        <div class="oc-count-label">Certifications obtenues</div>
+      </div>
+    </div>
+
+    <div class="certif-intro">
+      <p style="font-size:15px;color:var(--text-dim);line-height:1.8;">
+        Dans le cadre du BTS SIO option SISR, j'ai suivi et validé plusieurs formations certifiantes sur <strong style="color:var(--gold)">OpenClassrooms</strong>, la plateforme de formation en ligne partenaire de nombreux lycées et CFA. Ces certifications complètent ma formation en apportant une dimension pratique et professionnelle reconnue sur les compétences clés de l'administrateur systèmes &amp; réseaux.
+      </p>
+    </div>
+
+    <div class="certif-grid">
+
+      <!-- Certif 1 : Réseaux -->
+      <div class="certif-card">
+        <div class="certif-header">
+          <div class="certif-badge-row">
+            <div class="certif-icon">🌐</div>
+            <div>
+              <div class="certif-title">Apprenez le fonctionnement des réseaux TCP/IP</div>
+              <div class="certif-platform">OpenClassrooms</div>
+            </div>
+          </div>
+          <span class="certif-status done">✓ Obtenu</span>
+          <div class="certif-date">📅 Validé en BTS SIO SISR — 2024/2025</div>
+        </div>
+        <div class="certif-body">
+          <p class="certif-desc">Formation fondamentale couvrant les bases des réseaux TCP/IP : modèle OSI, adressage IPv4/IPv6, routage, protocoles essentiels (ARP, ICMP, DNS, DHCP). Indispensable pour comprendre et administrer des infrastructures réseaux d'entreprise.</p>
+          <div class="certif-skills">
+            <span class="tag">TCP/IP</span><span class="tag">IPv4/IPv6</span>
+            <span class="tag">Routage</span><span class="tag">DNS</span><span class="tag">DHCP</span>
+          </div>
+        </div>
+        <div class="certif-link-row">
+          <a class="certif-link" href="https://openclassrooms.com/fr/courses/6944606-concevez-votre-reseau-tcp-ip" target="_blank" rel="noopener">Voir le cours sur OpenClassrooms</a>
+        </div>
+      </div>
+
+      <!-- Certif 2 : Linux -->
+      <div class="certif-card">
+        <div class="certif-header">
+          <div class="certif-badge-row">
+            <div class="certif-icon">🐧</div>
+            <div>
+              <div class="certif-title">Utilisez la ligne de commande dans un terminal (Linux)</div>
+              <div class="certif-platform">OpenClassrooms</div>
+            </div>
+          </div>
+          <span class="certif-status done">✓ Obtenu</span>
+          <div class="certif-date">📅 Validé en BTS SIO SISR — 2024/2025</div>
+        </div>
+        <div class="certif-body">
+          <p class="certif-desc">Maîtrise de la ligne de commande Linux : navigation dans le système de fichiers, gestion des droits et permissions, manipulation des fichiers, pipes et redirections, scripts shell bash. Compétences essentielles pour l'administration de serveurs Linux en production.</p>
+          <div class="certif-skills">
+            <span class="tag">Bash</span><span class="tag">Linux</span>
+            <span class="tag">Shell</span><span class="tag">Permissions</span><span class="tag">Scripts</span>
+          </div>
+        </div>
+        <div class="certif-link-row">
+          <a class="certif-link" href="https://openclassrooms.com/fr/courses/7170491-initiez-vous-a-linux" target="_blank" rel="noopener">Voir le cours sur OpenClassrooms</a>
+        </div>
+      </div>
+
+      <!-- Certif 3 : Cybersécurité -->
+      <div class="certif-card">
+        <div class="certif-header">
+          <div class="certif-badge-row">
+            <div class="certif-icon">🔒</div>
+            <div>
+              <div class="certif-title">Sécurisez votre réseau d'entreprise</div>
+              <div class="certif-platform">OpenClassrooms</div>
+            </div>
+          </div>
+          <span class="certif-status done">✓ Obtenu</span>
+          <div class="certif-date">📅 Validé en BTS SIO SISR — 2024/2025</div>
+        </div>
+        <div class="certif-body">
+          <p class="certif-desc">Formation axée sur la sécurisation des infrastructures réseau d'entreprise : segmentation par VLANs, mise en place de pare-feux, configuration de DMZ, supervision des flux réseau et réponse aux incidents de sécurité. Directement appliqué dans mes projets et stages.</p>
+          <div class="certif-skills">
+            <span class="tag">Firewall</span><span class="tag">VLAN</span>
+            <span class="tag">DMZ</span><span class="tag">IDS/IPS</span><span class="tag">Audit</span>
+          </div>
+        </div>
+        <div class="certif-link-row">
+          <a class="certif-link" href="https://openclassrooms.com/fr/courses/1561696-les-reseaux-de-zero" target="_blank" rel="noopener">Voir le cours sur OpenClassrooms</a>
+        </div>
+      </div>
+
+      <!-- Certif 4 : Windows Server / AD -->
+      <div class="certif-card">
+        <div class="certif-header">
+          <div class="certif-badge-row">
+            <div class="certif-icon">🖥️</div>
+            <div>
+              <div class="certif-title">Gérez votre serveur Windows (Active Directory, GPO)</div>
+              <div class="certif-platform">OpenClassrooms</div>
+            </div>
+          </div>
+          <span class="certif-status done">✓ Obtenu</span>
+          <div class="certif-date">📅 Validé en BTS SIO SISR — 2025/2026</div>
+        </div>
+        <div class="certif-body">
+          <p class="certif-desc">Administration avancée de Windows Server : installation et configuration d'Active Directory, création et gestion d'UO, de groupes et de comptes utilisateurs, déploiement de stratégies de groupe (GPO), gestion des droits NTFS et des partages réseau. Compétences massivement utilisées en stage.</p>
+          <div class="certif-skills">
+            <span class="tag">Windows Server</span><span class="tag">Active Directory</span>
+            <span class="tag">GPO</span><span class="tag">NTFS</span><span class="tag">UO</span>
+          </div>
+        </div>
+        <div class="certif-link-row">
+          <a class="certif-link" href="https://openclassrooms.com/fr/courses/2356296-gerez-votre-serveur-linux" target="_blank" rel="noopener">Voir le cours sur OpenClassrooms</a>
+        </div>
+      </div>
+
+      <!-- Certif 5 : Python -->
+      <div class="certif-card">
+        <div class="certif-header">
+          <div class="certif-badge-row">
+            <div class="certif-icon">🐍</div>
+            <div>
+              <div class="certif-title">Apprenez à programmer en Python</div>
+              <div class="certif-platform">OpenClassrooms</div>
+            </div>
+          </div>
+          <span class="certif-status done">✓ Obtenu</span>
+          <div class="certif-date">📅 Validé en BTS SIO SISR — 2024/2025</div>
+        </div>
+        <div class="certif-body">
+          <p class="certif-desc">Maîtrise des fondamentaux de la programmation Python : variables, structures de contrôle, fonctions, manipulation de fichiers et de données, modules standards. Python est un outil incontournable pour l'automatisation de tâches d'administration et l'écriture de scripts d'audit réseau.</p>
+          <div class="certif-skills">
+            <span class="tag">Python 3</span><span class="tag">Scripting</span>
+            <span class="tag">Automatisation</span><span class="tag">Modules</span>
+          </div>
+        </div>
+        <div class="certif-link-row">
+          <a class="certif-link" href="https://openclassrooms.com/fr/courses/7168871-apprenez-les-bases-du-langage-python" target="_blank" rel="noopener">Voir le cours sur OpenClassrooms</a>
+        </div>
+      </div>
+
+      <!-- Certif 6 : Virtualisation -->
+      <div class="certif-card">
+        <div class="certif-header">
+          <div class="certif-badge-row">
+            <div class="certif-icon">⚡</div>
+            <div>
+              <div class="certif-title">Administrez une infrastructure avec la virtualisation</div>
+              <div class="certif-platform">OpenClassrooms</div>
+            </div>
+          </div>
+          <span class="certif-status done">✓ Obtenu</span>
+          <div class="certif-date">📅 Validé en BTS SIO SISR — 2025/2026</div>
+        </div>
+        <div class="certif-body">
+          <p class="certif-desc">Formation complète sur la virtualisation d'infrastructure : concepts de l'hyperviseur de type 1 et 2, création et gestion de VMs, snapshots, clonage, réseaux virtuels, stockage partagé. Appliqué concrètement avec Proxmox VE et Hyper-V dans mes projets de BTS, notamment pour la haute disponibilité.</p>
+          <div class="certif-skills">
+            <span class="tag">Proxmox VE</span><span class="tag">Hyper-V</span>
+            <span class="tag">VMs</span><span class="tag">Snapshots</span><span class="tag">vSwitch</span>
+          </div>
+        </div>
+        <div class="certif-link-row">
+          <a class="certif-link" href="https://openclassrooms.com/fr/courses/2035756-virtualisez-votre-architecture-et-vos-environnements-de-travail" target="_blank" rel="noopener">Voir le cours sur OpenClassrooms</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- ════════════════════ PAGE CONTACT ════════════════════ -->
+<div class="page" id="page-contact">
+  <div id="contact-section">
+    <div class="section-header">
+      <span class="section-num">// 06</span>
+      <h2 class="section-title">Me Contacter</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="contact-layout">
+      <div>
+        <p style="font-size:15px;color:var(--text-dim);margin-bottom:28px;line-height:1.8;">
+          Actuellement en recherche d'alternance pour mon Bachelor Administrateur Systèmes &amp; Réseaux à l'école CODA. N'hésitez pas à me contacter !
+        </p>
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-item-icon">📧</div>
+            <div>
+              <div class="contact-item-label">Email</div>
+              <div class="contact-item-value"><a href="mailto:yannisbofunga@gmail.com">yannisbofunga@gmail.com</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📱</div>
+            <div>
+              <div class="contact-item-label">Téléphone</div>
+              <div class="contact-item-value">06.48.60.62.08</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div>
+              <div class="contact-item-label">Localisation</div>
+              <div class="contact-item-value">Orléans, 45100</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">🚗</div>
+            <div>
+              <div class="contact-item-label">Mobilité</div>
+              <div class="contact-item-value">Permis B — Véhiculé</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">🎓</div>
+            <div>
+              <div class="contact-item-label">Formation en cours</div>
+              <div class="contact-item-value">BTS SIO SISR — Lycée Benjamin Franklin, Orléans</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">🏆</div>
+            <div>
+              <div class="contact-item-label">Prochaine étape</div>
+              <div class="contact-item-value">Bachelor Admin. Sys. &amp; Réseaux — CODA (2026)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-panel">
+        <div class="cv-panel-header">
+          <span class="cv-panel-title"><span class="status-dot"></span>Curriculum Vitae</span>
+          <a href="CVYannisBOFUNGA2.pdf" download class="cv-download-btn">⬇ Télécharger</a>
+        </div>
+        <div class="cv-content">
+          <div class="cv-section-title">Formation</div>
+          <div class="cv-line"><span class="period">2026</span> — <strong>Bachelor Administrateur Sys. &amp; Réseaux</strong> — CODA</div>
+          <div class="cv-line"><span class="period">2024–2026</span> — <strong>BTS SIO SISR</strong> — Lycée Benjamin Franklin, Orléans</div>
+          <div class="cv-line"><span class="period">2023–2024</span> — CMI ISDEM (Master Ingénierie Maths / Info)</div>
+          <div class="cv-line"><span class="period">2022–2023</span> — <strong>Baccalauréat général</strong> Maths + NSI, option Maths expertes</div>
+          <div class="cv-line"><span class="period">2022</span> — 🏆 Finaliste mondial — <strong>La Nuit du Code</strong></div>
+
+          <div class="cv-section-title">Expériences</div>
+          <div class="cv-line"><span class="period">Janv./Févr. 2026</span> — <strong>Stage Admin Sys. &amp; Réseaux</strong> — Armée de l'Air (BA123 Bricy)</div>
+          <div class="cv-line"><span class="period">Mai/Juin 2025</span> — <strong>Stage Admin Systèmes</strong> — Startup IA Advise</div>
+          <div class="cv-line"><span class="period">Juin–Août 2024</span> — Agent d'accueil administratif — Basic-fit</div>
+          <div class="cv-line"><span class="period">Juin–Août 2022</span> — Employé de commerce — Filet Frais</div>
+
+          <div class="cv-section-title">Langues</div>
+          <div class="cv-line"><strong>Anglais</strong> niveau B2 &nbsp;|&nbsp; <strong>Espagnol</strong> niveau A2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Yannis Bofunga</span>
+  <span>BTS SIO SISR — Lycée Benjamin Franklin — Orléans</span>
+  <span style="color:var(--cyan)"><span class="status-dot"></span>En recherche d'alternance</span>
+</footer>
+
+<script>
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    const page = document.getElementById('page-' + name);
+    const nav = document.getElementById('nav-' + name);
+    if (page) page.classList.add('active');
+    if (nav) nav.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function switchTab(btn, tabId) {
+    btn.closest('.page').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.closest('.page').querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+  }
+
+  function toggleDetails(btn) {
+    const body = btn.nextElementSibling;
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open');
+    btn.textContent = isOpen ? '▸ Détails techniques' : '▾ Masquer les détails';
+  }
+</script>
+</body>
+</html>
