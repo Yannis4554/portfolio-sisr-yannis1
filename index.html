@@ -97,19 +97,31 @@ nav{
 .sec-title{font-family:var(--display);font-size:clamp(36px,5vw,60px);color:var(--white);letter-spacing:.04em}
 .sec-line{flex:1;height:1px;background:linear-gradient(to right,var(--border2),transparent);margin-left:20px;align-self:center}
 
-/* ── PROJECT GRID ── */
-.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:1px;background:var(--border)}
+/* ── PROJECT TIMELINE ── */
+.proj-grid{display:flex;flex-direction:column}
 .proj-card{
-  background:var(--ink);padding:36px;position:relative;overflow:hidden;
+  display:grid;grid-template-columns:160px 1fr;
+  background:var(--ink);position:relative;overflow:hidden;
+  border-top:1px solid var(--border);
   transition:background .25s;
 }
+.proj-card:last-child{border-bottom:1px solid var(--border)}
 .proj-card:hover{background:var(--ink2)}
 .proj-card::after{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform .3s
+  content:'';position:absolute;left:160px;top:0;bottom:0;width:2px;
+  background:var(--lime);transform:scaleY(0);transform-origin:top;transition:transform .35s;z-index:1;
 }
-.proj-card:hover::after{transform:scaleX(1)}
-.proj-num{font-family:var(--mono);font-size:9px;color:var(--muted2);letter-spacing:.2em;margin-bottom:20px}
+.proj-card:hover::after{transform:scaleY(1)}
+.proj-num-left{
+  display:flex;align-items:flex-start;justify-content:center;
+  padding:36px 16px 36px 24px;
+  font-family:var(--display);font-size:clamp(80px,8vw,120px);
+  color:rgba(200,241,53,0.07);line-height:1;letter-spacing:-.01em;
+  transition:color .3s;user-select:none;
+}
+.proj-card:hover .proj-num-left{color:rgba(200,241,53,0.2)}
+.proj-content{padding:36px 40px;border-left:1px solid var(--border)}
+.proj-num{font-family:var(--mono);font-size:9px;color:var(--muted2);letter-spacing:.2em;margin-bottom:14px}
 .proj-title{font-size:20px;font-weight:600;color:var(--white);margin-bottom:10px;line-height:1.3}
 .proj-date{font-family:var(--mono);font-size:9px;color:var(--lime);letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px}
 .proj-desc{font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:20px}
@@ -237,7 +249,9 @@ footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;align-i
   .sec{padding:80px 20px}
   #hero{padding:100px 20px 60px}
   footer{padding:20px;flex-direction:column;gap:8px;text-align:center}
-  .proj-grid{grid-template-columns:1fr}
+  .proj-card{grid-template-columns:1fr}
+  .proj-num-left{display:none}
+  .proj-content{border-left:none;padding:28px 20px}
   .hero-stats{gap:24px}
 }
 </style>
@@ -277,7 +291,7 @@ footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;align-i
         <span class="pill">Alternance 2026</span>
       </div>
       <div class="hero-stats">
-        <div><div class="stat-num">5</div><div class="stat-label">Projets réalisés</div></div>
+        <div><div class="stat-num">4</div><div class="stat-label">Projets réalisés</div></div>
         <div><div class="stat-num">2</div><div class="stat-label">Stages terrain</div></div>
         <div><div class="stat-num">10+</div><div class="stat-label">Technologies</div></div>
         <div><div class="stat-num">B2</div><div class="stat-label">Anglais</div></div>
@@ -305,157 +319,146 @@ footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;align-i
 
     <!-- P1 : Active Directory -->
     <div class="proj-card">
-      <div class="proj-num">PROJET 01 / 05</div>
-      <div class="proj-date">2024 — 2025</div>
-      <h3 class="proj-title">Active Directory &amp; DNS Redondant — Labannu / Labannubis</h3>
-      <p class="proj-desc">Déploiement d'une infrastructure AD complète sur Nutanix avec 2 contrôleurs de domaine en réplication. DNS primaire et secondaire pour la haute disponibilité. Création d'utilisateurs, groupes, UO et validation depuis postes clients.</p>
-      <div class="proj-tags">
-        <span class="ptag hi">Windows Server</span>
-        <span class="ptag hi">Active Directory</span>
-        <span class="ptag">DNS primaire</span>
-        <span class="ptag">DNS secondaire</span>
-        <span class="ptag hi">Nutanix</span>
-        <span class="ptag">GPO</span>
-      </div>
-      <button class="expand-btn" onclick="expand(this)"><span class="expand-caret">▸</span> Détails techniques</button>
-      <div class="proj-expand">
-        <p style="font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:16px">
-          <strong style="color:var(--white)">Serveur Labannu (192.168.250.98)</strong> — Contrôleur de domaine principal (DC1). Installation du rôle AD DS, configuration du domaine, création des UO, comptes utilisateurs et groupes de sécurité. Serveur DNS primaire pour la résolution interne.
-          <br><br>
-          <strong style="color:var(--white)">Serveur Labannubis (192.168.250.100)</strong> — Contrôleur de domaine secondaire (DC2). En cas de panne de Labannu, Labannubis prend le relais sans interruption de service grâce à la réplication AD DS et au DNS secondaire.
-          <br><br>
-          Validation finale : connexion réussie depuis un poste client Windows 10/11 avec les comptes créés dans l'Active Directory.
-        </p>
-        <div class="code-block">
-          <span class="k">DC1</span> Labannu  →  192.168.250.98  (DNS primaire)<br>
-          <span class="k">DC2</span> Labannubis  →  192.168.250.100  (DNS secondaire)<br>
-          Réplication AD DS  →  automatique bidirectionnelle<br>
-          Zone DNS  →  labannu.local (zone secondaire sur DC2)<br>
-          Rôles FSMO  →  DC1 (PDC, RID, Infra, Schema, Naming)
+      <div class="proj-num-left">01</div>
+      <div class="proj-content">
+        <div class="proj-num">PROJET 01 / 04</div>
+        <div class="proj-date">2024 — 2025</div>
+        <h3 class="proj-title">Active Directory &amp; DNS Redondant — Labannu / Labannubis</h3>
+        <p class="proj-desc">Déploiement d'une infrastructure AD complète sur Nutanix avec 2 contrôleurs de domaine en réplication. DNS primaire et secondaire pour la haute disponibilité. Création d'utilisateurs, groupes, UO et validation depuis postes clients.</p>
+        <div class="proj-tags">
+          <span class="ptag hi">Windows Server</span>
+          <span class="ptag hi">Active Directory</span>
+          <span class="ptag">DNS primaire</span>
+          <span class="ptag">DNS secondaire</span>
+          <span class="ptag hi">Nutanix</span>
+          <span class="ptag">GPO</span>
         </div>
-        <p style="font-size:11px;color:var(--muted2);font-family:var(--mono);margin-top:14px;font-style:italic">📷 Screenshots à ajouter : AD Users &amp; Computers, propriétés DNS, test connexion client</p>
+        <button class="expand-btn" onclick="expand(this)"><span class="expand-caret">▸</span> Détails techniques</button>
+        <div class="proj-expand">
+          <p style="font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:16px">
+            <strong style="color:var(--white)">Serveur Labannu (192.168.250.98)</strong> — Contrôleur de domaine principal (DC1). Installation du rôle AD DS, configuration du domaine, création des UO, comptes utilisateurs et groupes de sécurité. Serveur DNS primaire pour la résolution interne.
+            <br><br>
+            <strong style="color:var(--white)">Serveur Labannubis (192.168.250.100)</strong> — Contrôleur de domaine secondaire (DC2). En cas de panne de Labannu, Labannubis prend le relais sans interruption de service grâce à la réplication AD DS et au DNS secondaire.
+            <br><br>
+            Validation finale : connexion réussie depuis un poste client Windows 10/11 avec les comptes créés dans l'Active Directory.
+          </p>
+          <div class="code-block">
+            <span class="k">DC1</span> Labannu  →  192.168.250.98  (DNS primaire)<br>
+            <span class="k">DC2</span> Labannubis  →  192.168.250.100  (DNS secondaire)<br>
+            Réplication AD DS  →  automatique bidirectionnelle<br>
+            Zone DNS  →  labannu.local (zone secondaire sur DC2)<br>
+            Rôles FSMO  →  DC1 (PDC, RID, Infra, Schema, Naming)
+          </div>
+          <p style="font-size:11px;color:var(--muted2);font-family:var(--mono);margin-top:14px;font-style:italic">📷 Screenshots à ajouter : AD Users &amp; Computers, propriétés DNS, test connexion client</p>
+        </div>
       </div>
     </div>
 
     <!-- P2 : DHCP -->
     <div class="proj-card">
-      <div class="proj-num">PROJET 02 / 05</div>
-      <div class="proj-date">03/2025</div>
-      <h3 class="proj-title">Serveur DHCP — Debian 12</h3>
-      <p class="proj-desc">Installation et configuration d'un serveur DHCP sous Debian 12 avec isc-dhcp-server. Définition des plages, réservations MAC, options de bail, DNS et passerelle. Validation avec attribution automatique depuis les postes clients.</p>
-      <div class="proj-tags">
-        <span class="ptag hi">Debian 12</span>
-        <span class="ptag hi">isc-dhcp-server</span>
-        <span class="ptag">IPv4</span>
-        <span class="ptag">Linux</span>
-        <span class="ptag">Réseau local</span>
-      </div>
-      <button class="expand-btn" onclick="expand(this)"><span class="expand-caret">▸</span> Détails techniques</button>
-      <div class="proj-expand">
-        <p style="font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:16px">
-          Déploiement sur Debian 12 via <code style="color:var(--lime);font-family:var(--mono)">apt install isc-dhcp-server</code>. Configuration du fichier <code style="color:var(--lime);font-family:var(--mono)">/etc/dhcp/dhcpd.conf</code> : subnet, plage dynamique, bail de 24h, option routers (passerelle), option domain-name-servers (DNS). Activation de l'interface dans <code style="color:var(--lime);font-family:var(--mono)">/etc/default/isc-dhcp-server</code>. Vérification des attributions via <code style="color:var(--lime);font-family:var(--mono)">/var/lib/dhcp/dhcpd.leases</code>.
-        </p>
-        <p style="font-size:11px;color:var(--muted2);font-family:var(--mono);margin-top:12px;font-style:italic">📷 Screenshots à ajouter : dhcpd.conf, journaux de baux, test depuis client</p>
-      </div>
-    </div>
-
-    <!-- P3 : Cisco -->
-    <div class="proj-card">
-      <div class="proj-num">PROJET 03 / 05</div>
-      <div class="proj-date">10/2025</div>
-      <h3 class="proj-title">Switch Cisco — CLI &amp; Sécurisation SSH</h3>
-      <p class="proj-desc">Configuration avancée en ligne de commande IOS : segmentation VLAN, routage inter-VLAN, trunk/access. Sécurisation complète de l'administration distante via SSHv2 avec clés RSA 2048 bits et restrictions ACL.</p>
-      <div class="proj-tags">
-        <span class="ptag hi">Cisco IOS</span>
-        <span class="ptag hi">SSHv2</span>
-        <span class="ptag">VLAN</span>
-        <span class="ptag">ACL</span>
-        <span class="ptag">CLI</span>
-        <span class="ptag">Sécurité</span>
-      </div>
-      <button class="expand-btn" onclick="expand(this)"><span class="expand-caret">▸</span> Détails techniques</button>
-      <div class="proj-expand">
-        <p style="font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:16px">
-          Création et nommage de VLANs, affectation ports access/trunk, activation du routage inter-VLAN. Sécurisation SSH : <code style="color:var(--lime);font-family:var(--mono)">crypto key generate rsa modulus 2048</code>, activation SSHv2, désactivation Telnet, restriction par ACL. Configuration <code style="color:var(--lime);font-family:var(--mono)">ip ssh version 2</code> et <code style="color:var(--lime);font-family:var(--mono)">transport input ssh</code>.
-        </p>
-        <p style="font-size:11px;color:var(--muted2);font-family:var(--mono);margin-top:12px;font-style:italic">📷 Screenshots à ajouter : running-config, show vlan brief, test SSH depuis poste</p>
-      </div>
-    </div>
-
-    <!-- P4 : Keepalived LVS avec screenshots -->
-    <div class="proj-card">
-      <div class="proj-num">PROJET 04 / 05</div>
-      <div class="proj-date">11/2025</div>
-      <h3 class="proj-title">Haute Disponibilité — Keepalived &amp; LVS</h3>
-      <p class="proj-desc">Architecture haute disponibilité complète sur Nutanix : 2 directeurs LVS en MASTER/BACKUP, IP virtuelle VRRP, 2 serveurs web avec synchronisation rsync. Basculement automatique en cas de panne du nœud principal.</p>
-      <div class="proj-tags">
-        <span class="ptag hi">Keepalived</span>
-        <span class="ptag hi">LVS / IPVS</span>
-        <span class="ptag">VRRP</span>
-        <span class="ptag">rsync</span>
-        <span class="ptag">Debian 12</span>
-        <span class="ptag hi">Nutanix</span>
-      </div>
-      <button class="expand-btn" onclick="expand(this)"><span class="expand-caret">▸</span> Détails techniques &amp; captures</button>
-      <div class="proj-expand">
-        <p style="font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:20px">
-          <strong style="color:var(--white)">Architecture :</strong> Le Directeur MASTER (priorité 100) distribue les requêtes entre les 2 serveurs web via Round Robin NAT. En cas de panne, le BACKUP (priorité 80) récupère automatiquement l'IP virtuelle grâce à VRRP. Les serveurs web synchronisent leurs données via rsync pour assurer la cohérence.
-          <br><br>
-          <strong style="color:var(--white)">Validation :</strong> Le client accède au site via 172.31.1.70 (VIP). Même après extinction du MASTER, le service reste disponible sans interruption.
-        </p>
-        <div style="font-family:var(--mono);font-size:9px;color:var(--lime);letter-spacing:.15em;margin-bottom:12px;text-transform:uppercase">📸 Captures de configuration réelles</div>
-        <div class="screenshots">
-          <div class="scr-wrap" onclick="openLb('conf_ip_ip_des_2_directeurs.png')">
-            <img src="conf_ip_ip_des_2_directeurs.png" alt="Config IP des 2 directeurs" loading="lazy">
-            <div class="scr-cap">Config IP — Directeur 1 &amp; 2</div>
-          </div>
-          <div class="scr-wrap" onclick="openLb('conf_keepalived_des_2_directeurs.png')">
-            <img src="conf_keepalived_des_2_directeurs.png" alt="keepalived.conf global_defs et LVS" loading="lazy">
-            <div class="scr-cap">keepalived.conf — global_defs &amp; LVS</div>
-          </div>
-          <div class="scr-wrap" onclick="openLb('conf_suite_keepalived_des_2_directeurs.png')">
-            <img src="conf_suite_keepalived_des_2_directeurs.png" alt="keepalived.conf instances VRRP" loading="lazy">
-            <div class="scr-cap">keepalived.conf — instances VRRP</div>
-          </div>
-          <div class="scr-wrap" onclick="openLb('conf_ip_des_serveurs_web.png')">
-            <img src="conf_ip_des_serveurs_web.png" alt="Config IP serveurs web" loading="lazy">
-            <div class="scr-cap">Config IP — Serveurs Web 1 &amp; 2</div>
-          </div>
-          <div class="scr-wrap" onclick="openLb('conf_ip_du_client.PNG')">
-            <img src="conf_ip_du_client.PNG" alt="Validation client IP virtuelle" loading="lazy">
-            <div class="scr-cap">Test client — Accès via VIP 172.31.1.70</div>
-          </div>
+      <div class="proj-num-left">02</div>
+      <div class="proj-content">
+        <div class="proj-num">PROJET 02 / 04</div>
+        <div class="proj-date">03/2025</div>
+        <h3 class="proj-title">Serveur DHCP — Debian 12</h3>
+        <p class="proj-desc">Installation et configuration d'un serveur DHCP sous Debian 12 avec isc-dhcp-server. Définition des plages, réservations MAC, options de bail, DNS et passerelle. Validation avec attribution automatique depuis les postes clients.</p>
+        <div class="proj-tags">
+          <span class="ptag hi">Debian 12</span>
+          <span class="ptag hi">isc-dhcp-server</span>
+          <span class="ptag">IPv4</span>
+          <span class="ptag">Linux</span>
+          <span class="ptag">Réseau local</span>
         </div>
-        <div class="code-block" style="margin-top:16px">
-          <span class="k">IP Virtuelle (VIP)</span>     →  172.31.1.70<br>
-          <span class="k">Directeur MASTER</span>        →  172.31.1.100 / 192.168.2.120  (priorité 100)<br>
-          <span class="k">Directeur BACKUP</span>        →  172.31.1.101 / 192.168.2.121  (priorité 80)<br>
-          <span class="k">Serveur Web 1</span>           →  192.168.2.100 : 8001<br>
-          <span class="k">Serveur Web 2</span>           →  192.168.2.101 : 8001<br>
-          <span class="k">Algorithme</span>              →  Round Robin NAT  |  TCP CHECK port 8001
+        <button class="expand-btn" onclick="expand(this)"><span class="expand-caret">▸</span> Détails techniques</button>
+        <div class="proj-expand">
+          <p style="font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:16px">
+            Déploiement sur Debian 12 via <code style="color:var(--lime);font-family:var(--mono)">apt install isc-dhcp-server</code>. Configuration du fichier <code style="color:var(--lime);font-family:var(--mono)">/etc/dhcp/dhcpd.conf</code> : subnet, plage dynamique, bail de 24h, option routers (passerelle), option domain-name-servers (DNS). Activation de l'interface dans <code style="color:var(--lime);font-family:var(--mono)">/etc/default/isc-dhcp-server</code>. Vérification des attributions via <code style="color:var(--lime);font-family:var(--mono)">/var/lib/dhcp/dhcpd.leases</code>.
+          </p>
+          <p style="font-size:11px;color:var(--muted2);font-family:var(--mono);margin-top:12px;font-style:italic">📷 Screenshots à ajouter : dhcpd.conf, journaux de baux, test depuis client</p>
         </div>
       </div>
     </div>
 
-    <!-- P5 : Wireshark -->
+    <!-- P3 : Keepalived LVS avec screenshots -->
     <div class="proj-card">
-      <div class="proj-num">PROJET 05 / 05</div>
-      <div class="proj-date">02/2026</div>
-      <h3 class="proj-title">Analyse de Trames &amp; Audit Wireshark</h3>
-      <p class="proj-desc">Capture et analyse de trames réseau avec Wireshark sur un réseau simulé. Identification d'anomalies, détection de flux suspects, filtrage par protocole, et rédaction d'un rapport d'audit complet avec recommandations.</p>
-      <div class="proj-tags">
-        <span class="ptag hi">Wireshark</span>
-        <span class="ptag">TCP/IP</span>
-        <span class="ptag">Audit sécurité</span>
-        <span class="ptag">ARP</span>
-        <span class="ptag hi">Cybersécurité</span>
+      <div class="proj-num-left">03</div>
+      <div class="proj-content">
+        <div class="proj-num">PROJET 03 / 04</div>
+        <div class="proj-date">11/2025</div>
+        <h3 class="proj-title">Haute Disponibilité — Keepalived &amp; LVS</h3>
+        <p class="proj-desc">Architecture haute disponibilité complète sur Nutanix : 2 directeurs LVS en MASTER/BACKUP, IP virtuelle VRRP, 2 serveurs web avec synchronisation rsync. Basculement automatique en cas de panne du nœud principal.</p>
+        <div class="proj-tags">
+          <span class="ptag hi">Keepalived</span>
+          <span class="ptag hi">LVS / IPVS</span>
+          <span class="ptag">VRRP</span>
+          <span class="ptag">rsync</span>
+          <span class="ptag">Debian 12</span>
+          <span class="ptag hi">Nutanix</span>
+        </div>
+        <button class="expand-btn" onclick="expand(this)"><span class="expand-caret">▸</span> Détails techniques &amp; captures</button>
+        <div class="proj-expand">
+          <p style="font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:20px">
+            <strong style="color:var(--white)">Architecture :</strong> Le Directeur MASTER (priorité 100) distribue les requêtes entre les 2 serveurs web via Round Robin NAT. En cas de panne, le BACKUP (priorité 80) récupère automatiquement l'IP virtuelle grâce à VRRP. Les serveurs web synchronisent leurs données via rsync pour assurer la cohérence.
+            <br><br>
+            <strong style="color:var(--white)">Validation :</strong> Le client accède au site via 172.31.1.70 (VIP). Même après extinction du MASTER, le service reste disponible sans interruption.
+          </p>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--lime);letter-spacing:.15em;margin-bottom:12px;text-transform:uppercase">📸 Captures de configuration réelles</div>
+          <div class="screenshots">
+            <div class="scr-wrap" onclick="openLb('conf_ip_ip_des_2_directeurs.png')">
+              <img src="conf_ip_ip_des_2_directeurs.png" alt="Config IP des 2 directeurs" loading="lazy">
+              <div class="scr-cap">Config IP — Directeur 1 &amp; 2</div>
+            </div>
+            <div class="scr-wrap" onclick="openLb('conf_keepalived_des_2_directeurs.png')">
+              <img src="conf_keepalived_des_2_directeurs.png" alt="keepalived.conf global_defs et LVS" loading="lazy">
+              <div class="scr-cap">keepalived.conf — global_defs &amp; LVS</div>
+            </div>
+            <div class="scr-wrap" onclick="openLb('conf_suite_keepalived_des_2_directeurs.png')">
+              <img src="conf_suite_keepalived_des_2_directeurs.png" alt="keepalived.conf instances VRRP" loading="lazy">
+              <div class="scr-cap">keepalived.conf — instances VRRP</div>
+            </div>
+            <div class="scr-wrap" onclick="openLb('conf_ip_des_serveurs_web.png')">
+              <img src="conf_ip_des_serveurs_web.png" alt="Config IP serveurs web" loading="lazy">
+              <div class="scr-cap">Config IP — Serveurs Web 1 &amp; 2</div>
+            </div>
+            <div class="scr-wrap" onclick="openLb('conf_ip_du_client.PNG')">
+              <img src="conf_ip_du_client.PNG" alt="Validation client IP virtuelle" loading="lazy">
+              <div class="scr-cap">Test client — Accès via VIP 172.31.1.70</div>
+            </div>
+          </div>
+          <div class="code-block" style="margin-top:16px">
+            <span class="k">IP Virtuelle (VIP)</span>     →  172.31.1.70<br>
+            <span class="k">Directeur MASTER</span>        →  172.31.1.100 / 192.168.2.120  (priorité 100)<br>
+            <span class="k">Directeur BACKUP</span>        →  172.31.1.101 / 192.168.2.121  (priorité 80)<br>
+            <span class="k">Serveur Web 1</span>           →  192.168.2.100 : 8001<br>
+            <span class="k">Serveur Web 2</span>           →  192.168.2.101 : 8001<br>
+            <span class="k">Algorithme</span>              →  Round Robin NAT  |  TCP CHECK port 8001
+          </div>
+        </div>
       </div>
-      <button class="expand-btn" onclick="expand(this)"><span class="expand-caret">▸</span> Détails techniques</button>
-      <div class="proj-expand">
-        <p style="font-size:14px;color:var(--muted);line-height:1.8">
-          Mise en place d'une session de capture sur interface réseau. Filtres appliqués : <code style="color:var(--lime);font-family:var(--mono)">arp</code>, <code style="color:var(--lime);font-family:var(--mono)">icmp</code>, <code style="color:var(--lime);font-family:var(--mono)">tcp.port==80</code>, <code style="color:var(--lime);font-family:var(--mono)">dns</code>. Analyse des anomalies détectées : requêtes ARP suspectes, connexions non autorisées, ports inhabituels. Rédaction d'un rapport avec recommandations de sécurisation (désactivation protocoles inutiles, renforcement pare-feu).
-        </p>
-        <p style="font-size:11px;color:var(--muted2);font-family:var(--mono);margin-top:12px;font-style:italic">📷 Screenshots à ajouter : interface Wireshark, filtres, anomalies détectées</p>
+    </div>
+
+    <!-- P4 : Wireshark -->
+    <div class="proj-card">
+      <div class="proj-num-left">04</div>
+      <div class="proj-content">
+        <div class="proj-num">PROJET 04 / 04</div>
+        <div class="proj-date">02/2026</div>
+        <h3 class="proj-title">Analyse de Trames &amp; Audit Wireshark</h3>
+        <p class="proj-desc">Capture et analyse de trames réseau avec Wireshark sur un réseau simulé. Identification d'anomalies, détection de flux suspects, filtrage par protocole, et rédaction d'un rapport d'audit complet avec recommandations.</p>
+        <div class="proj-tags">
+          <span class="ptag hi">Wireshark</span>
+          <span class="ptag">TCP/IP</span>
+          <span class="ptag">Audit sécurité</span>
+          <span class="ptag">ARP</span>
+          <span class="ptag hi">Cybersécurité</span>
+        </div>
+        <button class="expand-btn" onclick="expand(this)"><span class="expand-caret">▸</span> Détails techniques</button>
+        <div class="proj-expand">
+          <p style="font-size:14px;color:var(--muted);line-height:1.8">
+            Mise en place d'une session de capture sur interface réseau. Filtres appliqués : <code style="color:var(--lime);font-family:var(--mono)">arp</code>, <code style="color:var(--lime);font-family:var(--mono)">icmp</code>, <code style="color:var(--lime);font-family:var(--mono)">tcp.port==80</code>, <code style="color:var(--lime);font-family:var(--mono)">dns</code>. Analyse des anomalies détectées : requêtes ARP suspectes, connexions non autorisées, ports inhabituels. Rédaction d'un rapport avec recommandations de sécurisation (désactivation protocoles inutiles, renforcement pare-feu).
+          </p>
+          <p style="font-size:11px;color:var(--muted2);font-family:var(--mono);margin-top:12px;font-style:italic">📷 Screenshots à ajouter : interface Wireshark, filtres, anomalies détectées</p>
+        </div>
       </div>
     </div>
 
@@ -480,8 +483,7 @@ footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;align-i
       <tbody>
         <tr><td>Active Directory + DNS Redondant (Labannu/Labannubis)</td><td style="font-family:var(--mono);font-size:9px;color:var(--lime)">2024–2025</td><td><span class="chk">◆</span></td><td><span class="chk">◆</span></td><td></td><td></td><td><span class="chk">◆</span></td><td></td></tr>
         <tr><td>Serveur DHCP Debian 12</td><td style="font-family:var(--mono);font-size:9px;color:var(--lime)">03/2025</td><td><span class="chk">◆</span></td><td></td><td></td><td></td><td><span class="chk">◆</span></td><td></td></tr>
-        <tr><td>Switch Cisco CLI &amp; SSH</td><td style="font-family:var(--mono);font-size:9px;color:var(--lime)">10/2025</td><td><span class="chk">◆</span></td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td>Haute Disponibilité Keepalived + LVS</td><td style="font-family:var(--mono);font-size:9px;color:var(--lime)">11/2025</td><td><span class="chk">◆</span></td><td></td><td></td><td><span class="chk">◆</span></td><td><span class="chk">◆</span></td><td></td></tr>
+<tr><td>Haute Disponibilité Keepalived + LVS</td><td style="font-family:var(--mono);font-size:9px;color:var(--lime)">11/2025</td><td><span class="chk">◆</span></td><td></td><td></td><td><span class="chk">◆</span></td><td><span class="chk">◆</span></td><td></td></tr>
         <tr><td>Analyse de trames &amp; Audit Wireshark</td><td style="font-family:var(--mono);font-size:9px;color:var(--lime)">02/2026</td><td><span class="chk">◆</span></td><td><span class="chk">◆</span></td><td></td><td></td><td><span class="chk">◆</span></td><td></td></tr>
         <tr><td>Veille technologique — Cybersécurité</td><td style="font-family:var(--mono);font-size:9px;color:var(--lime)">10/25–04/26</td><td></td><td></td><td></td><td></td><td></td><td><span class="chk">◆</span></td></tr>
         <tr><td>Conception du Portfolio E6</td><td style="font-family:var(--mono);font-size:9px;color:var(--lime)">10/25–04/26</td><td></td><td></td><td><span class="chk">◆</span></td><td></td><td></td><td><span class="chk">◆</span></td></tr>
