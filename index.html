@@ -228,6 +228,35 @@ nav{
 .tab-pane{display:none}
 .tab-pane.active{display:block}
 
+/* ── VEILLE ── */
+.veille-intro{font-size:14px;color:var(--muted);line-height:1.85;margin-bottom:52px;max-width:680px;border-left:2px solid var(--lime);padding-left:20px}
+.veille-list{display:flex;flex-direction:column}
+.veille-month{border-top:1px solid var(--border)}
+.veille-month:last-child{border-bottom:1px solid var(--border)}
+.veille-month-head{
+  display:flex;align-items:center;gap:24px;padding:24px 0;cursor:pointer;
+  transition:color .2s;
+}
+.veille-month-head:hover .vm-title{color:var(--lime)}
+.vm-num{font-family:var(--mono);font-size:9px;color:var(--muted2);letter-spacing:.2em;min-width:56px}
+.vm-title{font-family:var(--display);font-size:clamp(26px,3.5vw,40px);color:var(--white);letter-spacing:.04em;transition:color .2s}
+.vm-count{font-family:var(--mono);font-size:9px;color:var(--muted2);letter-spacing:.12em;margin-left:auto}
+.vm-caret{font-size:12px;color:var(--muted2);transition:transform .25s;margin-left:12px}
+.veille-month.open .vm-caret{transform:rotate(90deg)}
+.veille-month.open .vm-title{color:var(--lime)}
+.veille-links{display:none;padding-bottom:28px;padding-left:80px}
+.veille-month.open .veille-links{display:flex;flex-direction:column}
+.veille-link{
+  display:flex;align-items:flex-start;gap:18px;
+  padding:16px 0;border-top:1px solid var(--border);
+  text-decoration:none;transition:background .15s;
+}
+.veille-link:hover .vl-title{color:var(--lime)}
+.vl-num{font-family:var(--mono);font-size:9px;color:var(--muted2);letter-spacing:.15em;min-width:24px;margin-top:3px;flex-shrink:0}
+.vl-title{font-size:15px;font-weight:600;color:var(--white);margin-bottom:5px;transition:color .18s;line-height:1.35}
+.vl-desc{font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:8px}
+.vl-tag{font-family:var(--mono);font-size:8px;padding:2px 8px;border:1px solid var(--border2);border-radius:2px;color:var(--muted2);letter-spacing:.06em;text-transform:uppercase}
+
 /* footer */
 footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;align-items:center;justify-content:space-between;font-family:var(--mono);font-size:9px;color:var(--muted2);letter-spacing:.15em;text-transform:uppercase;position:relative;z-index:1}
 
@@ -254,6 +283,7 @@ footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;align-i
     <li><a href="#" onclick="show('projets')" id="n-projets">Projets</a></li>
     <li><a href="#" onclick="show('stages')" id="n-stages">Stages</a></li>
     <li><a href="#" onclick="show('competences')" id="n-competences">Compétences</a></li>
+    <li><a href="#" onclick="show('veille')" id="n-veille">Veille</a></li>
     <li><a href="#" onclick="show('contact')" id="n-contact">Contact</a></li>
   </ul>
 </nav>
@@ -726,6 +756,346 @@ footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;align-i
 </div>
 </div><!-- /p-contact -->
 
+<!-- ══════════════════ VEILLE TECHNOLOGIQUE ══════════════════ -->
+<div class="page" id="p-veille">
+<div class="sec">
+  <div class="sec-head">
+    <span class="sec-num">05 —</span>
+    <h2 class="sec-title">VEILLE TECHNO</h2>
+    <div class="sec-line"></div>
+  </div>
+  <p class="veille-intro">Veille mensuelle en cybersécurité &amp; systèmes — BTS SIO SISR 2025/2026. Chaque mois, sélection d'articles sur les menaces, vulnérabilités et actualités du secteur. Cliquer sur un mois pour voir les articles.</p>
+
+  <div class="veille-list">
+
+    <!-- SEPTEMBRE 2025 -->
+    <div class="veille-month" id="vm-sep25">
+      <div class="veille-month-head" onclick="toggleMonth('vm-sep25')">
+        <span class="vm-num">09 / 25</span>
+        <span class="vm-title">SEPTEMBRE 2025</span>
+        <span class="vm-count">3 articles</span>
+        <span class="vm-caret">▸</span>
+      </div>
+      <div class="veille-links">
+        <a class="veille-link" href="https://www.formip.com/pages/blog/actualite-cybersecurit%C3%A9-septembre-2025" target="_blank" rel="noopener">
+          <span class="vl-num">01</span>
+          <div>
+            <div class="vl-title">4 News Critiques Cybersécurité — Septembre 2025</div>
+            <div class="vl-desc">Faille WhatsApp zero-day CVE-2025-55177, attaque DDoS record 11,5 Tbps bloquée par Cloudflare, cyberattaque vMUSE dans les aéroports européens, ransomware Jaguar Land Rover.</div>
+            <span class="vl-tag">Formip</span>
+          </div>
+        </a>
+        <a class="veille-link" href="https://www.ssl.com/fr/les-blogs/Tour-d%27horizon-de-la-cybers%C3%A9curit%C3%A9-de-septembre-2025/" target="_blank" rel="noopener">
+          <span class="vl-num">02</span>
+          <div>
+            <div class="vl-title">Tour d'horizon cybersécurité — Septembre 2025</div>
+            <div class="vl-desc">84 vulnérabilités Android corrigées dont 2 zero-day actifs dans le noyau et l'environnement d'exécution. Cyberattaque de la ville de Poitiers : réseaux isolés, services civils perturbés.</div>
+            <span class="vl-tag">SSL.com</span>
+          </div>
+        </a>
+        <a class="veille-link" href="https://blog.reemo.io/september-2025-cyber-outlook/" target="_blank" rel="noopener">
+          <span class="vl-num">03</span>
+          <div>
+            <div class="vl-title">Cyber Outlook — Septembre 2025</div>
+            <div class="vl-desc">Analyse des incidents du mois : nouvelles techniques d'exploitation APT, campagnes de spyware ciblant les messageries chiffrées, état de la menace sur les infrastructures critiques.</div>
+            <span class="vl-tag">Reemo</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- OCTOBRE 2025 -->
+    <div class="veille-month" id="vm-oct25">
+      <div class="veille-month-head" onclick="toggleMonth('vm-oct25')">
+        <span class="vm-num">10 / 25</span>
+        <span class="vm-title">OCTOBRE 2025</span>
+        <span class="vm-count">3 articles</span>
+        <span class="vm-caret">▸</span>
+      </div>
+      <div class="veille-links">
+        <a class="veille-link" href="https://www.integrity360.com/cyber-news-roundup-october-10-2025" target="_blank" rel="noopener">
+          <span class="vl-num">01</span>
+          <div>
+            <div class="vl-title">Cyber News Roundup — 10 octobre 2025</div>
+            <div class="vl-desc">Failles critiques Ivanti et Fortinet, gang Clop exploite une zero-day Oracle E-Business Suite depuis août, France Travail touché à nouveau (30 000 dossiers exposés). Moyenne de 1 938 attaques/semaine.</div>
+            <span class="vl-tag">Integrity360</span>
+          </div>
+        </a>
+        <a class="veille-link" href="https://www.cert.ssi.gouv.fr/" target="_blank" rel="noopener">
+          <span class="vl-num">02</span>
+          <div>
+            <div class="vl-title">CERT-FR — Alertes &amp; Avis de sécurité</div>
+            <div class="vl-desc">Portail officiel du CERT national français : bulletins de vulnérabilités, alertes de campagnes en cours, recommandations et indicateurs de compromission pour les SI d'entreprises et administrations.</div>
+            <span class="vl-tag">ANSSI / CERT-FR</span>
+          </div>
+        </a>
+        <a class="veille-link" href="https://www.oodrive.com/fr/blog/securite/cybersecurite/top-10-des-cyberattaques-2025/" target="_blank" rel="noopener">
+          <span class="vl-num">03</span>
+          <div>
+            <div class="vl-title">Top 10 des cybermenaces à surveiller en 2025</div>
+            <div class="vl-desc">Cap des 40 000 CVE publiées en 2025, banalisation de l'IA générative chez les attaquants, multiplication des compromissions supply chain. Analyse détaillée des 10 menaces majeures.</div>
+            <span class="vl-tag">Oodrive</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- NOVEMBRE 2025 -->
+    <div class="veille-month" id="vm-nov25">
+      <div class="veille-month-head" onclick="toggleMonth('vm-nov25')">
+        <span class="vm-num">11 / 25</span>
+        <span class="vm-title">NOVEMBRE 2025</span>
+        <span class="vm-count">3 articles</span>
+        <span class="vm-caret">▸</span>
+      </div>
+      <div class="veille-links">
+        <a class="veille-link" href="https://www.lemagit.fr/actualites/366634743/Cyberhebdo-du-21-novembre-2025" target="_blank" rel="noopener">
+          <span class="vl-num">01</span>
+          <div>
+            <div class="vl-title">Cyberhebdo du 21 novembre 2025 — LeMagIT</div>
+            <div class="vl-desc">Piratage de la FFF via prestataire vulnérable, fuite données Cdiscount, botnet DDoS Kimwolf : 1,8 million de TV et boîtiers Android enrôlés, 1,7 milliard de commandes d'attaque en 3 jours.</div>
+            <span class="vl-tag">LeMagIT</span>
+          </div>
+        </a>
+        <a class="veille-link" href="https://invictis.fr/cyberattaque-france-2025-bilan/" target="_blank" rel="noopener">
+          <span class="vl-num">02</span>
+          <div>
+            <div class="vl-title">Cyberattaques France 2025 — Bilan complet</div>
+            <div class="vl-desc">Panorama des attaques ayant frappé la France en 2025 : secteurs les plus ciblés, évolution des techniques ransomware, impact économique et réponses des autorités (ANSSI, CERT-FR).</div>
+            <span class="vl-tag">Invictis</span>
+          </div>
+        </a>
+        <a class="veille-link" href="https://www.arxone.com/actualites/recap-cyberattaques-2025/" target="_blank" rel="noopener">
+          <span class="vl-num">03</span>
+          <div>
+            <div class="vl-title">Récap des cyberattaques 2025 — Arx One</div>
+            <div class="vl-desc">+50% d'attaques entre novembre 2024 et septembre 2025, deux tiers des PME françaises touchées. Synthèse des incidents les plus marquants et recommandations de protection.</div>
+            <span class="vl-tag">Arx One</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- DÉCEMBRE 2025 -->
+    <div class="veille-month" id="vm-dec25">
+      <div class="veille-month-head" onclick="toggleMonth('vm-dec25')">
+        <span class="vm-num">12 / 25</span>
+        <span class="vm-title">DÉCEMBRE 2025</span>
+        <span class="vm-count">3 articles</span>
+        <span class="vm-caret">▸</span>
+      </div>
+      <div class="veille-links">
+        <a class="veille-link" href="https://dcod.ch/2025/12/21/les-actualites-cybersecurite-du-21-dec-2025/" target="_blank" rel="noopener">
+          <span class="vl-num">01</span>
+          <div>
+            <div class="vl-title">Actualités cybersécurité — 21 décembre 2025</div>
+            <div class="vl-desc">CVE Fortinet activement exploitée, intrusion sur les serveurs de messagerie du Ministère de l'Intérieur (11-12 déc.), vols de cryptomonnaies dépassant 3,4 Mds$ dont 2 Mds$ attribués à la Corée du Nord.</div>
+            <span class="vl-tag">DCOD.ch</span>
+          </div>
+        </a>
+        <a class="veille-link" href="https://dcod.ch/2025/12/26/les-dernieres-actus-des-cybercriminels-26-dec-2025/" target="_blank" rel="noopener">
+          <span class="vl-num">02</span>
+          <div>
+            <div class="vl-title">Actus des cybercriminels — 26 décembre 2025</div>
+            <div class="vl-desc">Extorsion ShinyHunters sur PornHub (94 Go de données), campagne russe destructrice sur infrastructures critiques danoises, attaque DDoS La Poste du 22 décembre (milliards de tentatives/seconde).</div>
+            <span class="vl-tag">DCOD.ch</span>
+          </div>
+        </a>
+        <a class="veille-link" href="https://www.synetis.com/cybersecurite-le-point-sur-les-tendances-qui-ont-marque-2025" target="_blank" rel="noopener">
+          <span class="vl-num">03</span>
+          <div>
+            <div class="vl-title">Tendances cybersécurité 2025 — Bilan annuel</div>
+            <div class="vl-desc">Analyse des grandes tendances de l'année : montée des ransomwares, IA offensive, explosion du nombre de CVE publiées, et émergence des menaces sur la supply chain logicielle.</div>
+            <span class="vl-tag">Synetis</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- JANVIER 2026 -->
+    <div class="veille-month" id="vm-jan26">
+      <div class="veille-month-head" onclick="toggleMonth('vm-jan26')">
+        <span class="vm-num">01 / 26</span>
+        <span class="vm-title">JANVIER 2026</span>
+        <span class="vm-count">3 articles</span>
+        <span class="vm-caret">▸</span>
+      </div>
+      <div class="veille-links">
+        <a class="veille-link" href="https://www.economie.gouv.fr/actualites/cybersecurite-la-strategie-nationale-2026-2030-devoilee" target="_blank" rel="noopener">
+          <span class="vl-num">01</span>
+          <div>
+            <div class="vl-title">Stratégie nationale cybersécurité 2026-2030 — economie.gouv.fr</div>
+            <div class="vl-desc">Publiée le 29 janvier 2026 : feuille de route France pour devenir puissance cyber de premier rang. Création du 17Cyber (guichet unique victimes), enveloppe de 200M€ sur 5 ans.</div>
+            <span class="vl-tag">Gouvernement français</span>
+          </div>
+        </a>
+        <a class="veille-link" href="https://www.adacis.net/newsletter/newsletter-cybersecurite-janvier-2026/" target="_blank" rel="noopener">
+          <span class="vl-num">02</span>
+          <div>
+            <div class="vl-title">Newsletter cybersécurité — Janvier 2026</div>
+            <div class="vl-desc">Amendes CNIL : 27M€ pour Free Mobile et 5M€ pour France Travail. Attaque DDoS du 1er janvier sur La Poste. Rapport ANSSI confirmant l'usage de l'IA générative dans les campagnes d'attaques.</div>
+            <span class="vl-tag">Adacis</span>
+          </div>
+        </a>
+        <a class="veille-link" href="https://www.i-leadconsulting.com/cyberattaques-france-2026/" target="_blank" rel="noopener">
+          <span class="vl-num">03</span>
+          <div>
+            <div class="vl-title">Cyberattaques France 2026 — Liste à jour</div>
+            <div class="vl-desc">Suivi en continu des cyberattaques visant des organisations françaises depuis début 2026 : secteurs ciblés, types d'attaques (ransomware, DDoS, phishing), données volées et réponses des victimes.</div>
+            <span class="vl-tag">i-Lead Consulting</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- FÉVRIER 2026 -->
+    <div class="veille-month" id="vm-feb26">
+      <div class="veille-month-head" onclick="toggleMonth('vm-feb26')">
+        <span class="vm-num">02 / 26</span>
+        <span class="vm-title">FÉVRIER 2026</span>
+        <span class="vm-count">3 articles</span>
+        <span class="vm-caret">▸</span>
+      </div>
+      <div class="veille-links">
+        <a class="veille-link" href="https://www.lemagit.fr/actualites/366639190/Cyberhebdo-du-20-fevrier-2026" target="_blank" rel="noopener">
+          <span class="vl-num">01</span>
+          <div>
+            <div class="vl-title">Cyberhebdo du 20 février 2026 — LeMagIT</div>
+            <div class="vl-desc">Semaine intense : ransomware Washington Hotel (Japon), CHU Mississippi paralysé (chirurgies annulées), serveurs Commission européenne compromis via faille Ivanti, FFF Voile fuite 100K licenciés.</div>
+            <span class="vl-tag">LeMagIT</span>
+          </div>
+        </a>
+        <a class="veille-link" href="https://www.it-connect.fr/fortinet-a-corrige-8-failles-de-securite-decouvrez-les-patchs-de-fevrier-2026/" target="_blank" rel="noopener">
+          <span class="vl-num">02</span>
+          <div>
+            <div class="vl-title">Fortinet corrige 8 failles de sécurité — Février 2026</div>
+            <div class="vl-desc">7 bulletins Fortinet publiés le 10 février : injection SQL CVSS 9.1 dans FortiClientEMS (RCE sans authentification), vulnérabilités FortiGate et FortiSandbox. Patch Tuesday Microsoft : 58 CVE dont 6 zero-day.</div>
+            <span class="vl-tag">IT-Connect</span>
+          </div>
+        </a>
+        <a class="veille-link" href="https://www.lemondeinformatique.fr/actualites/lire-une-faille-de-gravite-10-activement-exploitee-dans-le-sd-wan-cisco-100182.html" target="_blank" rel="noopener">
+          <span class="vl-num">03</span>
+          <div>
+            <div class="vl-title">Faille CVSS 10 dans le SD-WAN Cisco — activement exploitée</div>
+            <div class="vl-desc">Vulnérabilité maximale (score 10/10) exploitée activement dans la solution SD-WAN Cisco : accès root à distance sans authentification. Correctif critique à appliquer en urgence sur les équipements exposés.</div>
+            <span class="vl-tag">Le Monde Informatique</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- MARS 2026 -->
+    <div class="veille-month" id="vm-mar26">
+      <div class="veille-month-head" onclick="toggleMonth('vm-mar26')">
+        <span class="vm-num">03 / 26</span>
+        <span class="vm-title">MARS 2026</span>
+        <span class="vm-count">3 articles</span>
+        <span class="vm-caret">▸</span>
+      </div>
+      <div class="veille-links">
+        <a class="veille-link" href="https://www.lemagit.fr/actualites/366640539/Cyberhebdo-du-20-mars-2026-des-services-publics-frappes-dans-le-monde-entier" target="_blank" rel="noopener">
+          <span class="vl-num">01</span>
+          <div>
+            <div class="vl-title">Cyberhebdo 20 mars 2026 — Services publics frappés dans le monde</div>
+            <div class="vl-desc">CHU de Lyon paralysé 48h (1 200 consultations reportées), ransomware Qilin contre le parti allemand Die Linke, cyberattaques en hausse de 45% en 2026 vs 2025 — moyenne 12 incidents/semaine ANSSI.</div>
+            <span class="vl-tag">LeMagIT</span>
+          </div>
+        </a>
+        <a class="veille-link" href="https://www.lemagit.fr/actualites/366640760/Cyberhebdo-du-27-mars-2026" target="_blank" rel="noopener">
+          <span class="vl-num">02</span>
+          <div>
+            <div class="vl-title">Cyberhebdo du 27 mars 2026 — LeMagIT</div>
+            <div class="vl-desc">Revue de la semaine : nouvelles techniques de latéralisation réseau post-compromission, panorama des groupes APT actifs en Europe et nouveaux vecteurs d'attaque sur les VPN d'entreprise.</div>
+            <span class="vl-tag">LeMagIT</span>
+          </div>
+        </a>
+        <a class="veille-link" href="https://dcod.ch/2026/03/31/cyberattaques-les-10-incidents-majeurs-du-31-mars-2026/" target="_blank" rel="noopener">
+          <span class="vl-num">03</span>
+          <div>
+            <div class="vl-title">10 incidents majeurs — 31 mars 2026</div>
+            <div class="vl-desc">Synthèse de fin de mois : les 10 cyberattaques les plus significatives de mars, analyse des vecteurs d'attaque et recommandations de sécurisation pour administrateurs SISR et RSSI.</div>
+            <span class="vl-tag">DCOD.ch</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- AVRIL 2026 -->
+    <div class="veille-month" id="vm-apr26">
+      <div class="veille-month-head" onclick="toggleMonth('vm-apr26')">
+        <span class="vm-num">04 / 26</span>
+        <span class="vm-title">AVRIL 2026</span>
+        <span class="vm-count">3 articles</span>
+        <span class="vm-caret">▸</span>
+      </div>
+      <div class="veille-links">
+        <a class="veille-link" href="https://isisec.net/actualites/actualite-cyber-2026/" target="_blank" rel="noopener">
+          <span class="vl-num">01</span>
+          <div>
+            <div class="vl-title">Actualité cyber 2026 — Incidents &amp; Réglementations</div>
+            <div class="vl-desc">Fuite données ANTS (millions d'usagers, suspect de 15 ans interpellé), cyberattaque Pierre &amp; Vacances (1,6M dossiers de réservation), mise en application de la directive NIS2.</div>
+            <span class="vl-tag">ISI Sec</span>
+          </div>
+        </a>
+        <a class="veille-link" href="https://www.donneespersonnelles.fr/actualite-cybersecurite-2026" target="_blank" rel="noopener">
+          <span class="vl-num">02</span>
+          <div>
+            <div class="vl-title">Cybersécurité 2026 — NIS2, CRA &amp; ANSSI</div>
+            <div class="vl-desc">Point réglementaire : directive NIS2 en vigueur, nouvelles obligations pour les opérateurs de services essentiels, exigences de signalement d'incidents et sanctions prévues en cas de non-conformité.</div>
+            <span class="vl-tag">DonnéesPersonnelles.fr</span>
+          </div>
+        </a>
+        <a class="veille-link" href="https://cyber.gouv.fr/actualites/" target="_blank" rel="noopener">
+          <span class="vl-num">03</span>
+          <div>
+            <div class="vl-title">ANSSI — Toutes les actualités</div>
+            <div class="vl-desc">Portail officiel de l'Agence Nationale de la Sécurité des Systèmes d'Information : publications techniques, alertes, guides pratiques et ressources pour les professionnels de la cybersécurité en France.</div>
+            <span class="vl-tag">ANSSI</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- MAI 2026 -->
+    <div class="veille-month" id="vm-may26">
+      <div class="veille-month-head" onclick="toggleMonth('vm-may26')">
+        <span class="vm-num">05 / 26</span>
+        <span class="vm-title">MAI 2026</span>
+        <span class="vm-count">3 articles</span>
+        <span class="vm-caret">▸</span>
+      </div>
+      <div class="veille-links">
+        <a class="veille-link" href="https://www.cert.ssi.gouv.fr/" target="_blank" rel="noopener">
+          <span class="vl-num">01</span>
+          <div>
+            <div class="vl-title">CERT-FR — Alertes de sécurité mai 2026</div>
+            <div class="vl-desc">Suivi des CVE critiques de mai 2026 dont CVE-2026-40361 (zero-click Outlook/Word, alerte conjointe Microsoft + CISA le 29 avril). Bulletins mensuels et indicateurs de compromission à destination des RSSI.</div>
+            <span class="vl-tag">CERT-FR / ANSSI</span>
+          </div>
+        </a>
+        <a class="veille-link" href="https://www.it-connect.fr/actualites/actu-securite/" target="_blank" rel="noopener">
+          <span class="vl-num">02</span>
+          <div>
+            <div class="vl-title">Actualités sécurité — IT-Connect</div>
+            <div class="vl-desc">Fil d'actualité cybersécurité en continu : nouvelles CVE, incidents récents, tutoriels d'administration système Linux/Windows et guides de sécurisation orientés professionnels SISR.</div>
+            <span class="vl-tag">IT-Connect</span>
+          </div>
+        </a>
+        <a class="veille-link" href="https://cds.thalesgroup.com/fr/hot-topics/les-nouvelles-tendances-de-la-cybersecurite-2026" target="_blank" rel="noopener">
+          <span class="vl-num">03</span>
+          <div>
+            <div class="vl-title">Nouvelles tendances cybersécurité 2026 — Thales</div>
+            <div class="vl-desc">Analyse prospective Thales : IA défensive vs IA offensive, Zero Trust architecture, sécurisation des environnements cloud hybrides et enjeux de la souveraineté numérique européenne face aux menaces étatiques.</div>
+            <span class="vl-tag">Thales</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div><!-- /p-veille -->
+
 <!-- FOOTER -->
 <footer>
   <span>© 2026 Yannis Bofunga</span>
@@ -753,6 +1123,9 @@ function tab(btn,id){
   sec.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById(id).classList.add('active');
+}
+function toggleMonth(id){
+  document.getElementById(id).classList.toggle('open');
 }
 function expand(btn){
   const panel=btn.nextElementSibling;
