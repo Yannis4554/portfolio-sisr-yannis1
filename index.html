@@ -291,7 +291,7 @@ footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;align-i
         <span class="pill">Alternance 2026</span>
       </div>
       <div class="hero-stats">
-        <div><div class="stat-num">4</div><div class="stat-label">Projets réalisés</div></div>
+        <div><div class="stat-num">5</div><div class="stat-label">Projets réalisés</div></div>
         <div><div class="stat-num">2</div><div class="stat-label">Stages terrain</div></div>
         <div><div class="stat-num">10+</div><div class="stat-label">Technologies</div></div>
         <div><div class="stat-num">B2</div><div class="stat-label">Anglais</div></div>
@@ -321,44 +321,79 @@ footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;align-i
     <div class="proj-card">
       <div class="proj-num-left">01</div>
       <div class="proj-content">
-        <div class="proj-num">PROJET 01 / 04</div>
+        <div class="proj-num">PROJET 01 / 05</div>
         <div class="proj-date">2024 — 2025</div>
-        <h3 class="proj-title">Active Directory &amp; DNS Redondant — Labannu / Labannubis</h3>
-        <p class="proj-desc">Déploiement d'une infrastructure AD complète sur Nutanix avec 2 contrôleurs de domaine en réplication. DNS primaire et secondaire pour la haute disponibilité. Création d'utilisateurs, groupes, UO et validation depuis postes clients.</p>
+        <h3 class="proj-title">Active Directory — Labannu &amp; Labannubis</h3>
+        <p class="proj-desc">Déploiement de 2 contrôleurs de domaine en réplication sur Nutanix. Configuration complète d'AD DS : unités d'organisation, comptes utilisateurs, groupes de sécurité et GPO. Basculement automatique sur DC2 en cas de panne du DC principal.</p>
         <div class="proj-tags">
           <span class="ptag hi">Windows Server</span>
           <span class="ptag hi">Active Directory</span>
-          <span class="ptag">DNS primaire</span>
-          <span class="ptag">DNS secondaire</span>
           <span class="ptag hi">Nutanix</span>
+          <span class="ptag">AD DS</span>
           <span class="ptag">GPO</span>
+          <span class="ptag">DC1 / DC2</span>
         </div>
         <button class="expand-btn" onclick="expand(this)"><span class="expand-caret">▸</span> Détails techniques</button>
         <div class="proj-expand">
           <p style="font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:16px">
-            <strong style="color:var(--white)">Serveur Labannu (192.168.250.98)</strong> — Contrôleur de domaine principal (DC1). Installation du rôle AD DS, configuration du domaine, création des UO, comptes utilisateurs et groupes de sécurité. Serveur DNS primaire pour la résolution interne.
+            <strong style="color:var(--white)">Labannu — DC1 (192.168.250.98)</strong> — Contrôleur de domaine principal. Installation du rôle AD DS, création du domaine <code style="color:var(--lime);font-family:var(--mono)">labannu.local</code>, mise en place des UO, comptes utilisateurs et groupes de sécurité. Détenteur de tous les rôles FSMO.
             <br><br>
-            <strong style="color:var(--white)">Serveur Labannubis (192.168.250.100)</strong> — Contrôleur de domaine secondaire (DC2). En cas de panne de Labannu, Labannubis prend le relais sans interruption de service grâce à la réplication AD DS et au DNS secondaire.
+            <strong style="color:var(--white)">Labannubis — DC2 (192.168.250.100)</strong> — Contrôleur de domaine secondaire. Réplication AD DS bidirectionnelle avec DC1. En cas de panne de Labannu, Labannubis assure la continuité d'authentification sans interruption.
             <br><br>
-            Validation finale : connexion réussie depuis un poste client Windows 10/11 avec les comptes créés dans l'Active Directory.
+            Validation : connexion réussie depuis un poste client Windows 10/11 avec les comptes AD.
           </p>
           <div class="code-block">
-            <span class="k">DC1</span> Labannu  →  192.168.250.98  (DNS primaire)<br>
-            <span class="k">DC2</span> Labannubis  →  192.168.250.100  (DNS secondaire)<br>
+            <span class="k">DC1</span> Labannu     →  192.168.250.98<br>
+            <span class="k">DC2</span> Labannubis  →  192.168.250.100<br>
             Réplication AD DS  →  automatique bidirectionnelle<br>
-            Zone DNS  →  labannu.local (zone secondaire sur DC2)<br>
             Rôles FSMO  →  DC1 (PDC, RID, Infra, Schema, Naming)
           </div>
-          <p style="font-size:11px;color:var(--muted2);font-family:var(--mono);margin-top:14px;font-style:italic">📷 Screenshots à ajouter : AD Users &amp; Computers, propriétés DNS, test connexion client</p>
+          <p style="font-size:11px;color:var(--muted2);font-family:var(--mono);margin-top:14px;font-style:italic">📷 Screenshots à ajouter : AD Users &amp; Computers, test connexion client</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- P2 : DNS -->
+    <div class="proj-card">
+      <div class="proj-num-left">02</div>
+      <div class="proj-content">
+        <div class="proj-num">PROJET 02 / 05</div>
+        <div class="proj-date">2024 — 2025</div>
+        <h3 class="proj-title">DNS Primaire &amp; Secondaire — Haute Disponibilité</h3>
+        <p class="proj-desc">Configuration d'un serveur DNS primaire sur Labannu et d'un DNS secondaire sur Labannubis. La zone secondaire se synchronise automatiquement depuis le primaire, assurant la résolution interne même en cas de panne du DNS principal.</p>
+        <div class="proj-tags">
+          <span class="ptag hi">DNS primaire</span>
+          <span class="ptag hi">DNS secondaire</span>
+          <span class="ptag hi">Windows Server</span>
+          <span class="ptag">Zone secondaire</span>
+          <span class="ptag">Haute disponibilité</span>
+          <span class="ptag">labannu.local</span>
+        </div>
+        <button class="expand-btn" onclick="expand(this)"><span class="expand-caret">▸</span> Détails techniques</button>
+        <div class="proj-expand">
+          <p style="font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:16px">
+            <strong style="color:var(--white)">DNS Primaire — Labannu (192.168.250.98)</strong> — Héberge la zone principale <code style="color:var(--lime);font-family:var(--mono)">labannu.local</code>. Gère l'ensemble des enregistrements A, PTR et SRV du domaine. Seul serveur autorisé à modifier la zone.
+            <br><br>
+            <strong style="color:var(--white)">DNS Secondaire — Labannubis (192.168.250.100)</strong> — Héberge une copie en lecture seule de la zone primaire. Transfert de zone automatique depuis Labannu. En cas de panne du DNS primaire, Labannubis répond aux requêtes de résolution sans interruption.
+            <br><br>
+            Validation : résolution du domaine <code style="color:var(--lime);font-family:var(--mono)">labannu.local</code> fonctionnelle depuis les postes clients, même avec Labannu hors ligne.
+          </p>
+          <div class="code-block">
+            <span class="k">Zone primaire</span>    →  labannu.local  (Labannu — 192.168.250.98)<br>
+            <span class="k">Zone secondaire</span>  →  labannu.local  (Labannubis — 192.168.250.100)<br>
+            Transfert de zone  →  automatique depuis le primaire<br>
+            Enregistrements   →  A, PTR, SRV (Kerberos, LDAP…)
+          </div>
+          <p style="font-size:11px;color:var(--muted2);font-family:var(--mono);margin-top:14px;font-style:italic">📷 Screenshots à ajouter : console DNS, propriétés zone secondaire, test nslookup</p>
         </div>
       </div>
     </div>
 
     <!-- P2 : DHCP -->
     <div class="proj-card">
-      <div class="proj-num-left">02</div>
+      <div class="proj-num-left">03</div>
       <div class="proj-content">
-        <div class="proj-num">PROJET 02 / 04</div>
+        <div class="proj-num">PROJET 03 / 05</div>
         <div class="proj-date">03/2025</div>
         <h3 class="proj-title">Serveur DHCP — Debian 12</h3>
         <p class="proj-desc">Installation et configuration d'un serveur DHCP sous Debian 12 avec isc-dhcp-server. Définition des plages, réservations MAC, options de bail, DNS et passerelle. Validation avec attribution automatique depuis les postes clients.</p>
@@ -379,11 +414,11 @@ footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;align-i
       </div>
     </div>
 
-    <!-- P3 : Keepalived LVS avec screenshots -->
+    <!-- P4 : Keepalived LVS avec screenshots -->
     <div class="proj-card">
-      <div class="proj-num-left">03</div>
+      <div class="proj-num-left">04</div>
       <div class="proj-content">
-        <div class="proj-num">PROJET 03 / 04</div>
+        <div class="proj-num">PROJET 04 / 05</div>
         <div class="proj-date">11/2025</div>
         <h3 class="proj-title">Haute Disponibilité — Keepalived &amp; LVS</h3>
         <p class="proj-desc">Architecture haute disponibilité complète sur Nutanix : 2 directeurs LVS en MASTER/BACKUP, IP virtuelle VRRP, 2 serveurs web avec synchronisation rsync. Basculement automatique en cas de panne du nœud principal.</p>
@@ -437,11 +472,11 @@ footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;align-i
       </div>
     </div>
 
-    <!-- P4 : Wireshark -->
+    <!-- P5 : Wireshark -->
     <div class="proj-card">
-      <div class="proj-num-left">04</div>
+      <div class="proj-num-left">05</div>
       <div class="proj-content">
-        <div class="proj-num">PROJET 04 / 04</div>
+        <div class="proj-num">PROJET 05 / 05</div>
         <div class="proj-date">02/2026</div>
         <h3 class="proj-title">Analyse de Trames &amp; Audit Wireshark</h3>
         <p class="proj-desc">Capture et analyse de trames réseau avec Wireshark sur un réseau simulé. Identification d'anomalies, détection de flux suspects, filtrage par protocole, et rédaction d'un rapport d'audit complet avec recommandations.</p>
@@ -481,7 +516,8 @@ footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;align-i
         </tr>
       </thead>
       <tbody>
-        <tr><td>Active Directory + DNS Redondant (Labannu/Labannubis)</td><td style="font-family:var(--mono);font-size:9px;color:var(--lime)">2024–2025</td><td><span class="chk">◆</span></td><td><span class="chk">◆</span></td><td></td><td></td><td><span class="chk">◆</span></td><td></td></tr>
+        <tr><td>Active Directory — Labannu &amp; Labannubis (DC1/DC2)</td><td style="font-family:var(--mono);font-size:9px;color:var(--lime)">2024–2025</td><td><span class="chk">◆</span></td><td><span class="chk">◆</span></td><td></td><td></td><td><span class="chk">◆</span></td><td></td></tr>
+        <tr><td>DNS Primaire &amp; Secondaire — Haute Disponibilité</td><td style="font-family:var(--mono);font-size:9px;color:var(--lime)">2024–2025</td><td><span class="chk">◆</span></td><td></td><td></td><td></td><td><span class="chk">◆</span></td><td></td></tr>
         <tr><td>Serveur DHCP Debian 12</td><td style="font-family:var(--mono);font-size:9px;color:var(--lime)">03/2025</td><td><span class="chk">◆</span></td><td></td><td></td><td></td><td><span class="chk">◆</span></td><td></td></tr>
 <tr><td>Haute Disponibilité Keepalived + LVS</td><td style="font-family:var(--mono);font-size:9px;color:var(--lime)">11/2025</td><td><span class="chk">◆</span></td><td></td><td></td><td><span class="chk">◆</span></td><td><span class="chk">◆</span></td><td></td></tr>
         <tr><td>Analyse de trames &amp; Audit Wireshark</td><td style="font-family:var(--mono);font-size:9px;color:var(--lime)">02/2026</td><td><span class="chk">◆</span></td><td><span class="chk">◆</span></td><td></td><td></td><td><span class="chk">◆</span></td><td></td></tr>
