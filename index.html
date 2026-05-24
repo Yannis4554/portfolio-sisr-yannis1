@@ -31,17 +31,18 @@ body{background:var(--ink);color:var(--white);font-family:var(--sans);overflow-x
 nav{
   position:fixed;top:0;left:0;right:0;z-index:200;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 48px;height:56px;
+  padding:0 24px;height:56px;
   background:rgba(10,10,15,0.92);backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border)
+  border-bottom:1px solid var(--border);
+  overflow:visible;
 }
-.nav-id{font-family:var(--mono);font-size:11px;color:var(--lime);letter-spacing:.15em;text-transform:uppercase}
+.nav-id{font-family:var(--mono);font-size:11px;color:var(--lime);letter-spacing:.15em;text-transform:uppercase;flex-shrink:0;margin-right:12px}
 .nav-dot{display:inline-block;width:5px;height:5px;background:var(--lime);border-radius:50%;margin-right:7px;animation:blink 2s infinite;box-shadow:0 0 6px var(--lime);vertical-align:middle}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
-.nav-links{display:flex;gap:2px;list-style:none}
+.nav-links{display:flex;gap:1px;list-style:none;flex-wrap:nowrap;overflow:visible}
 .nav-links a{
-  font-family:var(--mono);font-size:10px;color:var(--muted);text-decoration:none;
-  padding:6px 14px;border-radius:3px;letter-spacing:.1em;text-transform:uppercase;transition:all .2s
+  font-family:var(--mono);font-size:9.5px;color:var(--muted);text-decoration:none;
+  padding:6px 8px;border-radius:3px;letter-spacing:.06em;text-transform:uppercase;transition:all .2s;white-space:nowrap
 }
 .nav-links a:hover,.nav-links a.active{color:var(--lime);background:rgba(200,241,53,0.08)}
 
@@ -257,6 +258,50 @@ nav{
 .vl-desc{font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:8px}
 .vl-tag{font-family:var(--mono);font-size:8px;padding:2px 8px;border:1px solid var(--border2);border-radius:2px;color:var(--muted2);letter-spacing:.06em;text-transform:uppercase}
 
+/* ── CERTIFICATIONS ── */
+.certif-page-title{font-family:var(--display);font-size:clamp(36px,5vw,60px);text-align:center;color:var(--white);letter-spacing:.04em;text-transform:uppercase;margin-bottom:10px}
+.certif-gradient{background:linear-gradient(to right,var(--white),#ec4899,var(--white));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:certif-shine 4s linear infinite}
+@keyframes certif-shine{to{background-position:200% center}}
+.certif-subtitle{font-size:15px;color:var(--muted);text-align:center;margin-bottom:52px;line-height:1.7;max-width:680px;margin-left:auto;margin-right:auto}
+.certif-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:32px}
+.certif-card{
+  background:rgba(15,23,42,0.55);
+  backdrop-filter:blur(20px) saturate(150%);
+  -webkit-backdrop-filter:blur(20px) saturate(150%);
+  border:1px solid rgba(236,72,153,0.15);
+  border-radius:24px;
+  padding:40px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.6);
+  transition:all .5s cubic-bezier(0.25,1,0.5,1);
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  overflow:hidden;
+}
+.certif-card::before{
+  content:'';
+  position:absolute;
+  top:-50%;left:-50%;width:200%;height:200%;
+  background:radial-gradient(circle,rgba(236,72,153,0.18) 0%,transparent 60%);
+  opacity:0;
+  transition:all .5s;
+  pointer-events:none;
+  z-index:0;
+}
+.certif-card>*{position:relative;z-index:1}
+.certif-card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 20px 50px rgba(236,72,153,0.25),inset 0 0 0 1px rgba(236,72,153,0.45);border-color:rgba(236,72,153,0.5)}
+.certif-card:hover::before{opacity:1}
+.certif-card h3{font-size:1.25rem;font-weight:700;color:var(--white);margin-bottom:14px;line-height:1.35}
+.certif-card p{font-size:13.5px;color:var(--muted);line-height:1.78;margin-bottom:20px;flex-grow:1}
+.certif-card .certif-img-wrap{margin-bottom:22px;text-align:center}
+.certif-card img{width:100%;border-radius:12px;border:1px solid rgba(236,72,153,0.2);transition:all .5s cubic-bezier(0.25,1,0.5,1);box-shadow:0 8px 24px rgba(0,0,0,0.4)}
+.certif-card:hover img{transform:scale(1.04) translateY(-4px);box-shadow:0 18px 36px rgba(236,72,153,0.2)}
+.certif-tags{display:flex;flex-wrap:wrap;gap:10px;list-style:none;margin-top:auto}
+.certif-tags li{padding:6px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);transition:all .4s}
+.certif-card:hover .certif-tags li{border-color:rgba(236,72,153,0.4);color:rgba(236,72,153,0.9);background:rgba(236,72,153,0.08)}
+.c-reveal{opacity:0;transform:translateY(40px) scale(0.95);transition:all .8s cubic-bezier(0.25,1,0.5,1)}
+.c-reveal.active{opacity:1;transform:translateY(0) scale(1)}
+
 /* footer */
 footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;align-items:center;justify-content:space-between;font-family:var(--mono);font-size:9px;color:var(--muted2);letter-spacing:.15em;text-transform:uppercase;position:relative;z-index:1}
 
@@ -283,6 +328,7 @@ footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;align-i
     <li><a href="#" onclick="show('projets')" id="n-projets">Projets</a></li>
     <li><a href="#" onclick="show('stages')" id="n-stages">Stages</a></li>
     <li><a href="#" onclick="show('competences')" id="n-competences">Compétences</a></li>
+    <li><a href="#" onclick="show('certifications')" id="n-certifications">Certifications</a></li>
     <li><a href="#" onclick="show('veille')" id="n-veille">Veille</a></li>
     <li><a href="#" onclick="show('contact')" id="n-contact">Contact</a></li>
   </ul>
@@ -714,6 +760,90 @@ footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;align-i
 </div>
 </div><!-- /p-competences -->
 
+<!-- ══════════════════ CERTIFICATIONS ══════════════════ -->
+<div class="page" id="p-certifications">
+<div class="sec">
+  <div class="sec-head">
+    <span class="sec-num">03B —</span>
+    <h2 class="sec-title">CERTIFICATIONS</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="certif-page-title c-reveal">Mes <span class="certif-gradient">Certifications</span></div>
+  <p class="certif-subtitle c-reveal">Retrouvez ici les différentes certifications et attestations que j'ai obtenues.</p>
+
+  <div class="certif-grid">
+
+    <div class="certif-card c-reveal">
+      <h3>SecNumacadémie (ANSSI) — Attestation de suivi</h3>
+      <p>J'ai suivi avec succès les quatre modules du MOOC de l'ANSSI : <strong>Panorama de la SSI</strong>, <strong>Sécurité de l'authentification</strong>, <strong>Sécurité sur Internet</strong>, et <strong>Sécurité du poste de travail et nomadisme</strong>. Cette formation m'a permis de consolider mes connaissances sur les enjeux de la cybersécurité et les bonnes pratiques associées.</p>
+      <div class="certif-img-wrap">
+        <img src="assets/secnum.png" alt="Attestation SecNumacadémie">
+      </div>
+      <ul class="certif-tags">
+        <li>Cybersécurité</li><li>ANSSI</li><li>Sécurité Internet</li>
+      </ul>
+    </div>
+
+    <div class="certif-card c-reveal">
+      <h3>Cisco Networking Academy — CyberOps Associate</h3>
+      <p>Formation qualifiante suivie via le Lycée Benjamin Franklin, centrée sur la surveillance, la détection et la réponse aux cybermenaces (opérations de type SOC). Elle démontre mes capacités à sécuriser et surveiller une infrastructure système et réseau moderne.</p>
+      <div class="certif-img-wrap">
+        <img src="assets/certif-cyberops.png" alt="Certification Cisco CyberOps Associate">
+      </div>
+      <ul class="certif-tags">
+        <li>CyberSécurité</li><li>SOC</li><li>Cisco</li>
+      </ul>
+    </div>
+
+    <div class="certif-card c-reveal">
+      <h3>Cisco Networking Academy — CCNA 1 &amp; 2</h3>
+      <p>Validation des modules <strong>CCNA 1 (Présentation des réseaux)</strong> et <strong>CCNA 2 (Switching, Routing, and Wireless Essentials)</strong>. Ces cours très approfondis attestent de mes compétences en configuration de routeurs et commutateurs, conception de VLANs, et compréhension des protocoles.</p>
+      <div class="certif-img-wrap">
+        <img src="assets/certif-ccna.png" alt="Certifications Cisco CCNA 1 et 2">
+      </div>
+      <ul class="certif-tags">
+        <li>Réseaux</li><li>Routage</li><li>Cisco CCNA</li>
+      </ul>
+    </div>
+
+    <div class="certif-card c-reveal">
+      <h3>OpenClassrooms — TCP/IP</h3>
+      <p>Cours complété sur la conception et la gestion des réseaux TCP/IP. Les notions abordées incluent l'adressage IP, le découpage en sous-réseaux, le routage, et les fondamentaux du modèle OSI et TCP/IP, compétences clés pour l'administration d'infrastructures.</p>
+      <div class="certif-img-wrap">
+        <img src="assets/openclassrooms.png" alt="Certification OpenClassrooms TCP/IP">
+      </div>
+      <ul class="certif-tags">
+        <li>TCP/IP</li><li>Réseaux</li><li>OpenClassrooms</li>
+      </ul>
+    </div>
+
+    <div class="certif-card c-reveal">
+      <h3>OpenClassrooms — Initiez-vous à Linux</h3>
+      <p>Formation complétée dans la catégorie <strong>Systèmes &amp; Réseaux</strong>, couvrant les fondamentaux de l'environnement Linux : navigation en ligne de commande, gestion des fichiers et permissions, utilisation du terminal, et compréhension de l'architecture du système. Ces compétences sont essentielles pour l'administration d'infrastructures serveur en environnement SISR.</p>
+      <div class="certif-img-wrap">
+        <img src="assets/certif-linux-init.png" alt="Certification OpenClassrooms Initiez-vous à Linux">
+      </div>
+      <ul class="certif-tags">
+        <li>Linux</li><li>Ligne de commande</li><li>Systèmes &amp; Réseaux</li>
+      </ul>
+    </div>
+
+    <div class="certif-card c-reveal">
+      <h3>OpenClassrooms — Administrez un système Linux</h3>
+      <p>Formation avancée dans la catégorie <strong>Systèmes &amp; Réseaux</strong>, portant sur l'administration système Linux : gestion des utilisateurs et des groupes, configuration des services réseau, automatisation avec les scripts Bash, gestion des paquets, et supervision du système. Cette certification renforce directement mes compétences pour le déploiement et la maintenance de serveurs en production.</p>
+      <div class="certif-img-wrap">
+        <img src="assets/certif-linux-admin.png" alt="Certification OpenClassrooms Administrez un système Linux">
+      </div>
+      <ul class="certif-tags">
+        <li>Linux</li><li>Administration système</li><li>Bash</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+</div><!-- /p-certifications -->
+
 <!-- ══════════════════ CONTACT ══════════════════ -->
 <div class="page" id="p-contact">
 <div class="sec">
@@ -1116,6 +1246,12 @@ function show(name){
   document.getElementById('p-'+name).classList.add('active');
   document.getElementById('n-'+name).classList.add('active');
   window.scrollTo(0,0);
+  if(name==='certifications') setTimeout(activateCertifReveal, 80);
+}
+function activateCertifReveal(){
+  document.querySelectorAll('#p-certifications .c-reveal').forEach((el,i)=>{
+    setTimeout(()=>el.classList.add('active'), i*120);
+  });
 }
 function tab(btn,id){
   const sec=btn.closest('.sec');
