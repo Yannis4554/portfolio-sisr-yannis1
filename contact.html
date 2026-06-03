@@ -1,41 +1,73 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>CR Stage 1 — Advise</title><link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-<script>mermaid.initialize({startOnLoad:true,theme:'dark'});</script>
-</head><body><div class="scanlines"></div>
-<nav><div class="nav-brand">YB <span>/ Portfolio SISR</span></div><ul class="nav-links"><li><a href="index.html">Accueil</a></li><li><a href="projets.html">Projets</a></li><li><a href="stage.html" class="active">Stages</a></li><li><a href="competences.html">Compétences</a></li><li><a href="veille.html">Veille</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Yannis BOFUNGA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body><div class="scanlines"></div>
+<nav>
+  <div class="nav-brand">YB <span>/ Portfolio SISR</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="projets.html">Projets</a></li>
+    <li><a href="stage.html">Stages</a></li>
+    <li><a href="competences.html">Compétences</a></li>
+    <li><a href="veille.html">Veille</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+</nav>
 <div class="container">
-<div class="cr-header">
-<div class="cr-back"><a href="stage.html">← Retour aux stages</a></div>
-<h1 class="cr-title">Stage 1ère année — Switch Cisco & Conseil IA</h1>
-<div class="cr-meta">Mai–Juin 2025 · 5 semaines · Startup IA Advise, Orléans</div>
-</div>
+  <h1 class="page-title" data-text="Contact">Contact</h1>
+  <p class="page-sub">En recherche d'alternance pour le Bachelor Administrateur Systèmes &amp; Réseaux — École CESI (2026).</p>
 
-<div class="cr-section"><h2>📋 Contexte</h2>
-<p>Stage d'immersion dans une startup spécialisée en IA. Mission principale : configurer un switch Cisco en SSH et mettre en place des VLANs. Mission secondaire : accompagner le maître de stage dans l'évaluation des outils IA pour ses workflows.</p>
-</div>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <h2 style="font-size:16px;font-weight:700;margin-bottom:16px">Coordonnées</h2>
+      <div class="c-item">
+        <div class="c-ico">📧</div>
+        <div><div class="c-label">Email</div><div class="c-val"><a href="mailto:yannisbofunga@gmail.com">yannisbofunga@gmail.com</a></div></div>
+      </div>
+      <div class="c-item">
+        <div class="c-ico">📱</div>
+        <div><div class="c-label">Téléphone</div><div class="c-val">06.48.60.62.08</div></div>
+      </div>
+      <div class="c-item">
+        <div class="c-ico">📍</div>
+        <div><div class="c-label">Localisation</div><div class="c-val">1 Esplanade de l'Université, 45100 Orléans</div></div>
+      </div>
+      <div class="c-item">
+        <div class="c-ico">🚗</div>
+        <div><div class="c-label">Mobilité</div><div class="c-val">Permis B — Véhiculé</div></div>
+      </div>
+      <div class="c-item">
+        <div class="c-ico">🌐</div>
+        <div><div class="c-label">Langues</div><div class="c-val">Anglais B2 &nbsp;·&nbsp; Espagnol A2</div></div>
+      </div>
+    </div>
 
-<div class="cr-section"><h2>🖧 Architecture réseau — Switch Cisco SSH & VLANs</h2>
-<div class="mermaid">
-graph TD
-    SW["🔀 Switch Cisco<br/>Administration SSH"] --> V10["VLAN 10 — Direction"]
-    SW --> V20["VLAN 20 — Développeurs"]
-    SW --> V30["VLAN 30 — Invités"]
-    ADMIN["🖥️ Poste admin"] -->|"SSH port 22"| SW
+    <div class="contact-card">
+      <h2 style="font-size:16px;font-weight:700;margin-bottom:6px">Curriculum Vitae</h2>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:16px">Téléchargez mon CV ou consultez mon parcours ci-dessous.</p>
+      <a href="CVYannisBOFUNGA2.pdf" download class="btn btn-primary" style="margin-bottom:24px;display:inline-flex">⬇ Télécharger le CV</a>
 
-    style SW fill:#1e40af,stroke:#1e3a8a,color:#fff
-    style ADMIN fill:#15803d,stroke:#166534,color:#fff
-</div>
-<p>Configuration du switch en CLI : activation de SSHv2, création de VLANs, affectation des ports en mode access, désactivation de Telnet.</p>
-</div>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px;margin-top:8px">Formation</div>
+      <div style="font-size:13px;color:var(--ink2);padding:7px 0;border-bottom:1px solid var(--border);line-height:1.6"><span style="font-family:var(--mono);font-size:10px;color:var(--accent);display:block">2026</span><strong>Bachelor Admin. Sys. &amp; Réseaux</strong> — École CESI</div>
+      <div style="font-size:13px;color:var(--ink2);padding:7px 0;border-bottom:1px solid var(--border);line-height:1.6"><span style="font-family:var(--mono);font-size:10px;color:var(--accent);display:block">2024–2026</span><strong>BTS SIO SISR</strong> — Lycée Benjamin Franklin, Orléans</div>
+      <div style="font-size:13px;color:var(--ink2);padding:7px 0;border-bottom:1px solid var(--border);line-height:1.6"><span style="font-family:var(--mono);font-size:10px;color:var(--accent);display:block">2023–2024</span>CMI ISDEM — Maths appliquées &amp; Informatique</div>
+      <div style="font-size:13px;color:var(--ink2);padding:7px 0;border-bottom:1px solid var(--border);line-height:1.6"><span style="font-family:var(--mono);font-size:10px;color:var(--accent);display:block">2022–2023</span><strong>Baccalauréat général</strong> — Maths + NSI, option Maths expertes</div>
+      <div style="font-size:13px;color:var(--ink2);padding:7px 0;line-height:1.6"><span style="font-family:var(--mono);font-size:10px;color:var(--accent);display:block">2022</span>🏆 Finaliste mondial — <strong>La Nuit du Code</strong></div>
 
-<div class="cr-section"><h2>✅ Résultats</h2>
-<ul>
-<li>Switch Cisco configuré en SSH avec VLANs opérationnels</li>
-<li>Telnet désactivé, clés RSA générées</li>
-<li>Benchmark d'outils IA remis au maître de stage</li>
-<li>Synthèse documentée des recommandations IA</li>
-</ul>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px;margin-top:20px">Expériences</div>
+      <div style="font-size:13px;color:var(--ink2);padding:7px 0;border-bottom:1px solid var(--border);line-height:1.6"><span style="font-family:var(--mono);font-size:10px;color:var(--accent);display:block">Janv.–Févr. 2026</span><strong>Stage Sys. &amp; Réseaux</strong> — Armée de l'Air, BA123 Bricy</div>
+      <div style="font-size:13px;color:var(--ink2);padding:7px 0;border-bottom:1px solid var(--border);line-height:1.6"><span style="font-family:var(--mono);font-size:10px;color:var(--accent);display:block">Mai–Juin 2025</span><strong>Stage</strong> — Startup IA Advise, Orléans</div>
+      <div style="font-size:13px;color:var(--ink2);padding:7px 0;border-bottom:1px solid var(--border);line-height:1.6"><span style="font-family:var(--mono);font-size:10px;color:var(--accent);display:block">Juin–Août 2024</span>Agent d'accueil — Basic-fit</div>
+      <div style="font-size:13px;color:var(--ink2);padding:7px 0;line-height:1.6"><span style="font-family:var(--mono);font-size:10px;color:var(--accent);display:block">Juin–Août 2022</span>Employé de commerce — Filet Frais</div>
+    </div>
+  </div>
 </div>
-<div style="text-align:center;padding:16px 0"><a href="stage.html" class="btn btn-outline">← Retour aux stages</a></div>
-</div>
-<footer>© 2026 Yannis Bofunga — BTS SIO SISR</footer></body></html>
+<footer>© 2026 Yannis Bofunga — BTS SIO SISR — Lycée Benjamin Franklin, Orléans</footer>
+</body>
+</html>

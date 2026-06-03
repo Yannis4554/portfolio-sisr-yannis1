@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>CR — Active Directory</title><link rel="stylesheet" href="style.css">
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>CR — Keepalived & LVS</title><link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 <script>mermaid.initialize({startOnLoad:true,theme:'dark'});</script>
 </head><body><div class="scanlines"></div>
@@ -6,71 +6,83 @@
 <div class="container">
 <div class="cr-header">
 <div class="cr-back"><a href="projets.html">← Retour aux projets</a></div>
-<span class="proj-ref">Ref 1.1 - Gérer le patrimoine informatique</span>
-<h1 class="cr-title" style="margin-top:10px">Active Directory & DNS Redondant</h1>
-<div class="cr-meta">Période : 2024–2025 · Environnement : Nutanix · OS : Windows Server</div>
+<span class="proj-ref">Ref 1.4 - Travailler en mode projet</span>
+<h1 class="cr-title" style="margin-top:10px">Haute Disponibilité — Keepalived & LVS</h1>
+<div class="cr-meta">Novembre 2025 · Nutanix · Debian 12</div>
 </div>
 
-<div class="cr-section"><h2>📋 Contexte & Objectifs</h2>
-<p>L'objectif de ce projet était de mettre en place une infrastructure Active Directory avec deux contrôleurs de domaine. Si le serveur principal tombe en panne, le secondaire assure la continuité du service — les utilisateurs peuvent toujours se connecter sans interruption.</p>
+<div class="cr-section"><h2>📋 Contexte</h2>
+<p>Quand un serveur web tombe en panne, le site est inaccessible. Pour éviter ça, on met en place une architecture « haute disponibilité » : deux serveurs se surveillent en permanence, et si l'un tombe, l'autre prend le relais automatiquement. Les utilisateurs ne remarquent rien.</p>
 </div>
 
-<div class="cr-section"><h2>🖧 1. Infrastructure réseau</h2>
+<div class="cr-section"><h2>🖧 1. Architecture complète</h2>
 <div class="mermaid">
-graph LR
-    subgraph NUTANIX["Plateforme Nutanix"]
-        DC1["💻 LABANNU<br/>DC1 — DNS Primaire<br/>192.168.250.98"]
-        DC2["💻 LABANNUBIS<br/>DC2 — DNS Secondaire<br/>192.168.250.100"]
-    end
+graph TB
+    CLIENT["🖥️ Client<br/>accède à 172.31.1.70"] --> VIP
 
-    PC1["🖥️ Poste Client<br/>Windows 10"] -->|"Authentification"| DC1
-    PC1 -.->|"Si DC1 en panne"| DC2
+    VIP(("🟡 IP Virtuelle<br/>172.31.1.70"))
 
-    DC1 ---|"Synchronisation<br/>automatique"| DC2
+    VIP --> MASTER["🔵 Directeur MASTER<br/>172.31.1.100<br/>priorité 100"]
+    VIP -.->|"si panne"| BACKUP["🟢 Directeur BACKUP<br/>172.31.1.101<br/>priorité 80"]
+
+    MASTER --> WEB1["🌐 Web 1<br/>192.168.2.100"]
+    MASTER --> WEB2["🌐 Web 2<br/>192.168.2.101"]
+
+    WEB1 ---|"rsync"| WEB2
 </div>
 <div class="ip-table">
-<span class="b">DC1 Labannu</span>      →  192.168.250.98  (DNS primaire · Contrôleur principal)<br>
-<span class="g">DC2 Labannubis</span>  →  192.168.250.100 (DNS secondaire)<br>
-Domaine              →  labannu.local
+<span class="o">IP Virtuelle (VIP)</span>     →  172.31.1.70<br>
+<span class="b">Directeur MASTER</span>        →  172.31.1.100 / 192.168.2.120  (priorité 100)<br>
+<span class="g">Directeur BACKUP</span>        →  172.31.1.101 / 192.168.2.121  (priorité 80)<br>
+Serveur Web 1             →  192.168.2.100 : port 8001<br>
+Serveur Web 2             →  192.168.2.101 : port 8001<br>
+Algorithme                →  Round Robin (chacun son tour)
 </div>
 </div>
 
-<div class="cr-section"><h2>👥 2. Structure de l'annuaire</h2>
-<p>Création d'Unités Organisationnelles (UO) pour organiser les utilisateurs par service, avec des groupes de sécurité pour gérer les droits d'accès aux ressources partagées.</p>
+<div class="cr-section"><h2>🔄 2. Que se passe-t-il en cas de panne ?</h2>
 <div class="mermaid">
-graph TD
-    DOM["🏢 labannu.local"] --> D["📂 Direction"]
-    DOM --> I["📂 Informatique"]
-    DOM --> R["📂 RH"]
-    DOM --> S["📂 Stagiaires"]
+sequenceDiagram
+    participant M as 🔵 MASTER
+    participant B as 🟢 BACKUP
+    participant C as 🖥️ Client
 
-    D --> U1["👤 directeur"]
-    I --> U2["👤 admin.sys"]
-    I --> U3["👤 tech.reseau"]
-    R --> U4["👤 resp.rh"]
-    S --> U5["👤 yannis.b"]
+    M->>B: "Je suis vivant" (toutes les 1 seconde)
+    C->>M: Requête web → OK ✅
 
-    I --> G1["🔑 GRP_Admins"]
-    R --> G2["🔑 GRP_RH"]
+    Note over M: ❌ Le MASTER tombe !
+
+    B-->>B: Pas de message reçu...
+    B-->>B: Je prends l'IP virtuelle !
+    C->>B: Requête web → OK ✅
+    Note over C: Le client n'a rien remarqué
 </div>
+<p>Le MASTER envoie un message toutes les secondes au BACKUP (protocole VRRP). Si le BACKUP ne reçoit plus de message, il récupère l'IP virtuelle en moins de 3 secondes.</p>
 </div>
 
-<div class="cr-section"><h2>⚙️ 3. Étapes de déploiement</h2>
-<p><strong>Étape 1 :</strong> Installation du rôle AD DS sur Labannu via le Gestionnaire de serveur. Promotion en contrôleur de domaine et création du domaine <code>labannu.local</code>. Le DNS s'installe automatiquement.</p>
-<p><strong>Étape 2 :</strong> Création des UO, comptes utilisateurs et groupes de sécurité dans AD Users & Computers.</p>
-<p><strong>Étape 3 :</strong> Installation d'AD DS sur Labannubis et jonction au domaine existant. Promotion en contrôleur de domaine secondaire avec DNS secondaire.</p>
-<p><strong>Étape 4 :</strong> Connexion d'un poste client Windows 10 au domaine. Test de connexion avec les comptes créés — validé ✅</p>
-<p><strong>Étape 5 :</strong> Simulation de panne — extinction de Labannu. Labannubis assure seul le service — les utilisateurs se connectent toujours ✅</p>
+<div class="cr-section"><h2>📸 3. Captures de configuration réelles</h2>
+<div class="screenshot-grid">
+<div class="scr-item" onclick="openLb('conf_ip_ip_des_2_directeurs.png')"><img src="conf_ip_ip_des_2_directeurs.png" alt="Config IP directeurs" loading="lazy"><div class="scr-cap">Configuration IP des directeurs</div></div>
+<div class="scr-item" onclick="openLb('conf_keepalived_des_2_directeurs.png')"><img src="conf_keepalived_des_2_directeurs.png" alt="keepalived.conf" loading="lazy"><div class="scr-cap">keepalived.conf — serveurs virtuels et réels</div></div>
+<div class="scr-item" onclick="openLb('conf_suite_keepalived_des_2_directeurs.png')"><img src="conf_suite_keepalived_des_2_directeurs.png" alt="VRRP config" loading="lazy"><div class="scr-cap">keepalived.conf — instances VRRP</div></div>
+<div class="scr-item" onclick="openLb('conf_ip_des_serveurs_web.png')"><img src="conf_ip_des_serveurs_web.png" alt="Config serveurs web" loading="lazy"><div class="scr-cap">Configuration IP des serveurs web</div></div>
+</div>
+<div style="max-width:440px;margin-top:12px">
+<div class="scr-item" onclick="openLb('conf_ip_du_client.PNG')"><img src="conf_ip_du_client.PNG" alt="Test client" loading="lazy"><div class="scr-cap">Test client — accès web via IP virtuelle ✅</div></div>
+</div>
 </div>
 
 <div class="cr-section"><h2>✅ Résultats</h2>
 <ul>
-<li>Infrastructure AD fonctionnelle avec 2 contrôleurs de domaine</li>
-<li>DNS primaire et secondaire opérationnels</li>
-<li>Connexion validée depuis postes clients Windows 10</li>
-<li>Continuité de service assurée en cas de panne du serveur principal</li>
+<li>Basculement automatique en moins de 3 secondes</li>
+<li>Répartition de charge entre 2 serveurs web</li>
+<li>Accès client via IP virtuelle validé</li>
+<li>Service maintenu après extinction du MASTER</li>
 </ul>
 </div>
 <div style="text-align:center;padding:16px 0"><a href="projets.html" class="btn btn-outline">← Retour aux projets</a></div>
 </div>
-<footer>© 2026 Yannis Bofunga — BTS SIO SISR</footer></body></html>
+<div class="lightbox" id="lb" onclick="closeLb(event)"><button class="lb-close" onclick="document.getElementById('lb').classList.remove('open')">✕</button><img id="lb-img" src="" alt=""></div>
+<footer>© 2026 Yannis Bofunga — BTS SIO SISR</footer>
+<script>function openLb(s){document.getElementById('lb-img').src=s;document.getElementById('lb').classList.add('open');event.stopPropagation()}function closeLb(e){if(e.target!==document.getElementById('lb-img'))document.getElementById('lb').classList.remove('open')}document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lb').classList.remove('open')})</script>
+</body></html>

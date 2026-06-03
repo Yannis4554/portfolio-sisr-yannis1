@@ -1,71 +1,48 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>CR — DHCP</title><link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-<script>mermaid.initialize({startOnLoad:true,theme:'dark'});</script>
-</head><body><div class="scanlines"></div>
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Projets — Yannis BOFUNGA</title><link rel="stylesheet" href="style.css"></head><body><div class="scanlines"></div>
 <nav><div class="nav-brand">YB <span>/ Portfolio SISR</span></div><ul class="nav-links"><li><a href="index.html">Accueil</a></li><li><a href="projets.html" class="active">Projets</a></li><li><a href="stage.html">Stages</a></li><li><a href="competences.html">Compétences</a></li><li><a href="veille.html">Veille</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
 <div class="container">
-<div class="cr-header">
-<div class="cr-back"><a href="projets.html">← Retour aux projets</a></div>
+<h1 class="page-title" data-text="Mes Projets">Mes Projets</h1>
+<p class="page-sub">Voici un aperçu de quelques projets réalisés durant ma formation en BTS SIO option SISR.</p>
+
+<div class="project-card">
+<span class="proj-ref">Ref 1.1 - Gérer le patrimoine informatique</span>
+<h2 class="proj-title">Active Directory & DNS Redondant — Labannu / Labannubis</h2>
+<p class="proj-desc">Déploiement d'une infrastructure Active Directory complète sur Nutanix avec deux contrôleurs de domaine en réplication. Serveur DNS primaire (Labannu — 192.168.250.98) et secondaire (Labannubis — 192.168.250.100) pour garantir la haute disponibilité. Création d'UO, comptes utilisateurs, groupes de sécurité et connexion depuis postes clients.</p>
+<div class="proj-tags"><span class="tag">Windows Server</span><span class="tag">Active Directory</span><span class="tag">DNS</span><span class="tag">Nutanix</span><span class="tag">GPO</span></div>
+<div class="proj-links"><a href="cr_ad.html" class="btn btn-primary">Voir le compte-rendu détaillé (Schémas & Explications)</a></div>
+</div>
+
+<div class="project-card">
 <span class="proj-ref">Ref 1.5 - Mettre à disposition un service</span>
-<h1 class="cr-title" style="margin-top:10px">Serveur DHCP — Debian 12</h1>
-<div class="cr-meta">Mars 2025 · OS : Debian 12 · Paquet : isc-dhcp-server</div>
+<h2 class="proj-title">Installation et configuration d'un serveur DHCP (Debian 12)</h2>
+<p class="proj-desc">Mise en place d'un serveur DHCP sous Debian 12 avec isc-dhcp-server pour automatiser la distribution d'adresses IP au sein du réseau local. Configuration des plages, exclusions, réservations MAC, bail 24h et options DNS/passerelle.</p>
+<div class="proj-tags"><span class="tag">Debian 12</span><span class="tag">isc-dhcp-server</span><span class="tag">IPv4</span><span class="tag">Réseau Local</span></div>
+<div class="proj-links"><a href="cr_dhcp.html" class="btn btn-primary">Voir le compte-rendu détaillé (Schémas & Explications)</a></div>
 </div>
 
-<div class="cr-section"><h2>📋 Contexte</h2>
-<p>Quand un nouvel ordinateur se connecte au réseau, il a besoin d'une adresse IP pour communiquer. Sans serveur DHCP, il faudrait configurer chaque poste manuellement. L'objectif : automatiser tout ça avec un serveur DHCP sous Debian 12.</p>
+<div class="project-card">
+<span class="proj-ref">Ref 1.4 - Travailler en mode projet</span>
+<h2 class="proj-title">Haute Disponibilité : Keepalived + LVS</h2>
+<p class="proj-desc">Déploiement d'une architecture haute disponibilité avec Keepalived et LVS (Linux Virtual Server). Deux directeurs MASTER/BACKUP avec IP virtuelle VRRP flottante, répartition de charge Round Robin vers 2 serveurs web, synchronisation rsync et basculement automatique validé.</p>
+<div class="proj-tags"><span class="tag">Keepalived</span><span class="tag">LVS</span><span class="tag">Haute Disponibilité</span><span class="tag">Linux</span><span class="tag">VRRP</span></div>
+<div class="proj-links"><a href="cr_keepalived.html" class="btn btn-primary">Voir le compte-rendu détaillé (Schémas & Explications)</a></div>
 </div>
 
-<div class="cr-section"><h2>🖧 1. Réseau et rôle du serveur DHCP</h2>
-<div class="mermaid">
-graph TB
-    DHCP["🐧 Serveur DHCP<br/>Debian 12"] --- SWITCH["🔀 Switch"]
-    SWITCH --- PC1["🖥️ Poste 1<br/>reçoit : .50"]
-    SWITCH --- PC2["🖥️ Poste 2<br/>reçoit : .51"]
-    SWITCH --- PC3["🖥️ Poste 3<br/>reçoit : .52"]
-    SWITCH --- IMP["🖨️ Imprimante<br/>IP fixe réservée"]
-</div>
-<p>Le serveur DHCP distribue automatiquement les adresses IP aux postes qui se connectent. L'imprimante a une réservation — elle reçoit toujours la même IP grâce à son adresse MAC.</p>
+<div class="project-card">
+<span class="proj-ref">Ref 1.2 - Répondre aux incidents et demandes</span>
+<h2 class="proj-title">Analyse de trames réseau et audit de sécurité avec Wireshark</h2>
+<p class="proj-desc">Utilisation avancée de Wireshark pour capturer, filtrer et analyser le trafic réseau. Observation des échanges de protocoles (TCP, UDP, HTTP, DNS, ARP), diagnostic de problèmes de connectivité et identification de vulnérabilités lors d'un audit de sécurité.</p>
+<div class="proj-tags"><span class="tag">Wireshark</span><span class="tag">Analyse de trafic</span><span class="tag">Sécurité Réseau</span><span class="tag">TCP/IP</span></div>
+<div class="proj-links"><a href="cr_wireshark.html" class="btn btn-primary">Voir le compte-rendu détaillé (Schémas & Explications)</a></div>
 </div>
 
-<div class="cr-section"><h2>🔄 2. Comment ça marche — le processus DORA</h2>
-<p>Quand un poste se connecte au réseau, il échange 4 messages avec le serveur DHCP :</p>
-<div class="mermaid">
-sequenceDiagram
-    participant PC as 🖥️ Nouveau poste (pas d'IP)
-    participant SRV as 🐧 Serveur DHCP
-
-    PC->>SRV: 1️⃣ DISCOVER — "Y a quelqu'un ?"
-    SRV-->>PC: 2️⃣ OFFER — "Tiens, prends 192.168.X.50"
-    PC->>SRV: 3️⃣ REQUEST — "OK je la prends !"
-    SRV-->>PC: 4️⃣ ACK — "C'est validé, bail de 24h ✅"
-</div>
+<div class="project-card">
+<span class="proj-ref">Ref 1.5 - Mettre à disposition un service</span>
+<h2 class="proj-title">Configuration réseau d'un switch en CLI et sécurisation SSH</h2>
+<p class="proj-desc">Configuration d'un commutateur Cisco via CLI. Mise en place de la configuration de base (hostname, mots de passe), segmentation VLAN, routage inter-VLAN et sécurisation de l'administration distante via SSH avec désactivation de Telnet.</p>
+<div class="proj-tags"><span class="tag">Switch CLI</span><span class="tag">SSH</span><span class="tag">Sécurité</span><span class="tag">Cisco IOS</span><span class="tag">VLAN</span></div>
+<div class="proj-links"><a href="cr_cisco.html" class="btn btn-primary">Voir le compte-rendu détaillé (Schémas & Explications)</a></div>
 </div>
 
-<div class="cr-section"><h2>⚙️ 3. Configuration</h2>
-<p>Le fichier de configuration principal est <code>/etc/dhcp/dhcpd.conf</code> :</p>
-<div class="ip-table">
-subnet 192.168.X.0 netmask 255.255.255.0 {<br>
-&nbsp;&nbsp;range 192.168.X.50 192.168.X.200;<br>
-&nbsp;&nbsp;option routers 192.168.X.254;<br>
-&nbsp;&nbsp;option domain-name-servers 192.168.250.98;<br>
-&nbsp;&nbsp;default-lease-time 86400;<br>
-}
 </div>
-<ul>
-<li><strong>range :</strong> les adresses IP disponibles pour les clients</li>
-<li><strong>option routers :</strong> la passerelle (pour accéder à Internet)</li>
-<li><strong>option domain-name-servers :</strong> le serveur DNS (Labannu)</li>
-<li><strong>default-lease-time :</strong> durée du bail — 24 heures</li>
-</ul>
-</div>
-
-<div class="cr-section"><h2>✅ Résultats</h2>
-<ul>
-<li>Serveur DHCP opérationnel sur Debian 12</li>
-<li>Les postes reçoivent automatiquement une IP dès qu'ils se connectent</li>
-<li>Baux vérifiés dans <code>/var/lib/dhcp/dhcpd.leases</code></li>
-</ul>
-</div>
-<div style="text-align:center;padding:16px 0"><a href="projets.html" class="btn btn-outline">← Retour aux projets</a></div>
-</div>
-<footer>© 2026 Yannis Bofunga — BTS SIO SISR</footer></body></html>
+<footer>© 2026 Yannis Bofunga — BTS SIO SISR — Lycée Benjamin Franklin, Orléans</footer></body></html>

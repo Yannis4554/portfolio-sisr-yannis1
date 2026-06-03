@@ -1,101 +1,129 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Veille — Yannis BOFUNGA</title><link rel="stylesheet" href="style.css"></head><body><div class="scanlines"></div>
-<nav><div class="nav-brand">YB <span>/ Portfolio SISR</span></div><ul class="nav-links"><li><a href="index.html">Accueil</a></li><li><a href="projets.html">Projets</a></li><li><a href="stage.html">Stages</a></li><li><a href="competences.html">Compétences</a></li><li><a href="veille.html" class="active">Veille</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compétences — Yannis BOFUNGA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body><div class="scanlines"></div>
+<nav>
+  <div class="nav-brand">YB <span>/ Portfolio SISR</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="projets.html">Projets</a></li>
+    <li><a href="stage.html">Stages</a></li>
+    <li><a href="competences.html" class="active">Compétences</a></li>
+    <li><a href="veille.html">Veille</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
 <div class="container">
-<h1 class="page-title" data-text="Veille Technologique">Veille Technologique</h1>
-<p class="page-sub">Sujet : <strong>Failles de sécurité et vulnérabilités des infrastructures réseau (Décembre 2025 – Mai 2026)</strong><br>🎓 Compétence associée : Référentiel 1.6 — Organiser son développement professionnel</p>
+  <h1 class="page-title" data-text="Mes Compétences">Mes Compétences</h1>
+  <p class="page-sub">Association de mes projets et expériences aux compétences officielles du référentiel BTS SIO SISR (Bloc 1).</p>
 
-<div class="veille-card">
-<div class="veille-date">📅 Décembre 2025</div>
-<span class="veille-type vuln">Faille Zero-Day</span>
-<div class="veille-title">Vulnérabilité zero-day dans Google Chrome — exécution de code à distance</div>
-<div class="veille-label">L'attaque — explication simple</div>
-<div class="veille-text">Une faille critique dans le moteur JavaScript de Chrome permettait aux pirates d'exécuter du code malveillant sur l'ordinateur de la victime simplement en visitant une page web piégée. Aucune action de l'utilisateur n'était nécessaire — juste ouvrir le lien suffisait.</div>
-<div class="veille-label">Lien avec mon parcours SISR</div>
-<div class="veille-text">En tant qu'administrateur réseau, je suis responsable des mises à jour des navigateurs sur les postes du parc informatique. Un navigateur non patché expose tout le réseau.</div>
-<div class="veille-label">Remédiation</div>
-<div class="veille-text">Déployer immédiatement la mise à jour Chrome via GPO ou OPSI. Activer les mises à jour automatiques sur tous les postes clients.</div>
-<div class="veille-label" style="margin-top:16px">Source officielle</div>
-<div class="veille-text"><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2025-AVI-0802/" target="_blank">🔗 CERT-FR — Multiples vulnérabilités dans Google Chrome (CERTFR-2025-AVI-0802)</a></div>
-</div>
+  <div class="comp-card">
+    <span class="comp-ref-badge">Référentiel 1.1</span>
+    <div class="comp-title">Gérer le patrimoine informatique</div>
+    <ul class="comp-bullets">
+      <li>Recenser et identifier les ressources numériques</li>
+      <li>Exploiter des référentiels, normes et standards</li>
+      <li>Mettre en place et vérifier les habilitations d'accès</li>
+      <li>Vérifier la continuité du service et gérer les sauvegardes</li>
+    </ul>
+    <div class="comp-assoc">
+      <strong>🗂️ Réalisation associée :</strong><br>
+      <strong>Active Directory Labannu/Labannubis :</strong> Déploiement de deux contrôleurs de domaine en réplication,
+      gestion des comptes utilisateurs, groupes et UO, haute disponibilité DNS.
+    </div>
+    <div class="comp-link"><a href="cr_ad.html">→ Voir le compte rendu détaillé</a></div>
+  </div>
 
-<div class="veille-card">
-<div class="veille-date">📅 Janvier 2026</div>
-<span class="veille-type attack">Attaque Brute-Force</span>
-<div class="veille-title">Vague d'attaques par brute-force sur les accès SSH exposés</div>
-<div class="veille-label">L'attaque — explication simple</div>
-<div class="veille-text">Des botnets (réseaux d'ordinateurs piratés) tentent des millions de combinaisons login/mot de passe sur les serveurs SSH exposés sur Internet. En quelques heures, un mot de passe faible peut être trouvé et le serveur entièrement compromis.</div>
-<div class="veille-label">Lien avec mon parcours SISR</div>
-<div class="veille-text">J'ai configuré SSH sur des switchs Cisco et des serveurs Linux. La sécurisation des accès distants (clés RSA, Fail2ban, ACL) est au cœur de mon travail.</div>
-<div class="veille-label">Remédiation</div>
-<div class="veille-text">Désactiver l'authentification par mot de passe au profit des clés SSH. Installer Fail2ban pour bloquer les IP après 3 tentatives échouées. Ne jamais exposer SSH directement sur Internet sans VPN.</div>
-<div class="veille-label" style="margin-top:16px">Source officielle</div>
-<div class="veille-text"><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2025-AVI-0848/" target="_blank">🔗 CERT-FR — Vulnérabilité dans OpenSSH (CERTFR-2025-AVI-0848)</a></div>
-</div>
+  <div class="comp-card">
+    <span class="comp-ref-badge">Référentiel 1.2</span>
+    <div class="comp-title">Répondre aux incidents et aux demandes d'assistance</div>
+    <ul class="comp-bullets">
+      <li>Collecter, suivre et orienter les demandes d'assistance</li>
+      <li>Traiter les incidents système, réseau et applicatifs</li>
+      <li>Enrichir la base de connaissances et de procédures</li>
+    </ul>
+    <div class="comp-assoc">
+      <strong>🛠️ Réalisation associée :</strong><br>
+      <strong>Audit Wireshark :</strong> Capture et analyse de trames réseau, identification d'anomalies et de flux suspects,
+      rédaction d'un rapport d'audit avec recommandations de remédiation.
+    </div>
+    <div class="comp-link"><a href="cr_wireshark.html">→ Voir le compte rendu détaillé</a></div>
+  </div>
 
-<div class="veille-card">
-<div class="veille-date">📅 Février 2026</div>
-<span class="veille-type faille">Mots de passe par défaut</span>
-<div class="veille-title">Des milliers d'équipements réseau piratés à cause de mots de passe par défaut</div>
-<div class="veille-label">L'attaque — explication simple</div>
-<div class="veille-text">Des pirates scannent Internet à la recherche de switchs, routeurs et caméras IP qui n'ont jamais changé leur mot de passe par défaut (admin/admin, admin/1234...). Une fois connectés, ils prennent le contrôle total de l'équipement et peuvent espionner le réseau ou le couper.</div>
-<div class="veille-label">Lien avec mon parcours SISR</div>
-<div class="veille-text">Quand j'ai configuré mes switchs Cisco, la première chose que j'ai faite est de changer le mot de passe par défaut et d'activer SSH pour sécuriser l'accès. C'est une règle de base en administration réseau.</div>
-<div class="veille-label">Remédiation</div>
-<div class="veille-text">Toujours changer les mots de passe par défaut dès l'installation. Utiliser des mots de passe forts. Désactiver les services inutiles (interface web, Telnet). Restreindre l'accès à l'administration par ACL.</div>
-<div class="veille-label" style="margin-top:16px">Source officielle</div>
-<div class="veille-text"><a href="https://www.cybermalveillance.gouv.fr/tous-nos-contenus/bonnes-pratiques/mots-de-passe" target="_blank">🔗 Cybermalveillance.gouv.fr — Bonnes pratiques sur les mots de passe</a></div>
-</div>
+  <div class="comp-card">
+    <span class="comp-ref-badge">Référentiel 1.3</span>
+    <div class="comp-title">Développer la présence en ligne de l'organisation</div>
+    <ul class="comp-bullets">
+      <li>Valoriser l'image de l'organisation sur les médias numériques</li>
+      <li>Respecter le cadre juridique et les mentions légales</li>
+      <li>Optimiser le référencement et mesurer la visibilité en ligne</li>
+    </ul>
+    <div class="comp-assoc">
+      <strong>🌐 Réalisation associée :</strong><br>
+      <strong>Portfolio personnel :</strong> Conception de ce site web multi-pages responsive (HTML/CSS),
+      hébergement et déploiement continu via GitHub Pages.
+    </div>
+    <div class="comp-link"><a href="index.html">→ Ce portfolio</a></div>
+  </div>
 
-<div class="veille-card">
-<div class="veille-date">📅 Mars 2026</div>
-<span class="veille-type attack">Attaque Interne</span>
-<div class="veille-title">Vol de données par clé USB — menace interne en entreprise</div>
-<div class="veille-label">L'attaque — explication simple</div>
-<div class="veille-text">Un employé mécontent a branché une clé USB sur son poste de travail et copié des fichiers confidentiels (base clients, données financières). Aucun système ne bloquait les périphériques USB, et aucune alerte n'a été déclenchée.</div>
-<div class="veille-label">Lien avec mon parcours SISR</div>
-<div class="veille-text">En Active Directory, j'ai appris à gérer les droits d'accès et les GPO. Bloquer les ports USB via GPO fait partie des mesures de base pour protéger les données sensibles.</div>
-<div class="veille-label">Remédiation</div>
-<div class="veille-text">Désactiver les ports USB en écriture via GPO Active Directory. Appliquer le principe du moindre privilège.</div>
-<div class="veille-label" style="margin-top:16px">Source officielle</div>
-<div class="veille-text"><a href="https://www.cybermalveillance.gouv.fr/" target="_blank">🔗 Cybermalveillance.gouv.fr — Menaces internes et protection des données</a></div>
-</div>
+  <div class="comp-card">
+    <span class="comp-ref-badge">Référentiel 1.4</span>
+    <div class="comp-title">Travailler en mode projet</div>
+    <ul class="comp-bullets">
+      <li>Analyser les objectifs et l'organisation d'un projet</li>
+      <li>Planifier les activités et suivre leur avancement</li>
+      <li>Évaluer les indicateurs de suivi et analyser les écarts</li>
+    </ul>
+    <div class="comp-assoc">
+      <strong>🔄 Réalisation associée :</strong><br>
+      <strong>Projet Keepalived + LVS :</strong> Planification et déploiement d'une architecture haute disponibilité
+      avec répartition de charge, tolérance aux pannes et validation par test de basculement.
+    </div>
+    <div class="comp-link"><a href="cr_keepalived.html">→ Voir le compte rendu détaillé</a></div>
+  </div>
 
-<div class="veille-card">
-<div class="veille-date">📅 Avril 2026</div>
-<span class="veille-type vuln">Faille Windows</span>
-<div class="veille-title">Élévation de privilèges Windows — un utilisateur standard devient administrateur</div>
-<div class="veille-label">L'attaque — explication simple</div>
-<div class="veille-text">Une faille dans le système d'impression de Windows permettait à un utilisateur standard de devenir administrateur local de la machine. Avec ces droits, il pouvait installer des logiciels, désactiver l'antivirus, ou se propager sur le réseau.</div>
-<div class="veille-label">Lien avec mon parcours SISR</div>
-<div class="veille-text">En administration Windows Server et Active Directory, la gestion des droits est essentielle. Cette faille rappelle l'importance de ne jamais donner les droits admin aux utilisateurs standards.</div>
-<div class="veille-label">Remédiation</div>
-<div class="veille-text">Mettre à jour Windows immédiatement via Windows Update. Vérifier que les utilisateurs standards n'ont pas les droits administrateur sur leur poste.</div>
-<div class="veille-label" style="margin-top:16px">Source officielle</div>
-<div class="veille-text"><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2025-AVI-0193/" target="_blank">🔗 CERT-FR — CERT-FR — Multiples vulnérabilités dans Microsoft Windows (CERTFR-2025-AVI-0193)</a></div>
-</div>
+  <div class="comp-card">
+    <span class="comp-ref-badge">Référentiel 1.5</span>
+    <div class="comp-title">Mettre à disposition des utilisateurs un service informatique</div>
+    <ul class="comp-bullets">
+      <li>Déployer un service informatique en production</li>
+      <li>Réaliser les tests d'intégration, de connectivité et de sécurité</li>
+      <li>Accompagner les utilisateurs dans la mise en service</li>
+    </ul>
+    <div class="comp-assoc">
+      <strong>🔌 Réalisations associées :</strong><br>
+      <strong>Serveur DHCP Debian 12 :</strong> Déploiement de baux IP dynamiques, tests de distribution automatique.<br>
+      <strong>Switch Cisco CLI :</strong> Configuration VLAN, SSH, sécurisation et mise en production.
+    </div>
+    <div class="comp-link">
+      <a href="cr_dhcp.html">→ CR Serveur DHCP</a> &nbsp;·&nbsp;
+      <a href="cr_cisco.html">→ CR Switch Cisco</a>
+    </div>
+  </div>
 
-<div class="veille-card">
-<div class="veille-date">📅 Mai 2026</div>
-<span class="veille-type attack">Attaque DDoS</span>
-<div class="veille-title">Attaque DDoS massive sur des infrastructures DNS en France</div>
-<div class="veille-label">L'attaque — explication simple</div>
-<div class="veille-text">Une attaque par déni de service distribué (DDoS) a ciblé des serveurs DNS d'hébergeurs français, les rendant inaccessibles pendant plusieurs heures. Les sites web hébergés chez ces fournisseurs ne pouvaient plus être résolus — ils étaient invisibles sur Internet.</div>
-<div class="veille-label">Lien avec mon parcours SISR</div>
-<div class="veille-text">J'ai configuré des serveurs DNS primaire et secondaire (Labannu/Labannubis). La redondance DNS est exactement la solution contre ce type d'attaque — si un serveur tombe, le secondaire prend le relais.</div>
-<div class="veille-label">Remédiation</div>
-<div class="veille-text">Toujours avoir un DNS secondaire sur un réseau séparé (comme mon projet Labannu/Labannubis). Installer un IDS (système de détection d'intrusion) comme Snort pour détecter le trafic anormal, et un IPS (système de prévention d'intrusion) pour bloquer automatiquement les flux suspects avant qu'ils n'atteignent les serveurs.</div>
-<div class="veille-label" style="margin-top:16px">Source officielle</div>
-<div class="veille-text"><a href="https://www.cert.ssi.gouv.fr/fiche/CERTFR-2024-RFX-010/" target="_blank">🔗 CERT-FR — Guide de réponse aux attaques DDoS (CERTFR-2024-RFX-010)</a></div>
-</div>
-
-<div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 32px;margin-top:8px;backdrop-filter:blur(10px)">
-<h2 style="font-size:17px;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:8px">🔬 Méthodologie de veille</h2>
-<ul style="padding-left:18px">
-<li style="font-size:14px;color:var(--ink2);line-height:2"><strong style="color:var(--ink)">Collecte automatisée :</strong> Flux RSS via Feedly — alertes CERT-FR (ANSSI), Cybermalveillance.gouv.fr, bulletins Cisco</li>
-<li style="font-size:14px;color:var(--ink2);line-height:2"><strong style="color:var(--ink)">Organisation :</strong> Tri des alertes par criticité et rédaction de fiches sur Notion</li>
-<li style="font-size:14px;color:var(--ink2);line-height:2"><strong style="color:var(--ink)">Analyse :</strong> Pour chaque faille — explication simple, lien avec mes compétences SISR, et mesures de remédiation concrètes</li>
-</ul>
-</div>
+  <div class="comp-card">
+    <span class="comp-ref-badge">Référentiel 1.6</span>
+    <div class="comp-title">Organiser son développement professionnel</div>
+    <ul class="comp-bullets">
+      <li>Mettre en œuvre des outils et stratégies de veille informationnelle</li>
+      <li>Gérer son identité et son projet professionnel</li>
+      <li>Mettre en place son environnement d'apprentissage personnel</li>
+    </ul>
+    <div class="comp-assoc">
+      <strong>📚 Réalisation associée :</strong><br>
+      <strong>Veille Technologique Cybersécurité :</strong> Suivi mensuel des alertes CERT-FR,
+      analyse de cyberattaques réelles (DDoS, Ransomware, Phishing, failles critiques) avec explications accessibles et sources officielles.
+    </div>
+    <div class="comp-link"><a href="veille.html">→ Voir la veille technologique</a></div>
+  </div>
 
 </div>
-<footer>© 2026 Yannis Bofunga — BTS SIO SISR — Lycée Benjamin Franklin, Orléans</footer></body></html>
+<footer>© 2026 Yannis Bofunga — BTS SIO SISR — Lycée Benjamin Franklin, Orléans</footer>
+</body>
+</html>

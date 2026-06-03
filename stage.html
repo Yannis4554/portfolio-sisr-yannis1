@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stages — Yannis BOFUNGA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body><div class="scanlines"></div>
+<nav>
+  <div class="nav-brand">YB <span>/ Portfolio SISR</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="projets.html">Projets</a></li>
+    <li><a href="stage.html" class="active">Stages</a></li>
+    <li><a href="competences.html">Compétences</a></li>
+    <li><a href="veille.html">Veille</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+<div class="container">
+  <h1 class="page-title" data-text="Expériences en entreprise">Expériences en entreprise</h1>
+  <p class="page-sub">Deux stages effectués durant ma formation BTS SIO SISR — missions réelles en environnement professionnel.</p>
+
+  <!-- STAGE 2 : ARMÉE -->
+  <div class="stage-card">
+    <div class="stage-head">
+      <div class="stage-annee">Stage 2ème année — Janvier / Février 2026 — 5 semaines</div>
+      <div class="stage-title">Administrateur Systèmes &amp; Réseaux</div>
+      <div class="stage-org">⚡ Armée de l'Air et de l'Espace — Base Aérienne 123, Bricy</div>
+      <div class="stage-context">
+        Déploiement d'un proxy de filtrage web sur Debian 13 pour bloquer l'accès aux sites interdits
+        (terrorisme, pornographie, jeux en ligne…) depuis les postes de travail militaires,
+        suite à la détection d'accès non autorisés pendant les heures de service.
+      </div>
+    </div>
+    <div class="stage-body">
+      <div class="mission">
+        <div class="mission-ico">🔒</div>
+        <div>
+          <div class="mission-title">Proxy Squid — Installation &amp; Configuration</div>
+          <div class="mission-desc">
+            Installation de Squid sur Debian 13. Configuration du fichier <code>squid.conf</code> :
+            définition des ACL, intégration de la liste noire fournie par l'Armée
+            (sites terroristes, pornographiques, jeux en ligne…),
+            règles <code>http_access deny</code> pour les catégories interdites,
+            <code>http_access allow</code> pour le trafic autorisé.
+            Journalisation des tentatives bloquées dans <code>access.log</code>.
+          </div>
+        </div>
+      </div>
+      <div class="mission">
+        <div class="mission-ico">📋</div>
+        <div>
+          <div class="mission-title">ACL et règles de filtrage avancées</div>
+          <div class="mission-desc">
+            Création des listes de contrôle d'accès dans squid.conf :
+            <code>acl sites_interdits dstdomain "/etc/squid/blacklist.txt"</code>,
+            puis <code>http_access deny sites_interdits</code>.
+            La blacklist contient les domaines fournis par l'Armée, classés par catégorie.
+            Tests de validation : tentative d'accès à un site bloqué → message d'erreur Squid ✅.
+          </div>
+        </div>
+      </div>
+      <div class="mission">
+        <div class="mission-ico">📝</div>
+        <div>
+          <div class="mission-title">Documentation technique</div>
+          <div class="mission-desc">
+            Rédaction de la documentation complète : schéma réseau du proxy,
+            fichier squid.conf commenté, procédure de mise à jour de la liste noire.
+            Déploiement en production sur le réseau de la base aérienne.
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:10px">Technologies utilisées</div>
+        <div class="proj-tags">
+          <span class="tag">Squid Proxy</span>
+          <span class="tag">Debian 13</span>
+          <span class="tag">squid.conf</span>
+          <span class="tag">ACL</span>
+          <span class="tag">Filtrage web</span>
+          <span class="tag">Blacklist</span>
+          <span class="tag">Sécurité SI</span>
+        </div>
+      </div>
+
+      <div style="margin-top:16px">
+        <a href="cr_stage2.html" class="btn btn-primary">📄 Voir le compte rendu détaillé (Schémas Réseaux)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE 1 -->
+  <div class="stage-card">
+    <div class="stage-head">
+      <div class="stage-annee">Stage 1ère année — Mai / Juin 2025 — 5 semaines</div>
+      <div class="stage-title">Support &amp; Conseil IA</div>
+      <div class="stage-org">🏢 Startup IA — Advise, Orléans</div>
+      <div class="stage-context">
+        Stage d'immersion dans une startup spécialisée en intelligence artificielle.
+        Le maître de stage souhaitait comprendre comment l'IA pouvait améliorer ses flux de travail quotidiens — j'ai mis en place un switch Cisco en SSH et configuré des VLANs sur les ports.
+      </div>
+    </div>
+    <div class="stage-body">
+      <div class="mission">
+        <div class="mission-ico">🔌</div>
+        <div>
+          <div class="mission-title">Switch Cisco — Administration SSH &amp; VLANs</div>
+          <div class="mission-desc">
+            Configuration d'un switch Cisco en ligne de commande (CLI) : activation de SSHv2 pour
+            l'administration distante sécurisée, création de VLANs et affectation des ports en mode access.
+            Désactivation de Telnet, génération des clés RSA, restriction d'accès par ACL.
+          </div>
+        </div>
+      </div>
+      <div class="mission">
+        <div class="mission-ico">🤖</div>
+        <div>
+          <div class="mission-title">Conseil en intégration de l'IA</div>
+          <div class="mission-desc">
+            Accompagnement du maître de stage dans la découverte des outils IA :
+            démonstrations pratiques de LLM, benchmark d'outils d'automatisation,
+            recommandations d'intégration dans les workflows métier.
+            Synthèse documentée remise en fin de stage.
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:10px">Technologies utilisées</div>
+        <div class="proj-tags">
+          <span class="tag">Cisco IOS</span>
+          <span class="tag">SSH</span>
+          <span class="tag">VLAN</span>
+          <span class="tag">CLI</span>
+          <span class="tag">IA Générative</span>
+          <span class="tag">LLM</span>
+        </div>
+      </div>
+
+      <div style="margin-top:16px">
+        <a href="cr_stage1.html" class="btn btn-primary">📄 Voir le compte rendu détaillé (Schémas Réseaux)</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+<footer>© 2026 Yannis Bofunga — BTS SIO SISR — Lycée Benjamin Franklin, Orléans</footer>
+</body>
+</html>
