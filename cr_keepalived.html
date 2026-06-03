@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>CR — Active Directory</title><link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark'});</script>
+</head><body><div class="scanlines"></div>
+<nav><div class="nav-brand">YB <span>/ Portfolio SISR</span></div><ul class="nav-links"><li><a href="index.html">Accueil</a></li><li><a href="projets.html" class="active">Projets</a></li><li><a href="stage.html">Stages</a></li><li><a href="competences.html">Compétences</a></li><li><a href="veille.html">Veille</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+<div class="container">
+<div class="cr-header">
+<div class="cr-back"><a href="projets.html">← Retour aux projets</a></div>
+<span class="proj-ref">Ref 1.1 - Gérer le patrimoine informatique</span>
+<h1 class="cr-title" style="margin-top:10px">Active Directory & DNS Redondant</h1>
+<div class="cr-meta">Période : 2024–2025 · Environnement : Nutanix · OS : Windows Server</div>
+</div>
+
+<div class="cr-section"><h2>📋 Contexte & Objectifs</h2>
+<p>L'objectif de ce projet était de mettre en place une infrastructure Active Directory avec deux contrôleurs de domaine. Si le serveur principal tombe en panne, le secondaire assure la continuité du service — les utilisateurs peuvent toujours se connecter sans interruption.</p>
+</div>
+
+<div class="cr-section"><h2>🖧 1. Infrastructure réseau</h2>
+<div class="mermaid">
+graph LR
+    subgraph NUTANIX["Plateforme Nutanix"]
+        DC1["💻 LABANNU<br/>DC1 — DNS Primaire<br/>192.168.250.98"]
+        DC2["💻 LABANNUBIS<br/>DC2 — DNS Secondaire<br/>192.168.250.100"]
+    end
+
+    PC1["🖥️ Poste Client<br/>Windows 10"] -->|"Authentification"| DC1
+    PC1 -.->|"Si DC1 en panne"| DC2
+
+    DC1 ---|"Synchronisation<br/>automatique"| DC2
+</div>
+<div class="ip-table">
+<span class="b">DC1 Labannu</span>      →  192.168.250.98  (DNS primaire · Contrôleur principal)<br>
+<span class="g">DC2 Labannubis</span>  →  192.168.250.100 (DNS secondaire)<br>
+Domaine              →  labannu.local
+</div>
+</div>
+
+<div class="cr-section"><h2>👥 2. Structure de l'annuaire</h2>
+<p>Création d'Unités Organisationnelles (UO) pour organiser les utilisateurs par service, avec des groupes de sécurité pour gérer les droits d'accès aux ressources partagées.</p>
+<div class="mermaid">
+graph TD
+    DOM["🏢 labannu.local"] --> D["📂 Direction"]
+    DOM --> I["📂 Informatique"]
+    DOM --> R["📂 RH"]
+    DOM --> S["📂 Stagiaires"]
+
+    D --> U1["👤 directeur"]
+    I --> U2["👤 admin.sys"]
+    I --> U3["👤 tech.reseau"]
+    R --> U4["👤 resp.rh"]
+    S --> U5["👤 yannis.b"]
+
+    I --> G1["🔑 GRP_Admins"]
+    R --> G2["🔑 GRP_RH"]
+</div>
+</div>
+
+<div class="cr-section"><h2>⚙️ 3. Étapes de déploiement</h2>
+<p><strong>Étape 1 :</strong> Installation du rôle AD DS sur Labannu via le Gestionnaire de serveur. Promotion en contrôleur de domaine et création du domaine <code>labannu.local</code>. Le DNS s'installe automatiquement.</p>
+<p><strong>Étape 2 :</strong> Création des UO, comptes utilisateurs et groupes de sécurité dans AD Users & Computers.</p>
+<p><strong>Étape 3 :</strong> Installation d'AD DS sur Labannubis et jonction au domaine existant. Promotion en contrôleur de domaine secondaire avec DNS secondaire.</p>
+<p><strong>Étape 4 :</strong> Connexion d'un poste client Windows 10 au domaine. Test de connexion avec les comptes créés — validé ✅</p>
+<p><strong>Étape 5 :</strong> Simulation de panne — extinction de Labannu. Labannubis assure seul le service — les utilisateurs se connectent toujours ✅</p>
+</div>
+
+<div class="cr-section"><h2>✅ Résultats</h2>
+<ul>
+<li>Infrastructure AD fonctionnelle avec 2 contrôleurs de domaine</li>
+<li>DNS primaire et secondaire opérationnels</li>
+<li>Connexion validée depuis postes clients Windows 10</li>
+<li>Continuité de service assurée en cas de panne du serveur principal</li>
+</ul>
+</div>
+<div style="text-align:center;padding:16px 0"><a href="projets.html" class="btn btn-outline">← Retour aux projets</a></div>
+</div>
+<footer>© 2026 Yannis Bofunga — BTS SIO SISR</footer></body></html>

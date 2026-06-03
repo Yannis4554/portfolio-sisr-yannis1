@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>CR — DHCP</title><link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark'});</script>
+</head><body><div class="scanlines"></div>
+<nav><div class="nav-brand">YB <span>/ Portfolio SISR</span></div><ul class="nav-links"><li><a href="index.html">Accueil</a></li><li><a href="projets.html" class="active">Projets</a></li><li><a href="stage.html">Stages</a></li><li><a href="competences.html">Compétences</a></li><li><a href="veille.html">Veille</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+<div class="container">
+<div class="cr-header">
+<div class="cr-back"><a href="projets.html">← Retour aux projets</a></div>
+<span class="proj-ref">Ref 1.5 - Mettre à disposition un service</span>
+<h1 class="cr-title" style="margin-top:10px">Serveur DHCP — Debian 12</h1>
+<div class="cr-meta">Mars 2025 · OS : Debian 12 · Paquet : isc-dhcp-server</div>
+</div>
+
+<div class="cr-section"><h2>📋 Contexte</h2>
+<p>Quand un nouvel ordinateur se connecte au réseau, il a besoin d'une adresse IP pour communiquer. Sans serveur DHCP, il faudrait configurer chaque poste manuellement. L'objectif : automatiser tout ça avec un serveur DHCP sous Debian 12.</p>
+</div>
+
+<div class="cr-section"><h2>🖧 1. Réseau et rôle du serveur DHCP</h2>
+<div class="mermaid">
+graph TB
+    DHCP["🐧 Serveur DHCP<br/>Debian 12"] --- SWITCH["🔀 Switch"]
+    SWITCH --- PC1["🖥️ Poste 1<br/>reçoit : .50"]
+    SWITCH --- PC2["🖥️ Poste 2<br/>reçoit : .51"]
+    SWITCH --- PC3["🖥️ Poste 3<br/>reçoit : .52"]
+    SWITCH --- IMP["🖨️ Imprimante<br/>IP fixe réservée"]
+</div>
+<p>Le serveur DHCP distribue automatiquement les adresses IP aux postes qui se connectent. L'imprimante a une réservation — elle reçoit toujours la même IP grâce à son adresse MAC.</p>
+</div>
+
+<div class="cr-section"><h2>🔄 2. Comment ça marche — le processus DORA</h2>
+<p>Quand un poste se connecte au réseau, il échange 4 messages avec le serveur DHCP :</p>
+<div class="mermaid">
+sequenceDiagram
+    participant PC as 🖥️ Nouveau poste (pas d'IP)
+    participant SRV as 🐧 Serveur DHCP
+
+    PC->>SRV: 1️⃣ DISCOVER — "Y a quelqu'un ?"
+    SRV-->>PC: 2️⃣ OFFER — "Tiens, prends 192.168.X.50"
+    PC->>SRV: 3️⃣ REQUEST — "OK je la prends !"
+    SRV-->>PC: 4️⃣ ACK — "C'est validé, bail de 24h ✅"
+</div>
+</div>
+
+<div class="cr-section"><h2>⚙️ 3. Configuration</h2>
+<p>Le fichier de configuration principal est <code>/etc/dhcp/dhcpd.conf</code> :</p>
+<div class="ip-table">
+subnet 192.168.X.0 netmask 255.255.255.0 {<br>
+&nbsp;&nbsp;range 192.168.X.50 192.168.X.200;<br>
+&nbsp;&nbsp;option routers 192.168.X.254;<br>
+&nbsp;&nbsp;option domain-name-servers 192.168.250.98;<br>
+&nbsp;&nbsp;default-lease-time 86400;<br>
+}
+</div>
+<ul>
+<li><strong>range :</strong> les adresses IP disponibles pour les clients</li>
+<li><strong>option routers :</strong> la passerelle (pour accéder à Internet)</li>
+<li><strong>option domain-name-servers :</strong> le serveur DNS (Labannu)</li>
+<li><strong>default-lease-time :</strong> durée du bail — 24 heures</li>
+</ul>
+</div>
+
+<div class="cr-section"><h2>✅ Résultats</h2>
+<ul>
+<li>Serveur DHCP opérationnel sur Debian 12</li>
+<li>Les postes reçoivent automatiquement une IP dès qu'ils se connectent</li>
+<li>Baux vérifiés dans <code>/var/lib/dhcp/dhcpd.leases</code></li>
+</ul>
+</div>
+<div style="text-align:center;padding:16px 0"><a href="projets.html" class="btn btn-outline">← Retour aux projets</a></div>
+</div>
+<footer>© 2026 Yannis Bofunga — BTS SIO SISR</footer></body></html>

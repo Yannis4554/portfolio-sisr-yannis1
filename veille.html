@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>CR Stage 2 — Proxy Squid</title><link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark'});</script>
+</head><body><div class="scanlines"></div>
+<nav><div class="nav-brand">YB <span>/ Portfolio SISR</span></div><ul class="nav-links"><li><a href="index.html">Accueil</a></li><li><a href="projets.html">Projets</a></li><li><a href="stage.html" class="active">Stages</a></li><li><a href="competences.html">Compétences</a></li><li><a href="veille.html">Veille</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+<div class="container">
+<div class="cr-header">
+<div class="cr-back"><a href="stage.html">← Retour aux stages</a></div>
+<h1 class="cr-title">Stage 2ème année — Proxy Squid (Armée de l'Air)</h1>
+<div class="cr-meta">Janvier–Février 2026 · 5 semaines · Base Aérienne 123 de Bricy</div>
+</div>
+
+<div class="cr-section"><h2>📋 Contexte</h2>
+<p>L'Armée de l'Air a détecté que certains militaires accédaient à des sites interdits (terrorisme, pornographie, jeux en ligne) depuis leurs postes de travail pendant les heures de service. Ma mission : déployer un proxy de filtrage web sur Debian 13 pour bloquer ces accès.</p>
+</div>
+
+<div class="cr-section"><h2>🖧 Architecture réseau du Proxy</h2>
+<div class="mermaid">
+graph LR
+    PC["🖥️ Postes militaires"] --> PROXY["🔒 Proxy Squid<br/>Debian 13<br/>Port 3128"]
+    PROXY -->|"Sites autorisés ✅"| INTERNET["🌐 Internet"]
+    PROXY -->|"Sites bloqués ❌"| BLOCK["⛔ Page d'erreur Squid"]
+
+    subgraph "Blacklist Armée"
+        BL1["Sites terroristes"]
+        BL2["Sites pornographiques"]
+        BL3["Jeux en ligne"]
+    end
+
+    PROXY --- BL1
+    PROXY --- BL2
+    PROXY --- BL3
+
+    style PROXY fill:#1e40af,stroke:#1e3a8a,color:#fff
+    style BLOCK fill:#dc2626,stroke:#b91c1c,color:#fff
+</div>
+</div>
+
+<div class="cr-section"><h2>⚙️ Configuration squid.conf</h2>
+<div class="ip-table">
+# Définition des ACL<br>
+acl sites_interdits dstdomain "/etc/squid/blacklist.txt"<br>
+acl reseau_local src 192.168.0.0/16<br><br>
+# Règles de filtrage<br>
+http_access <span class="b">deny</span> sites_interdits<br>
+http_access <span class="g">allow</span> reseau_local<br>
+http_access deny all<br><br>
+# Port d'écoute<br>
+http_port 3128<br><br>
+# Journalisation<br>
+access_log /var/log/squid/access.log
+</div>
+<p>La blacklist (<code>/etc/squid/blacklist.txt</code>) contient la liste des domaines fournie par l'Armée, classés par catégorie. Chaque tentative d'accès à un site bloqué est journalisée dans <code>access.log</code>.</p>
+</div>
+
+<div class="cr-section"><h2>🔄 Flux de filtrage</h2>
+<div class="mermaid">
+sequenceDiagram
+    participant PC as 🖥️ Poste militaire
+    participant SQ as 🔒 Proxy Squid
+    participant WEB as 🌐 Internet
+
+    PC->>SQ: Requête HTTP vers site-interdit.com
+    SQ-->>SQ: Vérification ACL → DANS la blacklist
+    SQ-->>PC: ⛔ HTTP 403 — Accès refusé (page d'erreur)
+
+    PC->>SQ: Requête HTTP vers google.com
+    SQ-->>SQ: Vérification ACL → PAS dans la blacklist
+    SQ->>WEB: Requête transmise
+    WEB-->>SQ: Réponse
+    SQ-->>PC: ✅ Page web affichée
+</div>
+</div>
+
+<div class="cr-section"><h2>✅ Résultats</h2>
+<ul>
+<li>Proxy Squid opérationnel sur Debian 13</li>
+<li>Blacklist de l'Armée intégrée et testée</li>
+<li>Journalisation des tentatives de connexion bloquées</li>
+<li>Déploiement en production sur le réseau de la base aérienne</li>
+<li>Documentation technique complète rédigée</li>
+</ul>
+</div>
+<div style="text-align:center;padding:16px 0"><a href="stage.html" class="btn btn-outline">← Retour aux stages</a></div>
+</div>
+<footer>© 2026 Yannis Bofunga — BTS SIO SISR</footer></body></html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>CR — Wireshark</title><link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark'});</script>
+</head><body><div class="scanlines"></div>
+<nav><div class="nav-brand">YB <span>/ Portfolio SISR</span></div><ul class="nav-links"><li><a href="index.html">Accueil</a></li><li><a href="projets.html" class="active">Projets</a></li><li><a href="stage.html">Stages</a></li><li><a href="competences.html">Compétences</a></li><li><a href="veille.html">Veille</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+<div class="container">
+<div class="cr-header">
+<div class="cr-back"><a href="projets.html">← Retour aux projets</a></div>
+<span class="proj-ref">Ref 1.2 - Répondre aux incidents et demandes</span>
+<h1 class="cr-title" style="margin-top:10px">Analyse de trames & Audit Wireshark</h1>
+<div class="cr-meta">Février 2026 · Outil : Wireshark</div>
+</div>
+
+<div class="cr-section"><h2>📋 Contexte</h2>
+<p>Wireshark est un outil qui permet de « voir » tout ce qui circule sur un réseau. On capture les paquets réseau en temps réel pour diagnostiquer des problèmes ou détecter des activités suspectes. Dans ce projet, j'ai réalisé un audit de sécurité sur un réseau simulé.</p>
+</div>
+
+<div class="cr-section"><h2>🔍 1. Méthode d'audit</h2>
+<div class="mermaid">
+flowchart LR
+    A["1️⃣ Brancher Wireshark<br/>sur le réseau"] --> B["2️⃣ Capturer<br/>les paquets"]
+    B --> C["3️⃣ Filtrer par<br/>protocole"]
+    C --> D["4️⃣ Analyser<br/>les anomalies"]
+    D --> E["5️⃣ Rédiger le<br/>rapport d'audit"]
+</div>
+<p>Filtres utilisés : <code>arp</code>, <code>icmp</code>, <code>tcp.port==80</code>, <code>dns</code></p>
+</div>
+
+<div class="cr-section"><h2>🔄 2. Connexion TCP — le « 3-Way Handshake »</h2>
+<p>Avant d'échanger des données, un client et un serveur doivent établir une connexion en 3 étapes :</p>
+<div class="mermaid">
+sequenceDiagram
+    participant C as 🖥️ Client
+    participant S as 🖧 Serveur
+
+    C->>S: SYN — "Je veux me connecter"
+    S-->>C: SYN-ACK — "D'accord"
+    C->>S: ACK — "Connexion établie ✅"
+    C->>S: Échange de données...
+</div>
+<p>Si on voit beaucoup de SYN sans réponse ACK, c'est peut-être une attaque SYN Flood — le pirate essaie de saturer le serveur.</p>
+</div>
+
+<div class="cr-section"><h2>⚠️ 3. Anomalies détectées</h2>
+<ul>
+<li><strong>Requêtes ARP suspectes :</strong> Un poste envoie des réponses ARP non sollicitées — tentative possible d'interception du trafic. Solution : activer la protection ARP sur le switch.</li>
+<li><strong>Trafic sur des ports inhabituels :</strong> Connexions sur les ports 4444 et 8888 qui ne correspondent à aucun service légitime. Solution : bloquer ces ports dans le pare-feu.</li>
+<li><strong>Requêtes DNS vers des domaines inconnus :</strong> Un poste résout des noms de domaine suspects. Solution : configurer un DNS filtrant.</li>
+</ul>
+</div>
+
+<div class="cr-section"><h2>✅ Résultats</h2>
+<ul>
+<li>Audit réseau complet réalisé avec Wireshark</li>
+<li>3 anomalies identifiées avec solutions proposées</li>
+<li>Rapport d'audit rédigé</li>
+</ul>
+</div>
+<div style="text-align:center;padding:16px 0"><a href="projets.html" class="btn btn-outline">← Retour aux projets</a></div>
+</div>
+<footer>© 2026 Yannis Bofunga — BTS SIO SISR</footer></body></html>

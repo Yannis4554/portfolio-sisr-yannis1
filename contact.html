@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>CR Stage 1 — Advise</title><link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark'});</script>
+</head><body><div class="scanlines"></div>
+<nav><div class="nav-brand">YB <span>/ Portfolio SISR</span></div><ul class="nav-links"><li><a href="index.html">Accueil</a></li><li><a href="projets.html">Projets</a></li><li><a href="stage.html" class="active">Stages</a></li><li><a href="competences.html">Compétences</a></li><li><a href="veille.html">Veille</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+<div class="container">
+<div class="cr-header">
+<div class="cr-back"><a href="stage.html">← Retour aux stages</a></div>
+<h1 class="cr-title">Stage 1ère année — Switch Cisco & Conseil IA</h1>
+<div class="cr-meta">Mai–Juin 2025 · 5 semaines · Startup IA Advise, Orléans</div>
+</div>
+
+<div class="cr-section"><h2>📋 Contexte</h2>
+<p>Stage d'immersion dans une startup spécialisée en IA. Mission principale : configurer un switch Cisco en SSH et mettre en place des VLANs. Mission secondaire : accompagner le maître de stage dans l'évaluation des outils IA pour ses workflows.</p>
+</div>
+
+<div class="cr-section"><h2>🖧 Architecture réseau — Switch Cisco SSH & VLANs</h2>
+<div class="mermaid">
+graph TD
+    SW["🔀 Switch Cisco<br/>Administration SSH"] --> V10["VLAN 10 — Direction"]
+    SW --> V20["VLAN 20 — Développeurs"]
+    SW --> V30["VLAN 30 — Invités"]
+    ADMIN["🖥️ Poste admin"] -->|"SSH port 22"| SW
+
+    style SW fill:#1e40af,stroke:#1e3a8a,color:#fff
+    style ADMIN fill:#15803d,stroke:#166534,color:#fff
+</div>
+<p>Configuration du switch en CLI : activation de SSHv2, création de VLANs, affectation des ports en mode access, désactivation de Telnet.</p>
+</div>
+
+<div class="cr-section"><h2>✅ Résultats</h2>
+<ul>
+<li>Switch Cisco configuré en SSH avec VLANs opérationnels</li>
+<li>Telnet désactivé, clés RSA générées</li>
+<li>Benchmark d'outils IA remis au maître de stage</li>
+<li>Synthèse documentée des recommandations IA</li>
+</ul>
+</div>
+<div style="text-align:center;padding:16px 0"><a href="stage.html" class="btn btn-outline">← Retour aux stages</a></div>
+</div>
+<footer>© 2026 Yannis Bofunga — BTS SIO SISR</footer></body></html>
